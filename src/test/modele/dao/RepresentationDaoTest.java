@@ -57,7 +57,7 @@ public class RepresentationDaoTest {
      * @throws SQLException
      */
     public static void test1_SelectUnique(int idRepresentation) throws SQLException {
-        Representation cetteRepresentation = RepresentationDao.selectOne(idRepresentation);
+        Representation cetteRepresentation = RepresentationDao.getOneById(idRepresentation);
         System.out.println("Representation d'identifiant : "+idRepresentation+" : "+cetteRepresentation.toString());
     }
 
@@ -66,7 +66,7 @@ public class RepresentationDaoTest {
      * @throws SQLException
      */
     public static void test2_SelectMultiple() throws SQLException {
-        List<Representation> desRepresentation = RepresentationDao.selectAll();
+        List<Representation> desRepresentation = RepresentationDao.getAll();
         System.out.println("Les representations lues : "+desRepresentation.toString());
     }
 }
