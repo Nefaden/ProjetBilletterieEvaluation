@@ -9,6 +9,6 @@ package test.modele.metier;
  *
  * @author ydurand
  */
-public class reservationTest {
+public class RepresentationTest {
     
 }
