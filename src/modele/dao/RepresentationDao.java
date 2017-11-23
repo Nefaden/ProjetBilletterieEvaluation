@@ -18,6 +18,7 @@ import modele.metier.Representation;
  * @author ydurand
  */
 public class RepresentationDao {
+    //Instancier lieu et groupe comme des objets qui vont chercher leurs nom depuis les tables qui leurs sont attitrés
     
     /**
      * Extraction d'une representation, sur son identifiant
@@ -25,7 +26,7 @@ public class RepresentationDao {
      * @return objet Representation
      * @throws SQLException 
      */
-    public static Representation selectOne(int idRepresentation) throws SQLException {
+    public static Representation getOneById(int idRepresentation) throws SQLException {
         Representation uneRepresentation = null;
         ResultSet rs;
         PreparedStatement pstmt;
@@ -52,7 +53,7 @@ public class RepresentationDao {
      * @return collection de representation
      * @throws SQLException 
      */
-    public static List<Representation> selectAll() throws SQLException {
+    public static List<Representation> getAll() throws SQLException {
         List<Representation> lesRepresentations = new ArrayList<Representation>();
         Representation uneRepresentation;
         ResultSet rs;
