@@ -9,6 +9,6 @@ package modele.metier;
  *
  * @author ydurand
  */
-public class reservation {
+public class Representation {
     
 }

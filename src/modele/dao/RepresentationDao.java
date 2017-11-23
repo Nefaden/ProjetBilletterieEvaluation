@@ -10,6 +10,6 @@ package modele.dao;
  *
  * @author ydurand
  */
-public class reservationDao {
+public class RepresentationDao {
     
 }
