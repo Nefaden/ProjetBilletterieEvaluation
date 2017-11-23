@@ -31,13 +31,13 @@ public class RepresentationDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM REPRESENTATION WHERE ID= ?";
+        String requete = "SELECT * FROM Representation WHERE ID= ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setInt(1, idRepresentation);
         rs = pstmt.executeQuery();
         if (rs.next()) {
             int id = rs.getInt("ID");
-            String date_representation = rs.getString("DATE_REPRESENTATION");
+            String date_representation = rs.getString("DATEREPR");
             int id_lieu = rs.getInt("ID_LIEU");
             String id_groupe = rs.getString("ID_GROUPE");
             String heureDebut = rs.getString("HEURE_DEBUT");
@@ -59,12 +59,12 @@ public class RepresentationDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM REPRESENTATION";
+        String requete = "SELECT * FROM Representation";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
             int id = rs.getInt("ID");
-            String date_representation = rs.getString("DATE_REPRESENTATION");
+            String date_representation = rs.getString("DATEREPR");
             int id_lieu = rs.getInt("ID_LIEU");
             String id_groupe = rs.getString("ID_GROUPE");
             String heureDebut = rs.getString("HEURE_DEBUT");
