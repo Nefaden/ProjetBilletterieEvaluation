@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import modele.metier.Representation;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,7 +38,7 @@ public class RepresentationDao {
         if (rs.next()) {
             int id = rs.getInt("ID");
             String date_representation = rs.getString("DATE_REPRESENTATION");
-            String id_lieu = rs.getString("ID_LIEU");
+            int id_lieu = rs.getInt("ID_LIEU");
             String id_groupe = rs.getString("ID_GROUPE");
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
@@ -64,7 +65,7 @@ public class RepresentationDao {
         while (rs.next()) {
             int id = rs.getInt("ID");
             String date_representation = rs.getString("DATE_REPRESENTATION");
-            String id_lieu = rs.getString("ID_LIEU");
+            int id_lieu = rs.getInt("ID_LIEU");
             String id_groupe = rs.getString("ID_GROUPE");
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
