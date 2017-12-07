@@ -11,7 +11,7 @@ package modele.metier;
  */
 public class Groupe {
     
-    private int id;
+    private String id;
     private String nom;
     private String adressePostale;
     private String identiteResponsable;
@@ -19,7 +19,7 @@ public class Groupe {
     private String nomPays;
     private String hebergement;
     
-    public Groupe(int id, String nom, String adressePostale, String identiteResponsable, String nbPersonne, String nomPays, String hebergement) {
+    public Groupe(String id, String nom, String adressePostale, String identiteResponsable, String nbPersonne, String nomPays, String hebergement) {
     
         this.id=id;
         this.nom=nom;
@@ -30,7 +30,7 @@ public class Groupe {
         this.hebergement=hebergement;
 }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

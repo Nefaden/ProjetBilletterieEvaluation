@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modele.metier.Representation;
+import modele.metier.Groupe;
+import modele.metier.Lieu;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -37,13 +39,14 @@ public class RepresentationDao {
         pstmt.setInt(1, idRepresentation);
         rs = pstmt.executeQuery();
         if (rs.next()) {
-            int id = rs.getInt("ID");
+            String id_Groupe = rs.getString("ID_groupe");
+            int id_Lieu = rs.getInt("ID_Lieu");
             String date_representation = rs.getString("DATEREPR");
-            Groupe unGroupe = GroupeDao.selectOneById(id);
-            Lieu unLieu = LieuDao.selectOneById(id);
+            Groupe unGroupe = GroupeDao.selectOneById(id_Groupe);
+            Lieu unLieu = LieuDao.selectOneById(id_Lieu);
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
-            uneRepresentation =  new Representation(id, date_representation, unLieu, unGroupe, heureDebut, heureFin);
+            uneRepresentation =  new Representation(idRepresentation, date_representation, unLieu, unGroupe, heureDebut, heureFin);
         }
         return uneRepresentation;
     }
@@ -65,12 +68,14 @@ public class RepresentationDao {
         rs = pstmt.executeQuery();
         while (rs.next()) {
             int id = rs.getInt("ID");
+            String id_Groupe = rs.getString("ID_groupe");
+            int id_Lieu = rs.getInt("ID_Lieu");
             String date_representation = rs.getString("DATEREPR");
-            int id_lieu = rs.getInt("LIEU");
-            String id_groupe = rs.getString("GROUPE");
+            Groupe unGroupe = GroupeDao.selectOneById(id_Groupe);
+            Lieu unLieu = LieuDao.selectOneById(id_Lieu);
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
-            uneRepresentation =  new Representation(id, date_representation, id_lieu, id_groupe, heureDebut, heureFin);
+            uneRepresentation =  new Representation(id, date_representation, unLieu, unGroupe, heureDebut, heureFin);
             lesRepresentations.add(uneRepresentation);
         }
         return lesRepresentations;
