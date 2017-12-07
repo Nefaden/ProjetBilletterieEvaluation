@@ -6,6 +6,8 @@
 package modele.metier;
 
 import java.sql.Time;
+import modele.metier.Lieu;
+import modele.metier.Groupe;
 
 /**
  *
@@ -15,16 +17,16 @@ public class Representation {
     
     private int id;
     private String date;
-    private int id_lieu;
-    private String id_groupe;
+    private Lieu unLieu;
+    private Groupe unGroupe;
     private String heureDeb;
     private String heureFin;
     
-    public Representation(int id, String date_representation, int id_lieu, String id_groupe, String heureDebut_representation, String heureFin_representation) {
+    public Representation(int id, String date_representation, Lieu unLieu, Groupe unGroupe, String heureDebut_representation, String heureFin_representation) {
         this.id = id;
         this.date = date_representation;
-        this.id_lieu = id_lieu;
-        this.id_groupe = id_groupe;
+        this.unLieu = unLieu;
+        this.unGroupe = unGroupe;
         this.heureDeb = heureDebut_representation;
         this.heureFin = heureFin_representation;
     }
@@ -35,11 +37,11 @@ public class Representation {
     public String getDateRepresentation() {
         return date;
     }
-    public int getIdLieu() {
-        return id_lieu;
+    public Lieu getLieu() {
+        return unLieu;
     }
-    public String getIdGroupe() {
-        return id_groupe;
+    public Groupe getGroupe() {
+        return unGroupe;
     }
     public String getHeureDebRepresentation() {
         return heureDeb;

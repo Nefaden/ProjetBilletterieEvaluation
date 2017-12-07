@@ -66,8 +66,8 @@ public class RepresentationDao {
         while (rs.next()) {
             int id = rs.getInt("ID");
             String date_representation = rs.getString("DATEREPR");
-            int id_lieu = rs.getInt("ID_LIEU");
-            String id_groupe = rs.getString("ID_GROUPE");
+            int id_lieu = rs.getInt("LIEU");
+            String id_groupe = rs.getString("GROUPE");
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
             uneRepresentation =  new Representation(id, date_representation, id_lieu, id_groupe, heureDebut, heureFin);
