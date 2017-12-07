@@ -8,6 +8,7 @@ package modele.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import modele.metier.Lieu;
 
 /**
  *

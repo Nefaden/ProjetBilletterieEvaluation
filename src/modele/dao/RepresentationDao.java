@@ -39,11 +39,11 @@ public class RepresentationDao {
         if (rs.next()) {
             int id = rs.getInt("ID");
             String date_representation = rs.getString("DATEREPR");
-            int id_lieu = rs.getInt("ID_LIEU");
-            String id_groupe = rs.getString("ID_GROUPE");
+            Groupe unGroupe = GroupeDao.selectOneById(id);
+            Lieu unLieu = LieuDao.selectOneById(id);
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
-            uneRepresentation =  new Representation(id, date_representation, id_lieu, id_groupe, heureDebut, heureFin);
+            uneRepresentation =  new Representation(id, date_representation, unLieu, unGroupe, heureDebut, heureFin);
         }
         return uneRepresentation;
     }
