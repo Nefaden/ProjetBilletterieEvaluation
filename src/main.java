@@ -1,6 +1,9 @@
 
+import controleur.CtrlRepresentation;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import modele.dao.Jdbc;
+import vue.VueRepresentation;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +24,7 @@ public class main {
         Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql:", "//localhost/", "festival", "root", "joliverie");
         try {
             Jdbc.getInstance().connecter();
-            VueLesRepresentation uneVue = new VueLesRepresentation();
+            VueRepresentation uneVue = new VueRepresentation();
             CtrlRepresentation unControleur = new CtrlRepresentation(uneVue);
             // afficher la vue
             uneVue.setVisible(true);

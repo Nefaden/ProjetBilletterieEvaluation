@@ -17,7 +17,7 @@ public class Lieu {
     private int capacite;
 
     
-        public Lieu(int id, String nom, String adresse, int capacite) {
+    public Lieu(int id, String nom, String adresse, int capacite) {
         this.id = id;
         this.nom = nom;
         this.adr = adresse;

@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import modele.dao.RepresentationDao;
 import modele.metier.Representation;
-import vue.vueRepresentation;
+import vue.VueRepresentation;
 
 /**
  *
@@ -21,25 +21,25 @@ import vue.vueRepresentation;
  */
 public class CtrlRepresentation implements WindowListener {
     
-    private vueRepresentation vue;
+    private VueRepresentation vue;
     
-    public CtrlRepresentation(vueRepresentation vue) throws SQLException {
+    public CtrlRepresentation(VueRepresentation vue) throws SQLException {
         this.vue = vue;
         // le contrôleur écoute la vue
         this.vue.addWindowListener(this);
         List<Representation> lesRepresentations = null;
-        lesRepresentations = RepresentationDao.selectAll();
-               
+        lesRepresentations = RepresentationDao.getAll();
+        afficherRepresentation(lesRepresentations);
     }
     
     private void afficherRepresentation(List<Representation> desRepresentation) {
         getVue().getModeleTableRepresentation().setRowCount(0);
-        String[] titresColonnes = {"Groupe", "lieu", "date", "heure Debut", "Heure Fin"};
+        String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
         getVue().getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         String[] ligneDonnees = new String[5];
         for (Representation uneRepresentation : desRepresentation) {
-            ligneDonnees[0] = uneRepresentation.getIdGroupe();
-            ligneDonnees[1] = uneRepresentation.getIdLieu();
+            ligneDonnees[0] = uneRepresentation.getGroupe().getNom();
+            ligneDonnees[1] = uneRepresentation.getLieu().getNomLieu();
             ligneDonnees[2] = uneRepresentation.getDateRepresentation();
             ligneDonnees[3] = uneRepresentation.getHeureDebRepresentation();
             ligneDonnees[4] = uneRepresentation.getHeureFinRepresentation();
@@ -54,11 +54,11 @@ public class CtrlRepresentation implements WindowListener {
     
     
     
-    public vueRepresentation getVue() {
+    public VueRepresentation getVue() {
         return vue;
     }
 
-    public void setVue(vueRepresentation vue) {
+    public void setVue(VueRepresentation vue) {
         this.vue = vue;
     }
 
