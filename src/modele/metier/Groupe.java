@@ -36,6 +36,14 @@ public class Groupe {
         this.nomPays=nomPays;
         this.hebergement=hebergement;
 }
+        /**
+     *
+     * @return String attributs du Groupe
+     */
+    @Override
+    public String toString() {
+        return ("Groupe{nom: " + this.getNom() + "\tadresse postale: " + this.getAdressePostale() + "\tindentite du responsable: " + this.getIdentiteResponsable() + "\tNombre de personnes: " + this.getNbPersonne() + "\tNom du Pays : " + this.getNomPays() + "\tHebergement: " + this.getHebergement()) +"}";
+    }
     
     /**
      * 

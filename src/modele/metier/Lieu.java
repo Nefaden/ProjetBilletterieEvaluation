@@ -27,6 +27,15 @@ public class Lieu {
 
     }
     
+    /**
+     *
+     * @return String attributs du Lieu
+     */
+    @Override
+    public String toString() {
+        return ("Lieu{nom: " + this.getNomLieu() + "\tadresse: " + this.getAdresseLieu() + "\tcapacite: " + this.getCapaciteLieu())+"}";
+    }
+    
      /**
      *
      * @return int id du lieu dans la DB

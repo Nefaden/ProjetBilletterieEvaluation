@@ -14,23 +14,22 @@ import modele.metier.Representation;
 public class RepresentationTest {
 
     public static void main(String[] args) {
-        Representation repr, repr1, repr2;
-        Lieu unLieu1, unLieu2;
-        Groupe unGroupe1, unGroupe2;
+        Representation repr;
+        Lieu unLieu1;
+        Groupe unGroupe1;
+        unLieu1 = new Lieu(2, "Le Cabaret", "MAIRIE ANNEXE DE PARAME, Place Georges COUDRAY", 250);
+        unGroupe1 = new Groupe("g024", "Boxty", "NULL", "NULL", 5, "France-Bretagne", "O");
         System.out.println("\nTest n°1 : instanciation et accesseurs/getter");
         repr = new Representation(1, "11/07/2017", unLieu1, unGroupe1, "19:00", "20:00");
         System.out.println(repr);
         System.out.println("\nTest n°2 : mutateurs/setter");
         repr.setDateRepresentation("11/07/2017");
-        repr.setLieu(unLieu2);
-        repr.setGroupe(unGroupe2);
+        repr.setLieu(unLieu1);
+        repr.setGroupe(unGroupe1);
         repr.setHeureDebRepresentation("19:00");
         repr.setHeureFinRepresentation("20:00");
         System.out.println(repr);
-        repr1 = new Representation(1, null, null, null, null, null);
-        System.out.println(repr1.equals(repr));
-        repr2 = new Representation(2, null, null, null, null, null);
-        System.out.println(repr1.equals(repr2));
+        repr = new Representation(1, null, null, null, null, null);
+        System.out.println(repr.equals(repr));
     }
-
 }
