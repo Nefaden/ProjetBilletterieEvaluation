@@ -11,12 +11,19 @@ import java.sql.SQLException;
 import modele.metier.Lieu;
 
 /**
- *
+ * Classe LieuDao
  * @author gdoucet
+ * v1.0
  */
 public class LieuDao {
     
-    public static Lieu selectOneById(int idLieu) throws SQLException {
+    /**
+     * Méthode permettant de sélectionner un Lieu par son identifiant dans la table Lieu
+     * @param idLieu
+     * @return
+     * @throws SQLException 
+     */
+    public static Lieu getOneById(int idLieu) throws SQLException {
         Lieu unLieu = null;
         ResultSet rs;
         PreparedStatement pstmt;
@@ -35,7 +42,4 @@ public class LieuDao {
         }
         return unLieu;
     }
-  
-    
-    
 }

@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modele.metier;
 
 /**
- *
+ * Classe Groupe, le groupe jouant durant la representation
  * @author mroux
+ * v1,0
  */
 public class Groupe {
     
@@ -15,11 +11,22 @@ public class Groupe {
     private String nom;
     private String adressePostale;
     private String identiteResponsable;
-    private String nbPersonne;
+    private int nbPersonne;
     private String nomPays;
     private String hebergement;
     
-    public Groupe(String id, String nom, String adressePostale, String identiteResponsable, String nbPersonne, String nomPays, String hebergement) {
+    
+     /**
+     * Constructeur avec les 7 attributs
+     * @param id : identifiant DB du lieu
+     * @param nom
+     * @param adressePostale     
+     * @param identiteResponsable
+     * @param nbPersonne
+     * @param nomPays
+     * @param hebergement
+     */
+    public Groupe(String id, String nom, String adressePostale, String identiteResponsable, int nbPersonne, String nomPays, String hebergement) {
     
         this.id=id;
         this.nom=nom;
@@ -29,31 +36,59 @@ public class Groupe {
         this.nomPays=nomPays;
         this.hebergement=hebergement;
 }
-
+    
+    /**
+     * 
+     * @return int identifiant du groupe dans la DB
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * 
+     * @return String le nom du groupe
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * 
+     * @return String l'adresse postale du groupe
+     */
     public String getAdressePostale() {
         return adressePostale;
     }
 
+    /**
+     * 
+     * @return String l'identité du responsable du groupe
+     */
     public String getIdentiteResponsable() {
         return identiteResponsable;
     }
 
-    public String getNbPersonne() {
+    /**
+     * 
+     * @return int nombre de personne dans le groupe
+     */
+    public int getNbPersonne() {
         return nbPersonne;
     }
 
+    /**
+     * 
+     * @return String le nom du pays d'origine du groupe
+     */
     public String getNomPays() {
         return nomPays;
     }
 
+    /**
+     * 
+     * @return String si le groupe est héberger ou non
+     */
     public String getHebergement() {
         return hebergement;
     }

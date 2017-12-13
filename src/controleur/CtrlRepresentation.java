@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controleur;
 
 import java.awt.event.ActionEvent;
@@ -21,8 +16,9 @@ import modele.metier.Representation;
 import vue.VueRepresentation;
 
 /**
- *
+ * Contrôleur permettant l'affichage et la sélection des représentation dans la vueRepresentation
  * @author ydurand
+ * v1.0
  */
 public class CtrlRepresentation implements WindowListener, MouseListener {
     
@@ -37,6 +33,7 @@ public class CtrlRepresentation implements WindowListener, MouseListener {
         afficherRepresentation(lesRepresentations);
     }
     
+    //méthode pour afficher la liste des représentation via la methode sel
     private void afficherRepresentation(List<Representation> desRepresentation) {
         getVue().getModeleTableRepresentation().setRowCount(0);
         String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
@@ -60,17 +57,6 @@ public class CtrlRepresentation implements WindowListener, MouseListener {
         this.vue = vue;
     }
     
-        /**
-     * Quitter l'application, après demande de confirmation
-     */
-    private void quitter() {
-        // Confirmer avant de quitter
-        int rep = JOptionPane.showConfirmDialog(getVue(), "Quitter l'application\nEtes-vous sûr(e) ?", "root", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (rep == JOptionPane.YES_OPTION) {
-            // mettre fin à l'application
-            System.exit(0);
-        }
-    }
 
     @Override
     public void windowOpened(WindowEvent e) {

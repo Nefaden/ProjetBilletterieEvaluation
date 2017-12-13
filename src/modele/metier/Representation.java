@@ -141,5 +141,4 @@ public class Representation {
     public void setHeureFinRepresentation(String heureFin) {
         this.heureFin = heureFin;
     }
-
 }

@@ -9,15 +9,10 @@ import modele.metier.Representation;
 import modele.metier.Groupe;
 import modele.metier.Lieu;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ * Classe RepresentationDao 
  * @author ydurand
+ * v1.0
  */
 public class RepresentationDao {
     //Instancier lieu et groupe comme des objets qui vont chercher leurs nom depuis les tables qui leurs sont attitrés
@@ -42,8 +37,8 @@ public class RepresentationDao {
             String id_Groupe = rs.getString("ID_groupe");
             int id_Lieu = rs.getInt("ID_Lieu");
             String date_representation = rs.getString("DATEREPR");
-            Groupe unGroupe = GroupeDao.selectOneById(id_Groupe);
-            Lieu unLieu = LieuDao.selectOneById(id_Lieu);
+            Groupe unGroupe = GroupeDao.getOneById(id_Groupe);
+            Lieu unLieu = LieuDao.getOneById(id_Lieu);
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
             uneRepresentation =  new Representation(idRepresentation, date_representation, unLieu, unGroupe, heureDebut, heureFin);
@@ -71,8 +66,8 @@ public class RepresentationDao {
             String id_Groupe = rs.getString("ID_groupe");
             int id_Lieu = rs.getInt("ID_Lieu");
             String date_representation = rs.getString("DATEREPR");
-            Groupe unGroupe = GroupeDao.selectOneById(id_Groupe);
-            Lieu unLieu = LieuDao.selectOneById(id_Lieu);
+            Groupe unGroupe = GroupeDao.getOneById(id_Groupe);
+            Lieu unLieu = LieuDao.getOneById(id_Lieu);
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
             uneRepresentation =  new Representation(id, date_representation, unLieu, unGroupe, heureDebut, heureFin);
@@ -81,9 +76,3 @@ public class RepresentationDao {
         return lesRepresentations;
     }
 }
-
-/*          String nomLieu = rs.getString("NOM_LIEU");
-            String nomGroupe = rs.getString("NOM_GROUPE");
-            String heureDebut = rs.getString("HEURE_DEBUT");
-            String heureFin = rs.getString("HEURE_FIN");
-            uneRepresentation =  new Representation(id, nomLieu, nomGroupe, heureDebut, heureFin);*/
