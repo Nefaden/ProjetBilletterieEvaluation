@@ -5,12 +5,17 @@
  */
 package controleur;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
 import modele.dao.RepresentationDao;
 import modele.metier.Representation;
 import vue.VueRepresentation;
@@ -19,7 +24,7 @@ import vue.VueRepresentation;
  *
  * @author ydurand
  */
-public class CtrlRepresentation implements WindowListener {
+public class CtrlRepresentation implements WindowListener, MouseListener {
     
     private VueRepresentation vue;
     
@@ -46,20 +51,25 @@ public class CtrlRepresentation implements WindowListener {
             getVue().getModeleTableRepresentation().addRow(ligneDonnees);
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
+  
     public VueRepresentation getVue() {
         return vue;
     }
 
     public void setVue(VueRepresentation vue) {
         this.vue = vue;
+    }
+    
+        /**
+     * Quitter l'application, après demande de confirmation
+     */
+    private void quitter() {
+        // Confirmer avant de quitter
+        int rep = JOptionPane.showConfirmDialog(getVue(), "Quitter l'application\nEtes-vous sûr(e) ?", "root", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (rep == JOptionPane.YES_OPTION) {
+            // mettre fin à l'application
+            System.exit(0);
+        }
     }
 
     @Override
@@ -94,6 +104,31 @@ public class CtrlRepresentation implements WindowListener {
 
     @Override
     public void windowDeactivated(WindowEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

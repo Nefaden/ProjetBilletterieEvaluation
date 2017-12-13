@@ -7,7 +7,7 @@ package modele.metier;
 
 /**
  *
- * @author ydurand
+ * @author mroux
  */
 public class Groupe {
     

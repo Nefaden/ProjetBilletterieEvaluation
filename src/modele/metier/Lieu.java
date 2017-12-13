@@ -7,7 +7,7 @@ package modele.metier;
 
 /**
  *
- * @author ydurand
+ * @author gdoucet
  */
 public class Lieu {
     

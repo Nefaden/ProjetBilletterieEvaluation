@@ -1,5 +1,6 @@
 
 import controleur.CtrlRepresentation;
+import controleur.CtrlPrincipal;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modele.dao.Jdbc;
