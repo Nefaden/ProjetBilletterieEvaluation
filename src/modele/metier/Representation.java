@@ -18,6 +18,7 @@ public class Representation {
     private Groupe unGroupe;
     private String heureDeb;
     private String heureFin;
+    private int nbPlacesRestantes;
 
     /**
      * Constructeur avec les 6 attributs
@@ -28,13 +29,14 @@ public class Representation {
      * @param heureDebut_representation
      * @param heureFin_representation
      */
-    public Representation(int id, String date_representation, Lieu unLieu, Groupe unGroupe, String heureDebut_representation, String heureFin_representation) {
+    public Representation(int id, String date_representation, Lieu unLieu, Groupe unGroupe, String heureDebut_representation, String heureFin_representation, int nombrePlacesRestantes) {
         this.id = id;
         this.date = date_representation;
         this.unLieu = unLieu;
         this.unGroupe = unGroupe;
         this.heureDeb = heureDebut_representation;
         this.heureFin = heureFin_representation;
+        this.nbPlacesRestantes = nombrePlacesRestantes;
     }
     
     /**
@@ -43,7 +45,7 @@ public class Representation {
      */
     @Override
     public String toString() {
-        return ("Representation{date: " + this.getDateRepresentation() + "\tlieu: " + this.getLieu() + "\tgroupe: " + this.getGroupe() + "\theure de début: " + this.getHeureDebRepresentation() + "\theure de fin: " + this.getHeureFinRepresentation()) +"}";
+        return ("Representation{date: " + this.getDateRepresentation() + "\tlieu: " + this.getLieu() + "\tgroupe: " + this.getGroupe() + "\theure de début: " + this.getHeureDebRepresentation() + "\theure de fin: " + this.getHeureFinRepresentation()) + "\tnombre de places restantes : " + this.getNbPlacesRestantes() + "}";
     }
 
     /**
@@ -96,6 +98,14 @@ public class Representation {
     
     /**
      * 
+     * @return int nombre de places restantes
+     */
+    public int getNbPlacesRestantes() {
+        return nbPlacesRestantes;
+    }
+    
+    /**
+     * 
      * @param id : identifiant de la representation dans la DB
      */
     public void setIdRepresentation(int id) {
@@ -140,5 +150,13 @@ public class Representation {
      */
     public void setHeureFinRepresentation(String heureFin) {
         this.heureFin = heureFin;
+    }
+    
+    /**
+     * 
+     * @param nombrePlacesRestantes
+     */
+    public void setNbPlacesRestantes(int nombrePlacesRestantes) {
+        this.nbPlacesRestantes = nombrePlacesRestantes;
     }
 }
