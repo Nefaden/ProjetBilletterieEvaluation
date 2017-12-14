@@ -10,9 +10,9 @@
 
 
 alter table Representation
-ADD nombre_Place_Representation
+ADD nombre_Place_Restante int(11);
 
 update Representation
-set nombreplacerestante =
+set nombre_Place_Restante =
 	(select capacite FROM Lieu
 	WHERE Lieu.id = Representation.id_lieu);
