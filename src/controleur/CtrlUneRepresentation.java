@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.sql.SQLException;
 import modele.metier.Representation;
+import vue.VueUneRepresentation;
 
 /**
  *
@@ -37,7 +39,7 @@ public class CtrlUneRepresentation implements WindowListener, MouseListener {
         ligneDonnees[3] = uneRepresentation.getHeureDebRepresentation();
         ligneDonnees[4] = uneRepresentation.getHeureFinRepresentation();
         ligneDonnees[5] = uneRepresentation.getLieu().getAdresseLieu();
-        getVue().getModeleTableRepresentation().addRow(ligneDonnees);
+        getVue().getModeleTableInformation().addRow(ligneDonnees);
     }
     
     private void afficherNombrePlaces(Representation uneRepre) {
@@ -45,9 +47,9 @@ public class CtrlUneRepresentation implements WindowListener, MouseListener {
         String[] titresCol = {"Nombre de places total", "Places restantes"};
         getVue().getModeleTablePlaces().setColumnIdentifiers(titresCol);
         String[] donnees = new String[2];
-        donnees[0] = uneRepre.getLieu().getCapaciteLieu();
-        donnees[1] = uneRepre.getNbPlacesRestantes();
-        getVue().getModetelTableRepresentation().addRow(donnees);
+        donnees[0] = Integer.toString(uneRepre.getLieu().getCapaciteLieu());
+        donnees[1] = Integer.toString(uneRepre.getNbPlacesRestantes());
+        getVue().getModeleTablePlaces().addRow(donnees);
     }
       
     public VueUneRepresentation getVue() {
