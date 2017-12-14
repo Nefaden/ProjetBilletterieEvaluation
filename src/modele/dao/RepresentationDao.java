@@ -71,10 +71,22 @@ public class RepresentationDao {
             Lieu unLieu = LieuDao.getOneById(id_Lieu);
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
-            int nbPlacesRestantes = rs.getInt("NOMBREPLACERESTANTE");
+            int nbPlacesRestantes = rs.getInt("NOMBRE_PLACE_RESTANTE");
             uneRepresentation =  new Representation(id, date_representation, unLieu, unGroupe, heureDebut, heureFin, nbPlacesRestantes);
             lesRepresentations.add(uneRepresentation);
         }
         return lesRepresentations;
+    }
+    
+    public void updateNbPlacesRestantes(Representation uneRepresentation, int nbPlace) {
+        int id_representation = uneRepresentation.getIdRepresentation();
+        ResultSet rs;
+        PreparedStatement pstmt;
+        Jdbc jdbc = Jdbc.getInstance();
+        String requete = "UPDATE REPRESENTATION SET NOMBRE_PLACE_RESTANTE = NOMBRE_PLACE_RESTANTE + ? WHERE ID = ?;";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setInt(1, nbPlace);
+        pstmt.setInt(2, id_representation);
+        pstmt.executeUpdate();
     }
 }
