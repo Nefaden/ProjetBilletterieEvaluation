@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author btssio
  */
-public class VueRepresentation extends javax.swing.JFrame {
+public class VueRepresentation extends VueGenerique {
     
     private DefaultTableModel modeleTableRepresentation;
     

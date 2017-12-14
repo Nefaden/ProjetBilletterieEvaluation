@@ -9,54 +9,50 @@ import java.awt.event.WindowListener;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import modele.dao.RepresentationDao;
+import modele.dao.*;
 import modele.metier.Representation;
 import vue.VueRepresentation;
 
 /**
- * Contrôleur permettant l'affichage et la sélection des représentation dans la vueRepresentation
- * @author ydurand
- * v1.0
+ * Contrôleur permettant l'affichage et la sélection des représentation dans la
+ * vueRepresentation
+ *
+ * @author ydurand v1.0
  */
-public class CtrlRepresentation implements WindowListener, MouseListener {
-    
-    private VueRepresentation vue;
-    
-    public CtrlRepresentation(VueRepresentation vue) throws SQLException {
-        this.vue = vue;
-        // le contrôleur écoute la vue
-        this.vue.addWindowListener(this);
-        List<Representation> lesRepresentations = null;
-        lesRepresentations = RepresentationDao.getAll();
-        afficherRepresentation(lesRepresentations);
+public class CtrlRepresentation extends ControleurGenerique implements WindowListener, MouseListener {
+
+    private final RepresentationDao representationdao = new RepresentationDao();
+    private List<Representation> lesRepresentations;
+
+    public CtrlRepresentation(CtrlPrincipal ctrlPrincipal) throws SQLException {
+        super(ctrlPrincipal);
+        vue = new VueRepresentation();
+        afficherRepresentation();
+        vue.addWindowListener(this);
+
+        afficherRepresentation();
     }
-    
+
     //méthode pour afficher la liste des représentation via la methode sel
-    private void afficherRepresentation(List<Representation> desRepresentation) {
-        getVue().getModeleTableRepresentation().setRowCount(0);
+    private void afficherRepresentation() throws SQLException {
+        String msg = ""; // message à afficher en cas d'erreur
+        ((VueRepresentation) vue).getModeleTableRepresentation().setRowCount(0);
         String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
-        getVue().getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
+        ((VueRepresentation) vue).getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         String[] ligneDonnees = new String[5];
-        for (Representation uneRepresentation : desRepresentation) {
+        lesRepresentations = RepresentationDao.getAll();
+        for (Representation uneRepresentation : lesRepresentations) {
             ligneDonnees[0] = uneRepresentation.getGroupe().getNom();
             ligneDonnees[1] = uneRepresentation.getLieu().getNomLieu();
             ligneDonnees[2] = uneRepresentation.getDateRepresentation();
             ligneDonnees[3] = uneRepresentation.getHeureDebRepresentation();
             ligneDonnees[4] = uneRepresentation.getHeureFinRepresentation();
-            getVue().getModeleTableRepresentation().addRow(ligneDonnees);
+            ((VueRepresentation) vue).getModeleTableRepresentation().addRow(ligneDonnees);
         }
     }
-  
-    public VueRepresentation getVue() {
-        return vue;
-    }
-
-    public void setVue(VueRepresentation vue) {
-        this.vue = vue;
-    }
-    
 
     @Override
     public void windowOpened(WindowEvent e) {
@@ -117,5 +113,4 @@ public class CtrlRepresentation implements WindowListener, MouseListener {
     public void mouseExited(MouseEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }
