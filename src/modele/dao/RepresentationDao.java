@@ -41,7 +41,7 @@ public class RepresentationDao {
             Lieu unLieu = LieuDao.getOneById(id_Lieu);
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
-            int nbPlacesRestantes = rs.getInt("NOMBREPLACERESTANTE");
+            int nbPlacesRestantes = rs.getInt("NOMBRE_PLACE_RESTANTE");
             uneRepresentation =  new Representation(idRepresentation, date_representation, unLieu, unGroupe, heureDebut, heureFin, nbPlacesRestantes);
         }
         return uneRepresentation;
@@ -71,7 +71,7 @@ public class RepresentationDao {
             Lieu unLieu = LieuDao.getOneById(id_Lieu);
             String heureDebut = rs.getString("HEURE_DEBUT");
             String heureFin = rs.getString("HEURE_FIN");
-            int nbPlacesRestantes = rs.getInt("NOMBREPLACERESTANTE");
+            int nbPlacesRestantes = rs.getInt("NOMBRE_PLACE_RESTANTE");
             uneRepresentation =  new Representation(id, date_representation, unLieu, unGroupe, heureDebut, heureFin, nbPlacesRestantes);
             lesRepresentations.add(uneRepresentation);
         }
