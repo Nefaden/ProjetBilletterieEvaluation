@@ -46,7 +46,7 @@ public class CtrlUneRepresentation implements WindowListener, MouseListener {
         getVue().getModeleTablePlaces().setColumnIdentifiers(titresCol);
         String[] donnees = new String[2];
         donnees[0] = uneRepre.getLieu().getCapaciteLieu();
-        donnees[1] = uneRepre.getPlaceRestante();
+        donnees[1] = uneRepre.getNbPlacesRestantes();
         getVue().getModetelTableRepresentation().addRow(donnees);
     }
       
