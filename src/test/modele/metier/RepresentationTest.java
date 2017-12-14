@@ -30,7 +30,7 @@ public class RepresentationTest {
         repr.setHeureFinRepresentation("20:00");
         repr.setNbPlacesRestantes(50);
         System.out.println(repr);
-        repr = new Representation(1, null, null, null, null, null, 50);
+        repr = new Representation(1, null, null, null, null, null, 0);
         System.out.println(repr.equals(repr));
     }
 }

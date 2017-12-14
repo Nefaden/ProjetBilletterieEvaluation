@@ -77,4 +77,16 @@ public class RepresentationDao {
         }
         return lesRepresentations;
     }
+    
+    public void updateNbPlacesRestantes(Representation uneRepresentation, int nbPlace) {
+        int id_representation = uneRepresentation.getIdRepresentation();
+        ResultSet rs;
+        PreparedStatement pstmt;
+        Jdbc jdbc = Jdbc.getInstance();
+        String requete = "UPDATE REPRESENTATION SET NOMBRE_PLACE_RESTANTE = NOMBRE_PLACE_RESTANTE + ? WHERE ID = ?;";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setInt(1, nbPlace);
+        pstmt.setInt(2, id_representation);
+        pstmt.executeUpdate();
+    }
 }
