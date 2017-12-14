@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author btssio
  */
-public class VueRepresentation extends javax.swing.JFrame {
+public class VueRepresentation extends VueGenerique {
     
     private DefaultTableModel modeleTableRepresentation;
     
@@ -57,7 +57,15 @@ public class VueRepresentation extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableRepresentation);
 
         jButtonquitter.setText("quitter");

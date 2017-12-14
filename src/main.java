@@ -21,19 +21,19 @@ public class main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        CtrlPrincipal ctrlPrincipal; 
         Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql:", "//localhost/", "festival", "root", "joliverie");
         try {
             Jdbc.getInstance().connecter();
-            VueRepresentation uneVue = new VueRepresentation();
-            CtrlRepresentation unControleur = new CtrlRepresentation(uneVue);
-            // afficher la vue
-            uneVue.setVisible(true);
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Main - classe JDBC non trouvée");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Main - échec de connexion");
         } 
+        
+        // Pour lancer l'application, instancier le contrôleur principal
+        ctrlPrincipal = new CtrlPrincipal();
+        ctrlPrincipal.action();
     }
-    
 }
