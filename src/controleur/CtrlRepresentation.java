@@ -49,7 +49,7 @@ public class CtrlRepresentation extends ControleurGenerique implements WindowLis
     public void afficherRepresentation() throws SQLException {
         String msg = ""; // message à afficher en cas d'erreur
         ((VueRepresentation) vue).getModeleTableRepresentation().setRowCount(0);
-        String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
+        String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin", "Place restante"};
         ((VueRepresentation) vue).getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         try {
             String[] ligneDonnees = new String[5];
@@ -60,6 +60,7 @@ public class CtrlRepresentation extends ControleurGenerique implements WindowLis
                 ligneDonnees[2] = uneRepresentation.getDateRepresentation();
                 ligneDonnees[3] = uneRepresentation.getHeureDebRepresentation();
                 ligneDonnees[4] = uneRepresentation.getHeureFinRepresentation();
+                //ligneDonnees[5] = uneRepresentation.getNbPlacesRestantes();
                 ((VueRepresentation) vue).getModeleTableRepresentation().addRow(ligneDonnees);
             } 
         } catch (SQLException ex) {
