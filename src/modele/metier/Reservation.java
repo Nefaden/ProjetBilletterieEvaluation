@@ -2,6 +2,7 @@ package modele.metier;
 
 import modele.metier.Representation;
 import modele.metier.Client;
+import java.io.Serializable;
 
 /**
  * Classe représentant les reservation faites par les clients pour une représentation du festival dans un lieu précis
