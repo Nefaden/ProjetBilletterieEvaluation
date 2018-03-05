@@ -28,6 +28,7 @@ public class Representation {
      * @param unGroupe
      * @param heureDebut_representation
      * @param heureFin_representation
+     * @param nbPlacesRestantes_representation
      */
     public Representation(int id, String date_representation, Lieu unLieu, Groupe unGroupe, String heureDebut_representation, String heureFin_representation, int nombrePlacesRestantes) {
         this.id = id;

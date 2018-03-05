@@ -59,7 +59,7 @@ public class RepresentationDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM Representation";
+        String requete = "SELECT id, daterepr, id_lieu, id_groupe, heure_debut, heure_fin, nombre_place_restante FROM Representation";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
@@ -78,7 +78,7 @@ public class RepresentationDao {
         return lesRepresentations;
     }
     
-    public void updateNbPlacesRestantes(Representation uneRepresentation, int nbPlace) {
+    /*public void updateNbPlacesRestantes(Representation uneRepresentation, int nbPlace) {
         int id_representation = uneRepresentation.getIdRepresentation();
         ResultSet rs;
         PreparedStatement pstmt;
@@ -88,5 +88,5 @@ public class RepresentationDao {
         pstmt.setInt(1, nbPlace);
         pstmt.setInt(2, id_representation);
         pstmt.executeUpdate();
-    }
+    }*/
 }

@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import vue.VueMenu;
+import vue.VueMenuPrincipal;
 
 /**
  * Contrôleur de la fenêtre VueMenu
@@ -18,18 +20,17 @@ public class CtrlMenu extends ControleurGenerique implements ActionListener, Win
 
     public CtrlMenu(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
-        vue = new VueMenu();
+        vue = new VueMenuPrincipal();
         vue.addWindowListener(this);
         getVue().getjMenuItemQuitter().addActionListener(this);
-        getVue().getjMenuItemListeEquipiers().addActionListener(this);
-        getVue().getjMenuItemPresenceAJouter().addActionListener(this);
+        getVue().getjMenuItemRepresentationAfficher().addActionListener(this);
     }
 
     /**
      * clic sur la commande Quitter du menu Fichier Le contrôleur délègue
      * l'action au contrôleur frontal
      */
-    public void menuQuitter() throws SQLException {
+    public void menuFichierQuitter() throws SQLException {
         // Confirmer avant de quitter
         int rep = JOptionPane.showConfirmDialog(getVue(), "Quitter l'application\nEtes-vous sûr(e) ?", "root", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (rep == JOptionPane.YES_OPTION) {
@@ -55,31 +56,38 @@ public class CtrlMenu extends ControleurGenerique implements ActionListener, Win
     }
     
     @Override
-    public VueMenu getVue() {
-        return (VueMenu) vue;
+    public VueMenuPrincipal getVue() {
+        return (VueMenuPrincipal) vue;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(getVue().getjMenuItemQuitter())){
-            menuQuitter();
+            try {
+                menuFichierQuitter();
+            } catch (SQLException ex) {
+                Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
-             if (e.getSource().equals(getVue().getjMenuItemListeEquipiers())){
-                 representationDetails();
-             }else{
-                 if (e.getSource().equals(getVue().getjMenuItemPresenceAJouter())){
-                     representationAfficher();
+             if (e.getSource().equals(getVue().getjMenuItemRepresentationAfficher()));
+            try {
+                representationAfficher();
+            } catch (SQLException ex) {
+                Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
                  }
              }
-        }
-    }
-    
+
     @Override
     public void windowOpened(WindowEvent e) {}
   
     @Override
     public void windowClosing(WindowEvent e) {
-        menuQuitter();
+        try {
+            menuFichierQuitter();
+        } catch (SQLException ex) {
+            Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
@@ -96,7 +104,5 @@ public class CtrlMenu extends ControleurGenerique implements ActionListener, Win
 
     @Override
     public void windowDeactivated(WindowEvent e) {}
-    
-    
     
 }

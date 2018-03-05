@@ -4,6 +4,7 @@ import static controleur.EnumAction.*;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import vue.VueRepresentation;
+import vue.VueMenuPrincipal;
 import modele.dao.Jdbc;
 
 /**
@@ -23,7 +24,6 @@ public class CtrlPrincipal {
     public void action() throws SQLException {
         if (ctrlRepresentation == null) {
             ctrlRepresentation = new CtrlRepresentation(this);
-            ctrlRepresentation.getVue().setTitle("Vente des billets pour le festival 'Folklore du Monde'");
         }
         ctrlRepresentation.getVue().setEnabled(true);
         ctrlRepresentation.getVue().setVisible(true);
@@ -38,7 +38,7 @@ public class CtrlPrincipal {
                 representationQuitter();
                 break;
             case MENU_QUITTER: // fin de l'application depuis le menu principal
-                menuQuitter();
+                menuFichierQuitter();
                 break;
         }
 
@@ -48,7 +48,7 @@ public class CtrlPrincipal {
      * Fin définitive de l'application La demande de confirmation est gérée par
      * le contrôleur spécialisé
      */
-    private void menuQuitter() {
+    private void menuFichierQuitter() {
         try {
             Jdbc.getInstance().deconnecter();
         } catch (Exception ex) {
@@ -65,12 +65,11 @@ public class CtrlPrincipal {
         if (ctrlRepresentation == null) {
             ctrlRepresentation = new CtrlRepresentation(this);
         } else {
-            // si le contrôleur et sa vue existent déjà
+            // si la le contrôleur et sa vue existent déjà
+            // il faut rafraîchir le contenu à partir de la base de données
+            ctrlRepresentation.afficherRepresentation();
         }
-        // vuPresence est une fenêtre modale :
-        // -> vueMenu reste visible, mais n'est pas active
         ctrlMenu.getVue().setEnabled(false);
-        ctrlRepresentation.getVue().setEnabled(true);
         ctrlRepresentation.getVue().setVisible(true);
     }
     
@@ -78,10 +77,10 @@ public class CtrlPrincipal {
      * Transition vueRepresentation / vueMenu
      */
     private void representationQuitter() {
-        if (ctrlMenu == null) {
-            ctrlMenu = new CtrlMenu(this);
-        }
+        if (ctrlMenu == null) 
+            ctrlMenu = new CtrlMenu(this);       
         ctrlRepresentation.getVue().setVisible(false);
+        ctrlRepresentation.getVue().setEnabled(false);
         ctrlMenu.getVue().setEnabled(true);
         ctrlMenu.getVue().setVisible(true);
     }
