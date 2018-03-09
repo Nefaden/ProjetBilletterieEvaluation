@@ -1,7 +1,7 @@
 package modele.metier;
 
-import modele.metier.Representation;
-import modele.metier.Reservation;
+import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  * Classe représentant les clients pour les quels des réservations sont effectués
@@ -9,28 +9,49 @@ import modele.metier.Reservation;
  * @author ydurand
  * v1.0
  */
+@Entity
 public class Client {
     
-    private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column(length=40)
     private String nom;
+    @Column(length=40)
     private String prenom;
+    @Column(length=120)
     private String adresse;
+    @Column(length=11)
     private int num;
     
     /**
      * Constructeur avec les 4 attributs
-     * @param id : identifiant DB de la reservation
      * @param nom
      * @param prenom
      * @param adresse
      * @param num
      */
-    public Client(int id, String nom, String prenom, String adresse, int num) {
-        this.id = id;
+    public Client(String nom, String prenom, String adresse, int num) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.num = num;
+    }
+    
+    /**
+     * 
+     * @return Long id : id générée par la persistence
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id : Long valeur générée par la persistence
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
     
     /**
@@ -42,23 +63,7 @@ public class Client {
         return ("Client{nom: " + this.getNomClient() + "\tprenom: " + this.getPrenomClient() + "\tadresse: " + this.getAdresseClient() + "\tnum: " + this.getNumClient() + "}");
     }
     
-    //Getter / Setter de la classe Reservation
-    
-    /**
-     *
-     * @return int id du client dans la DB
-     */
-    public int getIdClient() {
-        return id;
-    }
-    
-    /**
-     * 
-     * @param id : identifiant du client dans la DB
-     */
-    public void setIdClient(int id) {
-        this.id = id;
-    }
+    //Getter / Setter de la classe Reservation    
     
     /**
      * 

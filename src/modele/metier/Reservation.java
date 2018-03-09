@@ -3,6 +3,7 @@ package modele.metier;
 import modele.metier.Representation;
 import modele.metier.Client;
 import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  * Classe représentant les reservation faites par les clients pour une représentation du festival dans un lieu précis
@@ -10,25 +11,47 @@ import java.io.Serializable;
  * @author ydurand
  * v1.0
  */
-public class Reservation {
+@Entity
+public class Reservation implements Serializable {
     
-    private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column(length=11)
     private int place_reservee;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "REPRESENTATION_ID")
     private Representation uneRepresentation;
+    @OneToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "CLIENT_ID")
     private Client unClient;
     
     /**
-     * Constructeur avec les 4 attributs
-     * @param id : identifiant DB de la reservation
+     * Constructeur avec les 3 attributs
      * @param place_reservee
      * @param uneRepresentation
      * @param unClient
      */
-    public Reservation(int id, int place_reservee, Representation uneRepresentation, Client unClient) {
-        this.id = id;
+    public Reservation(int place_reservee, Representation uneRepresentation, Client unClient) {
         this.place_reservee = place_reservee;
         this.uneRepresentation = uneRepresentation;
         this.unClient = unClient;
+    }
+    
+    /**
+     * 
+     * @return Long id : id générée par la persistence
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id : Long valeur générée par la persistence
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
     
     /**
@@ -41,22 +64,6 @@ public class Reservation {
     }
     
     //Getter / Setter de la classe Reservation
-    
-    /**
-     *
-     * @return int id de la reservation dans la DB
-     */
-    public int getIdReservation() {
-        return id;
-    }
-    
-    /**
-     * 
-     * @param id : identifiant de la reservation dans la DB
-     */
-    public void setIdReservation(int id) {
-        this.id = id;
-    }
     
     /**
      * 
