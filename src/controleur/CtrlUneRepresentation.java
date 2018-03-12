@@ -28,27 +28,27 @@ public class CtrlUneRepresentation implements WindowListener, MouseListener {
     }
     
     //méthode pour afficher la liste des représentation via la methode sel
-    private void afficherUneRepresentation(Representation uneRepresentation) {
+    private void afficherUneRepresentation(Representation objRepresentation) {
         getVue().getModeleTableInformation().setRowCount(0);
         String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin", "Adresse"};
         getVue().getModeleTableInformation().setColumnIdentifiers(titresColonnes);
         String[] ligneDonnees = new String[6];
-        ligneDonnees[0] = uneRepresentation.getGroupe().getNom();
-        ligneDonnees[1] = uneRepresentation.getLieu().getNomLieu();
-        ligneDonnees[2] = uneRepresentation.getDateRepresentation();
-        ligneDonnees[3] = uneRepresentation.getHeureDebRepresentation();
-        ligneDonnees[4] = uneRepresentation.getHeureFinRepresentation();
-        ligneDonnees[5] = uneRepresentation.getLieu().getAdresseLieu();
+        ligneDonnees[0] = objRepresentation.getGroupe().getNomGroupe();
+        ligneDonnees[1] = objRepresentation.getLieu().getNomLieu();
+        ligneDonnees[2] = objRepresentation.getDateRepresentation();
+        ligneDonnees[3] = objRepresentation.getHeureDebutRepresentation();
+        ligneDonnees[4] = objRepresentation.getHeureFinRepresentation();
+        ligneDonnees[5] = objRepresentation.getLieu().getAdresseLieu();
         getVue().getModeleTableInformation().addRow(ligneDonnees);
     }
     
-    private void afficherNombrePlaces(Representation uneRepre) {
+    private void afficherNombrePlaces(Representation objRepresentation) {
         getVue().getModeleTablePlaces().setRowCount(0);
         String[] titresCol = {"Nombre de places total", "Places restantes"};
         getVue().getModeleTablePlaces().setColumnIdentifiers(titresCol);
         String[] donnees = new String[2];
-        donnees[0] = Integer.toString(uneRepre.getLieu().getCapaciteLieu());
-        donnees[1] = Integer.toString(uneRepre.getNbPlacesRestantes());
+        donnees[0] = Integer.toString(objRepresentation.getLieu().getCapaciteLieu());
+        donnees[1] = Integer.toString(objRepresentation.getNbPlacesRestantes());
         getVue().getModeleTablePlaces().addRow(donnees);
     }
       

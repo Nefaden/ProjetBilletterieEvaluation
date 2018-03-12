@@ -53,9 +53,6 @@ public class VueMenuPrincipal extends VueGenerique {
         jMenuItemQuitter = new javax.swing.JMenuItem();
         jButtonRepresentationDetail = new javax.swing.JButton();
         
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Ventes de billet v0.1 - février 2018");
-        
         jLabelTitreMenu.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabelTitreMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitreMenu.setText("VENTES DE BILLET\nFESTIVAL FOLKLORIQUE");

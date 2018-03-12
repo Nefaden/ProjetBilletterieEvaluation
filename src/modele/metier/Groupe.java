@@ -13,53 +13,53 @@ public class Groupe implements Serializable {
     
     @Id
     @GeneratedValue
-    private Long id;
+    private Long l_Id;
     @Column(length=40)
-    private String nom;
+    private String s_NomGroupe;
     @Column(length=120)
-    private String adressePostale;
+    private String s_AdressePostale;
     @Column(length=40)
-    private String identiteResponsable;
+    private String s_IdentiteResponsable;
     @Column(length=11)
-    private int nbPersonne;
+    private int i_NbPersonne;
     @Column(length=40)
-    private String nomPays;
+    private String s_NomPays;
     @Column(length=1)
-    private String hebergement;
+    private String s_Hebergement;
     
     
      /**
      * Constructeur avec les 6 attributs
-     * @param nom
-     * @param adressePostale     
-     * @param identiteResponsable
-     * @param nbPersonne
-     * @param nomPays
-     * @param hebergement
+     * @param strNomGroupe
+     * @param strAdressePostale     
+     * @param strIdentiteResponsable
+     * @param intNbPersonne
+     * @param strNomPays
+     * @param strHebergement
      */
-    public Groupe(String nom, String adressePostale, String identiteResponsable, int nbPersonne, String nomPays, String hebergement) {
+    public Groupe(String strNomGroupe, String strAdressePostale, String strIdentiteResponsable, int intNbPersonne, String strNomPays, String strHebergement) {
     
-        this.nom=nom;
-        this.adressePostale=adressePostale;
-        this.identiteResponsable=identiteResponsable;
-        this.nbPersonne=nbPersonne;
-        this.nomPays=nomPays;
-        this.hebergement=hebergement;
+        this.s_NomGroupe = strNomGroupe;
+        this.s_AdressePostale = strAdressePostale;
+        this.s_IdentiteResponsable = strIdentiteResponsable;
+        this.i_NbPersonne = intNbPersonne;
+        this.s_NomPays = strNomPays;
+        this.s_Hebergement = strHebergement;
 }
     /**
      * 
-     * @return Long id : id générée par la persistence
+     * @return Long l_Id : l_Id générée par la persistence
      */
-    public Long getId() {
-        return id;
+    public Long getL_Id() {
+        return l_Id;
     }
 
     /**
      * 
-     * @param id : Long valeur générée par la persistence
+     * @param l_Id : Long valeur générée par la persistence
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setL_Id(Long l_Id) {
+        this.l_Id = l_Id;
     }
     
     /**
@@ -68,23 +68,23 @@ public class Groupe implements Serializable {
      */
     @Override
     public String toString() {
-        return ("Groupe{nom: " + this.getNom() + "\tadresse postale: " + this.getAdressePostale() + "\tindentite du responsable: " + this.getIdentiteResponsable() + "\tNombre de personnes: " + this.getNbPersonne() + "\tNom du Pays : " + this.getNomPays() + "\tHebergement: " + this.getHebergement()) +"}";
+        return ("Groupe{nom: " + this.getNomGroupe() + "\tadresse postale: " + this.getAdressePostale() + "\tindentite du responsable: " + this.getIdentiteResponsable() + "\tNombre de personnes: " + this.getNbPersonne() + "\tNom du Pays : " + this.getNomPays() + "\tHebergement: " + this.getHebergement()) +"}";
     }
 
     /**
      * 
      * @return String le nom du groupe
      */
-    public String getNom() {
-        return nom;
+    public String getNomGroupe() {
+        return s_NomGroupe;
     }
     
     /**
      * 
-     * @param nom : String nom du groupe
+     * @param strNomGroupe : String nom du groupe
      */
-    public void setNom() {
-        this.nom = nom;
+    public void setNom(String strNomGroupe) {
+        this.s_NomGroupe = strNomGroupe;
     }
 
     /**
@@ -92,15 +92,15 @@ public class Groupe implements Serializable {
      * @return String l'adresse postale du groupe
      */
     public String getAdressePostale() {
-        return adressePostale;
+        return s_AdressePostale;
     }
     
     /**
      * 
-     * @param adressePostale : String l'adresse postale du groupe
+     * @param strAdressePostale : String l'adresse postale du groupe
      */
-    public void setAdressePostale() {
-        this.adressePostale = adressePostale;
+    public void setAdressePostale(String strAdressePostale) {
+        this.s_AdressePostale = strAdressePostale;
     }
 
     /**
@@ -108,15 +108,15 @@ public class Groupe implements Serializable {
      * @return String l'identité du responsable du groupe
      */
     public String getIdentiteResponsable() {
-        return identiteResponsable;
+        return s_IdentiteResponsable;
     }
 
     /**
      * 
-     * @param identiteResponsable : String le nom du responsable du groupe
+     * @param strIdentiteResponsable : String le s_NomGroupe du responsable du groupe
      */
-    public void setIdentiteResponsable() {
-        this.identiteResponsable = identiteResponsable;
+    public void setIdentiteResponsable(String strIdentiteResponsable) {
+        this.s_IdentiteResponsable = strIdentiteResponsable;
     }
     
     /**
@@ -124,31 +124,31 @@ public class Groupe implements Serializable {
      * @return int nombre de personne dans le groupe
      */
     public int getNbPersonne() {
-        return nbPersonne;
+        return i_NbPersonne;
     }
     
     /**
      * 
-     * @param nbPersonne : int Le nombre de personnes dans le groupe
+     * @param intNbPersonne : int Le nombre de personnes dans le groupe
      */
-    public void setNbPersonne() {
-        this.nbPersonne = nbPersonne;
+    public void setNbPersonne(int intNbPersonne) {
+        this.i_NbPersonne = intNbPersonne;
     }
 
     /**
      * 
-     * @return String le nom du pays d'origine du groupe
+     * @return String le s_NomGroupe du pays d'origine du groupe
      */
     public String getNomPays() {
-        return nomPays;
+        return s_NomPays;
     }
     
     /**
      * 
-     * @param nomPays : String le nom du pays
+     * @param strNomPays : String le s_NomGroupe du pays
      */
-    public void setNomPays() {
-        this.nomPays = nomPays;
+    public void setNomPays(String strNomPays) {
+        this.s_NomPays = strNomPays;
     }
 
     /**
@@ -156,15 +156,15 @@ public class Groupe implements Serializable {
      * @return String si le groupe est héberger ou non
      */
     public String getHebergement() {
-        return hebergement;
+        return s_Hebergement;
     }
     
     /**
      * 
-     * @param hebergement : String (booléen) vérifie si oui ou non le groupe est héberger
+     * @param strHebergement : String (booléen) vérifie si oui ou non le groupe est héberger
      */
-    public void setHebergement() {
-        this.hebergement = hebergement;
+    public void setHebergement(String strHebergement) {
+        this.s_Hebergement = strHebergement;
     }
     
 }

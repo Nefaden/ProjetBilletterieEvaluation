@@ -14,41 +14,41 @@ public class Lieu implements Serializable{
     
     @Id
     @GeneratedValue    
-    private Long id;
+    private Long l_Id;
     @Column(length=255)
-    private String nom;
+    private String s_NomLieu;
     @Column(length=255)
-    private String adr;
+    private String s_AdresseLieu;
     @Column(length=11)
-    private int capacite;
+    private int i_CapaciteLieu;
 
      /**
      * Constructeur avec les 3 attributs
-     * @param nom
-     * @param adresse    
-     * @param capacite
+     * @param strNomLieu
+     * @param strAdresseLieu    
+     * @param intCapaciteLieu
      */
-    public Lieu(String nom, String adresse, int capacite) {
-        this.nom = nom;
-        this.adr = adresse;
-        this.capacite = capacite;
+    public Lieu(String strNomLieu, String strAdresseLieu, int intCapaciteLieu) {
+        this.s_NomLieu = strNomLieu;
+        this.s_AdresseLieu = strAdresseLieu;
+        this.i_CapaciteLieu = intCapaciteLieu;
 
     }
     
     /**
      * 
-     * @return Long id : id générée par la persistence
+     * @return Long l_Id : l_Id générée par la persistence
      */
-    public Long getId() {
-        return id;
+    public Long getL_Id() {
+        return l_Id;
     }
 
     /**
      * 
-     * @param id : Long valeur générée par la persistence
+     * @param l_Id : Long valeur générée par la persistence
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setL_Id(Long l_Id) {
+        this.l_Id = l_Id;
     }
     
     /**
@@ -65,15 +65,15 @@ public class Lieu implements Serializable{
      * @return String le nom du lieu
      */
     public String getNomLieu() {
-        return nom;
+        return s_NomLieu;
     }
     
     /**
      * 
-     * @param nom : String nom du lieu
+     * @param strNomLieu : String nom du lieu
      */
-    public void setNomLieu(Long id) {
-        this.id = id;
+    public void setNomLieu(String strNomLieu) {
+        this.s_NomLieu = strNomLieu;
     }
     
     /**
@@ -81,15 +81,15 @@ public class Lieu implements Serializable{
      * @return String l'adresse du lieu
      */
     public String getAdresseLieu() {
-        return adr;
+        return s_AdresseLieu;
     }
     
     /**
      * 
-     * @param adr : String adresse du lieu
+     * @param strAdresseLieu : String adresse du lieu
      */
-    public void setAdresseLieu() {
-        this.adr = adr;
+    public void setAdresseLieu(String strAdresseLieu) {
+        this.s_AdresseLieu = strAdresseLieu;
     }
     
     /**
@@ -97,15 +97,15 @@ public class Lieu implements Serializable{
      * @return int la capacité du lieu
      */
     public int getCapaciteLieu() {
-        return capacite;
+        return i_CapaciteLieu;
     }
     
     /**
      * 
-     * @param capacite : int capacité du lieu
+     * @param intCapaciteLieu : int capacité du lieu
      */
-    public void setCapaciteLieu() {
-        this.capacite = capacite;
+    public void setCapaciteLieu(int intCapaciteLieu) {
+        this.i_CapaciteLieu = intCapaciteLieu;
     }
     
 }

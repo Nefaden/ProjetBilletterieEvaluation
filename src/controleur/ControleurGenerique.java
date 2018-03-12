@@ -8,9 +8,8 @@ import vue.VueGenerique;
  chaque contrôleur possède :
  - une vue
  - une liaison vers le contrôleur principal
- * @author nbourgeois
- * @version 22 novembre 2013
- * - révision octobre 2016 : la vue est passive ; elle est écoutée par son contrôleur
+ * @author ydurand
+ * v1.0
  */
 public abstract class ControleurGenerique {
     

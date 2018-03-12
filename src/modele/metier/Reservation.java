@@ -16,42 +16,42 @@ public class Reservation implements Serializable {
     
     @Id
     @GeneratedValue
-    private Long id;
+    private Long l_Id;
     @Column(length=11)
-    private int place_reservee;
+    private int i_PlaceReservee;
     @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "REPRESENTATION_ID")
-    private Representation uneRepresentation;
+    private Representation o_Representation;
     @OneToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "CLIENT_ID")
-    private Client unClient;
+    private Client o_Client;
     
     /**
      * Constructeur avec les 3 attributs
-     * @param place_reservee
-     * @param uneRepresentation
-     * @param unClient
+     * @param intPlaceReservee
+     * @param objRepresentation
+     * @param objClient
      */
-    public Reservation(int place_reservee, Representation uneRepresentation, Client unClient) {
-        this.place_reservee = place_reservee;
-        this.uneRepresentation = uneRepresentation;
-        this.unClient = unClient;
+    public Reservation(int intPlaceReservee, Representation objRepresentation, Client objClient) {
+        this.i_PlaceReservee = intPlaceReservee;
+        this.o_Representation = objRepresentation;
+        this.o_Client = objClient;
     }
     
     /**
      * 
-     * @return Long id : id générée par la persistence
+     * @return Long l_Id : l_Id générée par la persistence
      */
-    public Long getId() {
-        return id;
+    public Long getL_Id() {
+        return l_Id;
     }
 
     /**
      * 
-     * @param id : Long valeur générée par la persistence
+     * @param l_Id : Long valeur générée par la persistence
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setL_Id(Long l_Id) {
+        this.l_Id = l_Id;
     }
     
     /**
@@ -70,15 +70,15 @@ public class Reservation implements Serializable {
      * @return int place_reservee le nombre de places réservées par le client
      */
     public int getPlaceReservee() {
-        return place_reservee;
+        return i_PlaceReservee;
     }
     
     /**
      * 
-     * @param place_reservee : int nombre de places réservées
+     * @param intPlaceReservee : int nombre de places réservées
      */
-    public void setPlaceReservée(int place_reservee) {
-        this.place_reservee = place_reservee;
+    public void setPlaceReservee(int intPlaceReservee) {
+        this.i_PlaceReservee = intPlaceReservee;
     }
    
     /**
@@ -86,15 +86,15 @@ public class Reservation implements Serializable {
      * @return Representation la representation à laquelle on réserve les places
      */    
     public Representation getRepresentation() {
-        return uneRepresentation;
+        return o_Representation;
     }
     
     /**
      * 
-     * @param uneRepresentation : la représentation sélectionner au préalable
+     * @param objRepresentation : la représentation sélectionner au préalable
      */
-    public void setRepresentation(Representation uneRepresentation) {
-        this.uneRepresentation = uneRepresentation;
+    public void setRepresentation(Representation objRepresentation) {
+        this.o_Representation = objRepresentation;
     }
     
     /**
@@ -102,15 +102,15 @@ public class Reservation implements Serializable {
      * @return Client le client qui réserve les places
      */
     public Client getClient() {
-        return unClient;
+        return o_Client;
     }
     
     /**
      * 
-     * @param unClient : le client dont on aura saisie les données
+     * @param objClient : le client dont on aura saisie les données
      */
-    public void setClient(Client unClient) {
-        this.unClient = unClient;
+    public void setClient(Client objClient) {
+        this.o_Client = objClient;
     }
     
 }

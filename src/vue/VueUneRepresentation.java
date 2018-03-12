@@ -116,7 +116,7 @@ public class VueUneRepresentation extends javax.swing.JFrame {
             }
         });
 
-        jButtonQuitter.setText("Quitter");
+        jButtonQuitter.setText("Retour");
         jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonQuitterActionPerformed(evt);

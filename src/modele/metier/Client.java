@@ -14,44 +14,44 @@ public class Client {
     
     @Id
     @GeneratedValue
-    private Long id;
+    private Long l_Id;
     @Column(length=40)
-    private String nom;
+    private String s_NomClient;
     @Column(length=40)
-    private String prenom;
+    private String s_PrenomClient;
     @Column(length=120)
-    private String adresse;
+    private String s_AdresseClient;
     @Column(length=11)
-    private int num;
+    private int i_NumeroTelClient;
     
     /**
      * Constructeur avec les 4 attributs
-     * @param nom
-     * @param prenom
-     * @param adresse
-     * @param num
+     * @param strNomClient
+     * @param strPrenomClient
+     * @param strAdresseClient
+     * @param intNumeroTelClient
      */
-    public Client(String nom, String prenom, String adresse, int num) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.num = num;
+    public Client(String strNomClient, String strPrenomClient, String strAdresseClient, int intNumeroTelClient) {
+        this.s_NomClient = strNomClient;
+        this.s_PrenomClient = strPrenomClient;
+        this.s_AdresseClient = strAdresseClient;
+        this.i_NumeroTelClient = intNumeroTelClient;
     }
     
     /**
      * 
-     * @return Long id : id générée par la persistence
+     * @return Long l_Id : l_Id générée par la persistence
      */
-    public Long getId() {
-        return id;
+    public Long getL_Id() {
+        return l_Id;
     }
 
     /**
      * 
-     * @param id : Long valeur générée par la persistence
+     * @param l_Id : Long valeur générée par la persistence
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setL_Id(Long l_Id) {
+        this.l_Id = l_Id;
     }
     
     /**
@@ -60,7 +60,7 @@ public class Client {
      */
     @Override
     public String toString() {
-        return ("Client{nom: " + this.getNomClient() + "\tprenom: " + this.getPrenomClient() + "\tadresse: " + this.getAdresseClient() + "\tnum: " + this.getNumClient() + "}");
+        return ("Client{nom: " + this.getNomClient() + "\tprenom: " + this.getPrenomClient() + "\tadresse: " + this.getAdresseClient() + "\tnum: " + this.getNumeroTelClient() + "}");
     }
     
     //Getter / Setter de la classe Reservation    
@@ -70,15 +70,15 @@ public class Client {
      * @return String nom du client
      */
     public String getNomClient() {
-        return nom;
+        return s_NomClient;
     }
     
     /**
      * 
-     * @param nom : String nom du client
+     * @param strNomClient : String nom du client
      */
-    public void setNomClient(String nom) {
-        this.nom = nom;
+    public void setNomClient(String strNomClient) {
+        this.s_NomClient = strNomClient;
     }
    
     /**
@@ -86,15 +86,15 @@ public class Client {
      * @return String prenom du client
      */    
     public String getPrenomClient() {
-        return prenom;
+        return s_PrenomClient;
     }
     
     /**
      * 
-     * @param prenom : String prenom du client
+     * @param strPrenomClient : String prenom du client
      */
-    public void setPrenomClient(String prenom) {
-        this.prenom = prenom;
+    public void setPrenomClient(String strPrenomClient) {
+        this.s_PrenomClient = strPrenomClient;
     }
     
     /**
@@ -102,31 +102,31 @@ public class Client {
      * @return String adresse du client
      */
     public String getAdresseClient() {
-        return adresse;
+        return s_AdresseClient;
     }
     
     /**
      * 
-     * @param adresse : String adresse du client
+     * @param strAdresseClient : String adresse du client
      */
-    public void setAdresseClient(String adresse) {
-        this.adresse = adresse;
+    public void setAdresseClient(String strAdresseClient) {
+        this.s_AdresseClient = strAdresseClient;
     }
     
     /**
      * 
      * @return int num numéro de téléphone du client
      */
-    public int getNumClient() {
-        return num;
+    public int getNumeroTelClient() {
+        return i_NumeroTelClient;
     }
     
     /**
      * 
-     * @param num : int numéro de téléphone du client
+     * @param intNumeroTelClient : int numéro de téléphone du client
      */
-    public void setNumClient(int num) {
-        this.num = num;
+    public void setNumeroTelClient(int intNumeroTelClient) {
+        this.i_NumeroTelClient = intNumeroTelClient;
     }
     
 }

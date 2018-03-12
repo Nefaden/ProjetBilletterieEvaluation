@@ -22,16 +22,45 @@ public class VueOptionClient extends VueGenerique {
     }
     
     //GETTER
+    public JButton getJButtonNouveauClient() {
+        return jButtonNouveauClient;
+    }
     
+    public JButton getJButtonClientExistant() {
+        return jButtonClientExistant;
+    }
     
     //Initialisation des comlposants graphiques
     private void myInitComponents() {        
         jLabelTitreDialog = new javax.swing.JLabel();
+        jButtonNouveauClient = new javax.swing.JButton();
+        jButtonClientExistant = new javax.swing.JButton();
+        
+        jLabelTitreDialog.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabelTitreDialog.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitreDialog.setText("Quel type de client êtes-vous ?");
+        
+        jButtonNouveauClient.setText("Nouveau Client");
+        
+        jButtonClientExistant.setText("Client Existant");
+        
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jLabelTitreDialog, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+
+        pack();
     }
     
     //Déclaration des variables
     private javax.swing.JLabel jLabelTitreDialog;
-    private javax.swing.JButton jButtonRepresentationDetail;
+    private javax.swing.JButton jButtonNouveauClient;
+    private javax.swing.JButton jButtonClientExistant;
 
     /**
      * This method is called from within the constructor to initialize the form.

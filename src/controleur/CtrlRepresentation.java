@@ -22,7 +22,7 @@ import vue.VueRepresentation;
 public class CtrlRepresentation extends ControleurGenerique implements WindowListener, MouseListener {
 
     private final RepresentationDao RepresentationDao = new RepresentationDao();
-    private List<Representation> lesRepresentations;
+    private List<Representation> arrObjRepresentations;
 
     public CtrlRepresentation(CtrlPrincipal ctrlPrincipal) throws SQLException {
         super(ctrlPrincipal);
@@ -53,12 +53,12 @@ public class CtrlRepresentation extends ControleurGenerique implements WindowLis
         ((VueRepresentation) vue).getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         try {
             String[] ligneDonnees = new String[5];
-            lesRepresentations = RepresentationDao.getAll();
-            for (Representation uneRepresentation : lesRepresentations) {
-                ligneDonnees[0] = uneRepresentation.getGroupe().getNom();
+            arrObjRepresentations = RepresentationDao.getAll();
+            for (Representation uneRepresentation : arrObjRepresentations) {
+                ligneDonnees[0] = uneRepresentation.getGroupe().getNomGroupe();
                 ligneDonnees[1] = uneRepresentation.getLieu().getNomLieu();
                 ligneDonnees[2] = uneRepresentation.getDateRepresentation();
-                ligneDonnees[3] = uneRepresentation.getHeureDebRepresentation();
+                ligneDonnees[3] = uneRepresentation.getHeureDebutRepresentation();
                 ligneDonnees[4] = uneRepresentation.getHeureFinRepresentation();
                 ((VueRepresentation) vue).getModeleTableRepresentation().addRow(ligneDonnees);
             } 

@@ -11,6 +11,9 @@ import javax.swing.JFrame;
  */
 
 public abstract class VueGenerique extends JFrame{   
-    public VueGenerique() {
+    public VueGenerique() {            
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Ventes de billet v0.1 - février 2018");
     }           
 }
