@@ -28,6 +28,13 @@ public class Groupe implements Serializable {
     private String s_Hebergement;
     
     
+    /**
+     * 
+     * Default constructor for mapping JPA
+     */
+    public Groupe() {        
+    }
+    
      /**
      * Constructeur avec les 6 attributs
      * @param strNomGroupe

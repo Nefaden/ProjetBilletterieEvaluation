@@ -22,6 +22,13 @@ public class Lieu implements Serializable{
     @Column(length=11)
     private int i_CapaciteLieu;
 
+    /**
+     * 
+     * Default constructor for mapping JPA
+     */
+    public Lieu() {        
+    }
+    
      /**
      * Constructeur avec les 3 attributs
      * @param strNomLieu

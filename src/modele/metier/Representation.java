@@ -20,10 +20,8 @@ public class Representation implements Serializable {
     @Column(length=30)
     private String s_DateRepresentation;    
     @ManyToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "ID_LIEU")
     private Lieu o_Lieu;    
     @ManyToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "ID_GROUPE")
     private Groupe o_Groupe;
     @Column(length=30)
     private String s_HeureDebutRepresentation;
@@ -32,6 +30,13 @@ public class Representation implements Serializable {
     @Column(length=11)
     private int i_NbPlacesRestantes;
 
+    /**
+     * 
+     * Default constructor for mapping JPA
+     */
+    public Representation() {        
+    }
+    
     /**
      * Constructeur avec les 6 attributs
      * @param strDateRepresentation

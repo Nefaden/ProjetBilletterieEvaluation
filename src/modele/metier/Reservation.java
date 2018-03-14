@@ -19,12 +19,17 @@ public class Reservation implements Serializable {
     private Long l_Id;
     @Column(length=11)
     private int i_PlaceReservee;
-    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "REPRESENTATION_ID")
     private Representation o_Representation;
-    @OneToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "CLIENT_ID")
     private Client o_Client;
+    
+    /**
+     * 
+     * Default constructor for mapping JPA
+     */
+    public Reservation() {        
+    }
     
     /**
      * Constructeur avec les 3 attributs

@@ -25,6 +25,13 @@ public class Client {
     private int i_NumeroTelClient;
     
     /**
+     * 
+     * Default constructor for mapping JPA
+     */
+    public Client() {        
+    }
+    
+    /**
      * Constructeur avec les 4 attributs
      * @param strNomClient
      * @param strPrenomClient
