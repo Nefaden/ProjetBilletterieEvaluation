@@ -22,11 +22,11 @@ public class CtrlPrincipal {
      * action par défaut action au démarrage de l'application
      */
     public void action() throws SQLException {
-        if (ctrlRepresentation == null) {
-            ctrlRepresentation = new CtrlRepresentation(this);
+        if (ctrlMenu == null) {
+            ctrlMenu = new CtrlMenu(this);
         }
-        ctrlRepresentation.getVue().setEnabled(true);
-        ctrlRepresentation.getVue().setVisible(true);
+        ctrlMenu.getVue().setEnabled(true);
+        ctrlMenu.getVue().setVisible(true);
     }
 
     public void action(EnumAction action) throws SQLException {

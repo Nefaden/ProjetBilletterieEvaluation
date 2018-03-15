@@ -30,14 +30,14 @@ public class Representation {
      * @param heureFin_representation
      * @param nbPlacesRestantes_representation
      */
-    public Representation(int id, String date_representation, Lieu unLieu, Groupe unGroupe, String heureDebut_representation, String heureFin_representation, int nombrePlacesRestantes) {
+    public Representation(int id, String date_representation, Lieu unLieu, Groupe unGroupe, String heureDebut_representation, String heureFin_representation, int nbPlacesRestantes_representation) {
         this.id = id;
         this.date = date_representation;
         this.unLieu = unLieu;
         this.unGroupe = unGroupe;
         this.heureDeb = heureDebut_representation;
         this.heureFin = heureFin_representation;
-        this.nbPlacesRestantes = nombrePlacesRestantes;
+        this.nbPlacesRestantes = nbPlacesRestantes_representation;
     }
     
     /**

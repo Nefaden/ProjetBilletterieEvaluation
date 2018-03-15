@@ -47,7 +47,7 @@ public class CtrlRepresentation extends ControleurGenerique implements WindowLis
 
     //méthode pour afficher la liste des représentation via la methode sel
     public void afficherRepresentation() throws SQLException {
-        String msg = ""; // message à afficher en cas d'erreur
+        String msg = ""; // message à afficher en cas d'erreur/
         ((VueRepresentation) vue).getModeleTableRepresentation().setRowCount(0);
         String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin", "Place restante"};
         ((VueRepresentation) vue).getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
