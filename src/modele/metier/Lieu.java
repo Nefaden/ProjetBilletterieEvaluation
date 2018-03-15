@@ -13,13 +13,14 @@ import java.io.Serializable;
 public class Lieu implements Serializable{
     
     @Id
-    @GeneratedValue    
+    @GeneratedValue 
+    @Column(name="id")
     private Long l_Id;
-    @Column(length=255)
+    @Column(name="nom")
     private String s_NomLieu;
-    @Column(length=255)
+    @Column(name="adr")
     private String s_AdresseLieu;
-    @Column(length=11)
+    @Column(name="capacite")
     private int i_CapaciteLieu;
 
     /**

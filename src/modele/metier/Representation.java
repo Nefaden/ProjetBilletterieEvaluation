@@ -16,18 +16,21 @@ public class Representation implements Serializable {
 
     @Id
     @GeneratedValue
+    @Column(name="id")
     private Long l_Id;
-    @Column(length=30)
+    @Column(name="daterepr")
     private String s_DateRepresentation;    
     @ManyToOne(cascade = {CascadeType.PERSIST})
+    @Column(name="Lieu")
     private Lieu o_Lieu;    
     @ManyToOne(cascade = {CascadeType.PERSIST})
+    @Column(name="Groupe")
     private Groupe o_Groupe;
-    @Column(length=30)
+    @Column(name="heure_debut")
     private String s_HeureDebutRepresentation;
-    @Column(length=30)
+    @Column(name="heure_fin")
     private String s_HeureFinRepresentation;
-    @Column(length=11)
+    @Column(name="nombre_place_restante")
     private int i_NbPlacesRestantes;
 
     /**

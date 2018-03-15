@@ -16,12 +16,14 @@ public class Reservation implements Serializable {
     
     @Id
     @GeneratedValue
+    @Column(name="id")
     private Long l_Id;
-    @Column(length=11)
+    @Column(name="place_reservee")
     private int i_PlaceReservee;
     @JoinColumn(name = "REPRESENTATION_ID")
+    @Column(name="Representation")
     private Representation o_Representation;
-    @JoinColumn(name = "CLIENT_ID")
+    @JoinColumn(name = "Client")
     private Client o_Client;
     
     /**

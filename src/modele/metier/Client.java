@@ -14,14 +14,15 @@ public class Client {
     
     @Id
     @GeneratedValue
+    @Column(name="id")
     private Long l_Id;
-    @Column(length=40)
+    @Column(name="nom_client")
     private String s_NomClient;
-    @Column(length=40)
+    @Column(name="prenom_client")
     private String s_PrenomClient;
-    @Column(length=120)
+    @Column(name="adresse_client")
     private String s_AdresseClient;
-    @Column(length=11)
+    @Column(name="numero_tel_client")
     private int i_NumeroTelClient;
     
     /**

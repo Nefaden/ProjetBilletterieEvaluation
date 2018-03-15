@@ -13,18 +13,19 @@ public class Groupe implements Serializable {
     
     @Id
     @GeneratedValue
+    @Column(name="id")
     private Long l_Id;
-    @Column(length=40)
+    @Column(name="nom")
     private String s_NomGroupe;
-    @Column(length=120)
-    private String s_AdressePostale;
-    @Column(length=40)
+    @Column(name="identiteResponsable")
     private String s_IdentiteResponsable;
-    @Column(length=11)
+    @Column(name="adressePostale")
+    private String s_AdressePostale;
+    @Column(name="nombrePersonnes")
     private int i_NbPersonne;
-    @Column(length=40)
+    @Column(name="nomPays")
     private String s_NomPays;
-    @Column(length=1)
+    @Column(name="hebergement")
     private String s_Hebergement;
     
     
