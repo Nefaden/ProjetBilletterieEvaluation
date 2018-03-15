@@ -52,7 +52,7 @@ public class CtrlRepresentation extends ControleurGenerique implements WindowLis
         String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin", "Place restante"};
         ((VueRepresentation) vue).getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         try {
-            String[] ligneDonnees = new String[5];
+            String[] ligneDonnees = new String[6];
             lesRepresentations = RepresentationDao.getAll();
             for (Representation uneRepresentation : lesRepresentations) {
                 ligneDonnees[0] = uneRepresentation.getGroupe().getNom();
@@ -60,7 +60,7 @@ public class CtrlRepresentation extends ControleurGenerique implements WindowLis
                 ligneDonnees[2] = uneRepresentation.getDateRepresentation();
                 ligneDonnees[3] = uneRepresentation.getHeureDebRepresentation();
                 ligneDonnees[4] = uneRepresentation.getHeureFinRepresentation();
-                //ligneDonnees[5] = uneRepresentation.getNbPlacesRestantes();
+                ligneDonnees[5] = Integer.toString(uneRepresentation.getNbPlacesRestantes());
                 ((VueRepresentation) vue).getModeleTableRepresentation().addRow(ligneDonnees);
             } 
         } catch (SQLException ex) {
