@@ -16,6 +16,7 @@ import controleur.CtrlUneRepresentation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JTable;
 import vue.VueUneRepresentation;
 
 /**
@@ -33,7 +34,8 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         super(ctrlPrincipal);
         vue = new VueRepresentation();
         afficherRepresentation();
-        getVue().getjButtonReservation().addActionListener(this);
+        this.getVue().getjTableRepresentation().addMouseListener(this);
+        this.getVue().getjButtonReservation().addActionListener(this);
         vue.addWindowListener(this);
     }
     
@@ -83,13 +85,24 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         ctrlUneRepresentation.getVue().setVisible(true);
     }
     
+    
+    //int ligneSelectionne = lesRepresentations.getSelectedRow();
+    //on récupére la valeur de la première colonne de la ligne sélectionné
+    //taJTable.getValueAt(ligneSelectionne, 0);
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(getVue().getjButtonReservation())){
+        JTable lesRepresentations = this.getVue().getjTableRepresentation();
+        if (e.getSource().equals(getVue().getjButtonReservation())) {
             try {
                 afficherUneRepresentation();
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            if (e.getSource().equals(lesRepresentations)) {
+                int ligneSelectionne = lesRepresentations.getSelectedRow();
+                lesRepresentations.getValueAt(ligneSelectionne, 0);
             }
         }
     }
