@@ -5,6 +5,7 @@
  */
 package vue;
 
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,6 +27,10 @@ public class VueRepresentation extends VueGenerique {
 
     public DefaultTableModel getModeleTableRepresentation() {
         return modeleTableRepresentation;
+    }
+    
+    public JButton getjButtonReservation() {
+        return jButtonReserver;
     }
 
     /**

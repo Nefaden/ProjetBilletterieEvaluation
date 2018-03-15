@@ -12,6 +12,11 @@ import javax.swing.JOptionPane;
 import modele.dao.RepresentationDao;
 import modele.metier.Representation;
 import vue.VueRepresentation;
+import controleur.CtrlUneRepresentation;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import vue.VueUneRepresentation;
 
 /**
  * Contrôleur permettant l'affichage et la sélection des représentation dans la
@@ -19,7 +24,7 @@ import vue.VueRepresentation;
  *
  * @author ydurand v1.0
  */
-public class CtrlRepresentation extends ControleurGenerique implements WindowListener, MouseListener {
+public class CtrlRepresentation extends ControleurGenerique implements ActionListener, WindowListener, MouseListener {
 
     private final RepresentationDao RepresentationDao = new RepresentationDao();
     private List<Representation> lesRepresentations;
@@ -28,8 +33,10 @@ public class CtrlRepresentation extends ControleurGenerique implements WindowLis
         super(ctrlPrincipal);
         vue = new VueRepresentation();
         afficherRepresentation();
+        getVue().getjButtonReservation().addActionListener(this);
         vue.addWindowListener(this);
     }
+    
     
     /*
     * Methode pour quitter l'application
@@ -66,9 +73,31 @@ public class CtrlRepresentation extends ControleurGenerique implements WindowLis
         } catch (SQLException ex) {
             msg = "CtrlRepresentation - representationAfficher() - " + ex.getMessage();
             JOptionPane.showMessageDialog(vue, msg, "Affichage des représentations", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void afficherUneRepresentation() throws SQLException {
+        VueUneRepresentation uneVue = new VueUneRepresentation();
+        CtrlUneRepresentation ctrlUneRepresentation = new CtrlUneRepresentation(uneVue);
+        this.getVue().setEnabled(false);
+        ctrlUneRepresentation.getVue().setVisible(true);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(getVue().getjButtonReservation())){
+            try {
+                afficherUneRepresentation();
+            } catch (SQLException ex) {
+                Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
     
+    @Override
+    public VueRepresentation getVue() {
+        return (VueRepresentation) vue;
+    }
 
     @Override
     public void windowOpened(WindowEvent e) {
