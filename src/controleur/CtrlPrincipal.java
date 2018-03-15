@@ -16,7 +16,7 @@ public class CtrlPrincipal {
 
     private CtrlRepresentation ctrlRepresentation = null; // LE CONTROLEUR DES REPRESENTATIONS
     private CtrlVentes ctrlVentes = null;
-    private CtrlMenu ctrlMenu = null;
+    private CtrlMenu ctrlMenu = null;//test de push
 
     /**
      * action par défaut action au démarrage de l'application
