@@ -6,6 +6,7 @@
 package vue;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,6 +32,10 @@ public class VueRepresentation extends VueGenerique {
     
     public JButton getjButtonReservation() {
         return jButtonReserver;
+    }
+    
+    public JTable getjTableRepresentation() {
+        return jTableRepresentation;
     }
 
     /**
@@ -165,4 +170,5 @@ public class VueRepresentation extends VueGenerique {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableRepresentation;
     // End of variables declaration//GEN-END:variables
+
 }
