@@ -79,7 +79,7 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
     
     public void afficherUneRepresentation() throws SQLException {
         VueUneRepresentation uneVue = new VueUneRepresentation();
-        CtrlUneRepresentation ctrlUneRepresentation = new CtrlUneRepresentation(uneVue);
+        CtrlUneRepresentation ctrlUneRepresentation = new CtrlUneRepresentation(uneVue, 4);
         this.getVue().setEnabled(false);
         ctrlUneRepresentation.getVue().setVisible(true);
     }
