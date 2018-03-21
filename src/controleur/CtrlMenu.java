@@ -24,6 +24,7 @@ public class CtrlMenu extends ControleurGenerique implements ActionListener, Win
         vue.addWindowListener(this);
         getVue().getjMenuItemQuitter().addActionListener(this);
         getVue().getjMenuItemRepresentationAfficher().addActionListener(this);
+        getVue().getjMenuItemVente().addActionListener(this);
     }
 
     /**

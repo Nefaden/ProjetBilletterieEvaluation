@@ -58,10 +58,10 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
     public void afficherRepresentation() throws SQLException {
         String msg = ""; // message à afficher en cas d'erreur/
         ((VueRepresentation) vue).getModeleTableRepresentation().setRowCount(0);
-        String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin", "Place restante"};
+        String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
         ((VueRepresentation) vue).getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         try {
-            String[] ligneDonnees = new String[6];
+            String[] ligneDonnees = new String[5];
             lesRepresentations = RepresentationDao.getAll();
             for (Representation uneRepresentation : lesRepresentations) {
                 ligneDonnees[0] = uneRepresentation.getGroupe().getNom();
@@ -69,7 +69,6 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
                 ligneDonnees[2] = uneRepresentation.getDateRepresentation();
                 ligneDonnees[3] = uneRepresentation.getHeureDebRepresentation();
                 ligneDonnees[4] = uneRepresentation.getHeureFinRepresentation();
-                ligneDonnees[5] = Integer.toString(uneRepresentation.getNbPlacesRestantes());
                 ((VueRepresentation) vue).getModeleTableRepresentation().addRow(ligneDonnees);
             } 
         } catch (SQLException ex) {

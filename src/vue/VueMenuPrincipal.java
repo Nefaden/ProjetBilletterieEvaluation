@@ -33,8 +33,8 @@ public class VueMenuPrincipal extends VueGenerique {
         return jMenuItemRepresentationAfficher;
     }
     
-    public JMenuItem getjMenuItemReservation() {
-        return jMenuItemReservation;
+    public JMenuItem getjMenuItemVente() {
+        return jMenuItemVente;
     }
     
     public JMenuItem getjMenuItemQuitter() {
@@ -49,16 +49,21 @@ public class VueMenuPrincipal extends VueGenerique {
         jMenuRepresentation = new javax.swing.JMenu();
         jMenuVente = new javax.swing.JMenu();
         jMenuItemRepresentationAfficher = new javax.swing.JMenuItem();
-        jMenuItemReservation = new javax.swing.JMenuItem();
+        jMenuItemVente = new javax.swing.JMenuItem();
         jMenuItemQuitter = new javax.swing.JMenuItem();
-        jButtonRepresentationDetail = new javax.swing.JButton();
+        jButtonVentePlace = new javax.swing.JButton();
+        jButtonAfficherRepresentation = new javax.swing.JButton();
         
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Ventes de billet v0.1 - février 2018");
         
         jLabelTitreMenu.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabelTitreMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitreMenu.setText("VENTES DE BILLET\nFESTIVAL FOLKLORIQUE");
+        jLabelTitreMenu.setText("VENTES DE BILLETS");
+        
+        jButtonVentePlace.setText("Vendre");
+        
+        jButtonAfficherRepresentation.setText("Afficher");
         
         jMenuFichier.setText("Fichier");
         
@@ -76,8 +81,8 @@ public class VueMenuPrincipal extends VueGenerique {
         
         jMenuVente.setText("Vente");
         
-        jMenuItemReservation.setText("Afficher les représentations");
-        jMenuVente.add(jMenuItemReservation);
+        jMenuItemVente.setText("Vendre des places");
+        jMenuVente.add(jMenuItemVente);
         
         jMenuBarGestion.add(jMenuVente);
         
@@ -90,13 +95,33 @@ public class VueMenuPrincipal extends VueGenerique {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabelTitreMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
-                .addComponent(jLabelTitreMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelTitreMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+        
+        javax.swing.GroupLayout buttonLayout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(buttonLayout);
+        buttonLayout.setHorizontalGroup(
+            buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jButtonAfficherRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+        buttonLayout.setVerticalGroup(
+            buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonLayout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jButtonAfficherRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(129, Short.MAX_VALUE))
         );
 
@@ -110,9 +135,10 @@ public class VueMenuPrincipal extends VueGenerique {
     private javax.swing.JMenu jMenuRepresentation;
     private javax.swing.JMenu jMenuVente;
     private javax.swing.JMenuItem jMenuItemRepresentationAfficher;
-    private javax.swing.JMenuItem jMenuItemReservation;
+    private javax.swing.JMenuItem jMenuItemVente;
     private javax.swing.JMenuItem jMenuItemQuitter;
-    private javax.swing.JButton jButtonRepresentationDetail;
+    private javax.swing.JButton jButtonVentePlace;
+    private javax.swing.JButton jButtonAfficherRepresentation;
     
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
