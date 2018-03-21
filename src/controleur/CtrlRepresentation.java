@@ -58,17 +58,18 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
     public void afficherRepresentation() throws SQLException {
         String msg = ""; // message à afficher en cas d'erreur/
         ((VueRepresentation) vue).getModeleTableRepresentation().setRowCount(0);
-        String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
+        String[] titresColonnes = {"ID", "Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
         ((VueRepresentation) vue).getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         try {
-            String[] ligneDonnees = new String[5];
+            String[] ligneDonnees = new String[6];
             lesRepresentations = RepresentationDao.getAll();
             for (Representation uneRepresentation : lesRepresentations) {
-                ligneDonnees[0] = uneRepresentation.getGroupe().getNom();
-                ligneDonnees[1] = uneRepresentation.getLieu().getNomLieu();
-                ligneDonnees[2] = uneRepresentation.getDateRepresentation();
-                ligneDonnees[3] = uneRepresentation.getHeureDebRepresentation();
-                ligneDonnees[4] = uneRepresentation.getHeureFinRepresentation();
+                ligneDonnees[0] = Integer.toString(uneRepresentation.getIdRepresentation());
+                ligneDonnees[1] = uneRepresentation.getGroupe().getNom();
+                ligneDonnees[2] = uneRepresentation.getLieu().getNomLieu();
+                ligneDonnees[3] = uneRepresentation.getDateRepresentation();
+                ligneDonnees[4] = uneRepresentation.getHeureDebRepresentation();
+                ligneDonnees[5] = uneRepresentation.getHeureFinRepresentation();
                 ((VueRepresentation) vue).getModeleTableRepresentation().addRow(ligneDonnees);
             } 
         } catch (SQLException ex) {

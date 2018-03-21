@@ -95,7 +95,7 @@ public class VueMenuPrincipal extends VueGenerique {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabelTitreMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                //.addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -106,24 +106,24 @@ public class VueMenuPrincipal extends VueGenerique {
                 .addContainerGap(129, Short.MAX_VALUE))
         );
         
-        javax.swing.GroupLayout buttonLayout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(buttonLayout);
-        buttonLayout.setHorizontalGroup(
-            buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jButtonAfficherRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-        buttonLayout.setVerticalGroup(
-            buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonLayout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(jButtonAfficherRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
-        );
+//        javax.swing.GroupLayout buttonLayout = new javax.swing.GroupLayout(getContentPane());
+//        getContentPane().setLayout(buttonLayout);
+//        buttonLayout.setHorizontalGroup(
+//            buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(buttonLayout.createSequentialGroup()
+//                .addGap(25, 25, 25)
+//                .addComponent(jButtonAfficherRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addContainerGap(28, Short.MAX_VALUE))
+//        );
+//        buttonLayout.setVerticalGroup(
+//            buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+//            .addGroup(buttonLayout.createSequentialGroup()
+//                .addGap(91, 91, 91)
+//                .addComponent(jButtonAfficherRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                .addContainerGap(129, Short.MAX_VALUE))
+//        );
 
         pack();
     }
