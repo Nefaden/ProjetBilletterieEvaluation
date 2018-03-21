@@ -11,26 +11,26 @@ import java.io.Serializable;
  * @author ydurand
  * v1.0
  */
-@Entity
+@Entity(name="Representation")
 public class Representation implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name="id")
+    @Column(name="id", length=11)
     private Long l_Id;
-    @Column(name="daterepr")
+    @Column(name="daterepr", length=30)
     private String s_DateRepresentation;    
     @ManyToOne(cascade = {CascadeType.PERSIST})
-    @Column(name="Lieu")
+    @JoinColumn(name="id_lieu")
     private Lieu o_Lieu;    
     @ManyToOne(cascade = {CascadeType.PERSIST})
-    @Column(name="Groupe")
+    @JoinColumn(name="id_groupe")
     private Groupe o_Groupe;
-    @Column(name="heure_debut")
+    @Column(name="heure_debut", length=30)
     private String s_HeureDebutRepresentation;
-    @Column(name="heure_fin")
+    @Column(name="heure_fin", length=30)
     private String s_HeureFinRepresentation;
-    @Column(name="nombre_place_restante")
+    @Column(name="nombre_place_restante", length=11)
     private int i_NbPlacesRestantes;
 
     /**

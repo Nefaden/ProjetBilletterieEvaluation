@@ -3,8 +3,6 @@ package controleur;
 import static controleur.EnumAction.*;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import vue.VueRepresentation;
-import vue.VueMenuPrincipal;
 import modele.dao.Jdbc;
 
 /**
@@ -41,7 +39,6 @@ public class CtrlPrincipal {
                 menuFichierQuitter();
                 break;
         }
-
     }
     
      /**

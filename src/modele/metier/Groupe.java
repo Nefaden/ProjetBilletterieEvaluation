@@ -8,24 +8,25 @@ import java.io.Serializable;
  * @author mroux
  * v1.0
  */
-@Entity
+@Entity(name="Groupe")
 public class Groupe implements Serializable {
     
     @Id
     @GeneratedValue
-    @Column(name="id")
-    private Long l_Id;
-    @Column(name="nom")
+    private Long l_Id;    
+    @Column(name="id", length=4)
+    private String s_Id;
+    @Column(name="nom", length=40)
     private String s_NomGroupe;
-    @Column(name="identiteResponsable")
+    @Column(name="identiteResponsable", length=40)
     private String s_IdentiteResponsable;
-    @Column(name="adressePostale")
+    @Column(name="adressePostale", length=120)
     private String s_AdressePostale;
-    @Column(name="nombrePersonnes")
+    @Column(name="nombrePersonnes", length=11)
     private int i_NbPersonne;
-    @Column(name="nomPays")
+    @Column(name="nomPays", length=40)
     private String s_NomPays;
-    @Column(name="hebergement")
+    @Column(name="hebergement", length=1)
     private String s_Hebergement;
     
     
@@ -37,7 +38,8 @@ public class Groupe implements Serializable {
     }
     
      /**
-     * Constructeur avec les 6 attributs
+     * Constructeur avec les 7 attributs
+     * @param strId
      * @param strNomGroupe
      * @param strAdressePostale     
      * @param strIdentiteResponsable
@@ -45,8 +47,9 @@ public class Groupe implements Serializable {
      * @param strNomPays
      * @param strHebergement
      */
-    public Groupe(String strNomGroupe, String strAdressePostale, String strIdentiteResponsable, int intNbPersonne, String strNomPays, String strHebergement) {
+    public Groupe(String strId, String strNomGroupe, String strAdressePostale, String strIdentiteResponsable, int intNbPersonne, String strNomPays, String strHebergement) {
     
+        this.s_Id = strId;
         this.s_NomGroupe = strNomGroupe;
         this.s_AdressePostale = strAdressePostale;
         this.s_IdentiteResponsable = strIdentiteResponsable;
@@ -56,7 +59,7 @@ public class Groupe implements Serializable {
 }
     /**
      * 
-     * @return Long l_Id : l_Id générée par la persistence
+     * @return Long l_Id : l_Id technique générée par la persistence
      */
     public Long getL_Id() {
         return l_Id;
@@ -76,9 +79,25 @@ public class Groupe implements Serializable {
      */
     @Override
     public String toString() {
-        return ("Groupe{nom: " + this.getNomGroupe() + "\tadresse postale: " + this.getAdressePostale() + "\tindentite du responsable: " + this.getIdentiteResponsable() + "\tNombre de personnes: " + this.getNbPersonne() + "\tNom du Pays : " + this.getNomPays() + "\tHebergement: " + this.getHebergement()) +"}";
+        return ("Groupe{id: " + this.getId() + "\tnom: " + this.getNomGroupe() + "\tadresse postale: " + this.getAdressePostale() + "\tindentite du responsable: " + this.getIdentiteResponsable() + "\tNombre de personnes: " + this.getNbPersonne() + "\tNom du Pays : " + this.getNomPays() + "\tHebergement: " + this.getHebergement()) +"}";
     }
 
+    /**
+     * 
+     * @return String l'id conceptuel du groupe
+     */
+    public String getId() {
+        return s_Id;
+    }
+    
+    /**
+     * 
+     * @param strId : String id du groupe
+     */
+    public void setId(String strId) {
+        this.s_Id = strId;
+    }
+    
     /**
      * 
      * @return String le nom du groupe
