@@ -20,7 +20,7 @@ public class main {
      */
     public static void main(String[] args) throws SQLException {
         CtrlPrincipal ctrlPrincipal; 
-        Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql:", "//localhost/", "festival", "groupe_4_festival", "1234");
+        Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql:", "//localhost/", "ydurand_festival", "groupe_4_festival", "1234");
         try {
             Jdbc.getInstance().connecter();
         } catch (ClassNotFoundException ex) {

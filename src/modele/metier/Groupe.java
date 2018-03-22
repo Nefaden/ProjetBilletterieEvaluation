@@ -9,25 +9,26 @@ import java.io.Serializable;
  * v1.0
  */
 @Entity(name="Groupe")
+@Table(name = "Groupe")
 public class Groupe implements Serializable {
     
     @Id
-    @GeneratedValue
-    private Long l_Id;    
-    @Column(name="id", length=4)
+    //@GeneratedValue
+    //private Long l_Id;    
+    @Column(name = "id", length = 4)
     private String s_Id;
-    @Column(name="nom", length=40)
+    @Column(name = "nom", length = 40)
     private String s_NomGroupe;
-    @Column(name="identiteResponsable", length=40)
+    @Column(name = "identiteResponsable", length = 40)
     private String s_IdentiteResponsable;
-    @Column(name="adressePostale", length=120)
+    @Column(name = "adressePostale", length = 120)
     private String s_AdressePostale;
-    @Column(name="nombrePersonnes", length=11)
+    @Column(name = "nombrePersonnes", length = 11)
     private int i_NbPersonne;
-    @Column(name="nomPays", length=40)
+    @Column(name = "nomPays", length = 40)
     private String s_NomPays;
-    @Column(name="hebergement", length=1)
-    private String s_Hebergement;
+    @Column(name = "hebergement")
+    private char c_Hebergement;
     
     
     /**
@@ -45,9 +46,9 @@ public class Groupe implements Serializable {
      * @param strIdentiteResponsable
      * @param intNbPersonne
      * @param strNomPays
-     * @param strHebergement
+     * @param charHebergement
      */
-    public Groupe(String strId, String strNomGroupe, String strAdressePostale, String strIdentiteResponsable, int intNbPersonne, String strNomPays, String strHebergement) {
+    public Groupe(String strId, String strNomGroupe, String strAdressePostale, String strIdentiteResponsable, int intNbPersonne, String strNomPays, char charHebergement) {
     
         this.s_Id = strId;
         this.s_NomGroupe = strNomGroupe;
@@ -55,23 +56,23 @@ public class Groupe implements Serializable {
         this.s_IdentiteResponsable = strIdentiteResponsable;
         this.i_NbPersonne = intNbPersonne;
         this.s_NomPays = strNomPays;
-        this.s_Hebergement = strHebergement;
+        this.c_Hebergement = charHebergement;
 }
-    /**
-     * 
-     * @return Long l_Id : l_Id technique générée par la persistence
-     */
-    public Long getL_Id() {
-        return l_Id;
-    }
-
-    /**
-     * 
-     * @param l_Id : Long valeur générée par la persistence
-     */
-    public void setL_Id(Long l_Id) {
-        this.l_Id = l_Id;
-    }
+//    /**
+//     * 
+//     * @return Long l_Id : l_Id technique générée par la persistence
+//     */
+//    public Long getL_Id() {
+//        return l_Id;
+//    }
+//
+//    /**
+//     * 
+//     * @param l_Id : Long valeur générée par la persistence
+//     */
+//    public void setL_Id(Long l_Id) {
+//        this.l_Id = l_Id;
+//    }
     
     /**
      *
@@ -180,18 +181,18 @@ public class Groupe implements Serializable {
 
     /**
      * 
-     * @return String si le groupe est héberger ou non
+     * @return char si le groupe est héberger ou non
      */
-    public String getHebergement() {
-        return s_Hebergement;
+    public char getHebergement() {
+        return c_Hebergement;
     }
     
     /**
      * 
-     * @param strHebergement : String (booléen) vérifie si oui ou non le groupe est héberger
+     * @param charHebergement : char (booléen) vérifie si oui ou non le groupe est héberger
      */
-    public void setHebergement(String strHebergement) {
-        this.s_Hebergement = strHebergement;
+    public void setHebergement(char charHebergement) {
+        this.c_Hebergement = charHebergement;
     }
     
 }
