@@ -41,7 +41,7 @@ public class CtrlMenu extends ControleurGenerique implements ActionListener, Win
     }
 
     /**
-     * clic sur la commande Ajouter du menu presence Le contrôleur délègue
+     * clic sur la commande Afficher les représentation du menu Representation Le contrôleur délègue
      * l'action au contrôleur frontal
      */
     public void representationAfficher() throws SQLException {

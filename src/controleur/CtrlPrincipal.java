@@ -3,8 +3,6 @@ package controleur;
 import static controleur.EnumAction.*;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import vue.VueRepresentation;
-import vue.VueMenuPrincipal;
 import modele.dao.Jdbc;
 
 /**
@@ -14,6 +12,7 @@ import modele.dao.Jdbc;
  */
 public class CtrlPrincipal {
 
+    private CtrlConnexion ctrlConnexion = null; // Controller des connexions
     private CtrlRepresentation ctrlRepresentation = null; // LE CONTROLEUR DES REPRESENTATIONS
     private CtrlVentes ctrlVentes = null;
     private CtrlMenu ctrlMenu = null;//test de push
@@ -31,6 +30,9 @@ public class CtrlPrincipal {
 
     public void action(EnumAction action) throws SQLException {
         switch (action) {
+            case CONNEXION_MENU_PRINCIPAL: // Activation du menu principal après connexion
+                menuPrincipalAfficher();
+                break;
             case MENU_REPRESENTATION_AFFICHER: // activation de vueRepresentation depuis vueMenu
                 menuRepresentationAfficher();
                 break;
@@ -56,6 +58,19 @@ public class CtrlPrincipal {
         } finally {
             System.exit(0);
         }
+    }
+    
+     /**
+     * Transition VueConnexion / VueMenuPrincipal
+     */
+    private void menuPrincipalAfficher() throws SQLException {
+        if (ctrlMenu == null) {
+            ctrlMenu = new CtrlMenu(this);
+        }
+        ctrlConnexion.getVue().setEnabled(false);
+        ctrlConnexion.getVue().setVisible(false);
+        ctrlMenu.getVue().setEnabled(true);
+        ctrlMenu.getVue().setVisible(true);
     }
     
      /**

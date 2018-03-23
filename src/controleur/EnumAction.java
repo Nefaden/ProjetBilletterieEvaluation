@@ -8,6 +8,7 @@ package controleur;
  * @author ydurand
  */
 public enum EnumAction {
+    CONNEXION_MENU_PRINCIPAL,
     MENU_REPRESENTATION_AFFICHER,
     REPRESENTATION_QUITTER,
     REPRESENTATION_DETAILS,
