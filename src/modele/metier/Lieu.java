@@ -2,28 +2,29 @@ package modele.metier;
 
 /**
  * Classe Lieu, lieu où sont faites les représentation
+ * 
  * @author gdoucet
  * v1.0
  */
 public class Lieu {
     
-    private int id;
-    private String nom;
-    private String adr;
-    private int capacite;
+    private int i_Id;
+    private String s_NomLieu;
+    private String s_AdresseLieu;
+    private int i_CapaciteLieu;
 
      /**
      * Constructeur avec les 4 attributs
-     * @param id : identifiant DB du lieu
-     * @param nom
-     * @param adresse    
-     * @param capacite
+     * @param intId : identifiant DB du lieu
+     * @param strNomLieu
+     * @param strAdresseLieu    
+     * @param intCapaciteLieu
      */
-    public Lieu(int id, String nom, String adresse, int capacite) {
-        this.id = id;
-        this.nom = nom;
-        this.adr = adresse;
-        this.capacite = capacite;
+    public Lieu(int intId, String strNomLieu, String strAdresseLieu, int intCapaciteLieu) {
+        this.i_Id = intId;
+        this.s_NomLieu = strNomLieu;
+        this.s_AdresseLieu = strAdresseLieu;
+        this.i_CapaciteLieu = intCapaciteLieu;
 
     }
     
@@ -41,7 +42,15 @@ public class Lieu {
      * @return int id du lieu dans la DB
      */
     public int getIdLieu() {
-        return id;
+        return i_Id;
+    }
+    
+    /**
+     *
+     * @param intId : id du lieu dans la base de données
+     */
+    public void setIdLieu(int intId) {
+        this.i_Id = intId;
     }
     
     /**
@@ -49,7 +58,15 @@ public class Lieu {
      * @return String le nom du lieu
      */
     public String getNomLieu() {
-        return nom;
+        return s_NomLieu;
+    }
+    
+    /**
+     *
+     * @param strNomLieu : Nom du lieu dans la base de données
+     */
+    public void setNomLieu(String strNomLieu) {
+        this.s_NomLieu = strNomLieu;
     }
     
     /**
@@ -57,7 +74,15 @@ public class Lieu {
      * @return String l'adresse du lieu
      */
     public String getAdresseLieu() {
-        return adr;
+        return s_AdresseLieu;
+    }
+    
+    /**
+     *
+     * @param strAdresseLieu : adresse du lieu dans la base de données
+     */
+    public void setAdresseLieu(String strAdresseLieu) {
+        this.s_AdresseLieu = strAdresseLieu;
     }
     
     /**
@@ -65,8 +90,14 @@ public class Lieu {
      * @return int la capacité du lieu
      */
     public int getCapaciteLieu() {
-        return capacite;
+        return i_CapaciteLieu;
     }
-
     
+    /**
+     * 
+     * @param intCapaciteLieu : int la capacité du lieu
+     */
+    public void getCapaciteLieu(int intCapaciteLieu) {
+        this.i_CapaciteLieu = intCapaciteLieu;
+    }    
 }

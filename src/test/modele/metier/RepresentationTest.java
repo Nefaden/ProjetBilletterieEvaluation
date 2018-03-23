@@ -26,9 +26,9 @@ public class RepresentationTest {
         repr.setDateRepresentation("11/07/2017");
         repr.setLieu(unLieu1);
         repr.setGroupe(unGroupe1);
-        repr.setHeureDebRepresentation("19:00");
+        repr.setHeureDebutRepresentation("19:00");
         repr.setHeureFinRepresentation("20:00");
-        repr.setNbPlacesRestantes(50);
+        repr.setNbPlaceRestante(50);
         System.out.println(repr);
         repr = new Representation(1, null, null, null, null, null, 0);
         System.out.println(repr.equals(repr));

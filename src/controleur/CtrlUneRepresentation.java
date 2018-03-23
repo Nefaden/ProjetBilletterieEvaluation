@@ -38,10 +38,10 @@ public class CtrlUneRepresentation implements WindowListener, MouseListener {
         try {
             Representation uneRepresentation = RepresentationDao.getOneById(id);
             String[] ligneDonnees = new String[6];
-            ligneDonnees[0] = uneRepresentation.getGroupe().getNom();
+            ligneDonnees[0] = uneRepresentation.getGroupe().getNomGroupe();
             ligneDonnees[1] = uneRepresentation.getLieu().getNomLieu();
             ligneDonnees[2] = uneRepresentation.getDateRepresentation();
-            ligneDonnees[3] = uneRepresentation.getHeureDebRepresentation();
+            ligneDonnees[3] = uneRepresentation.getHeureDebutRepresentation();
             ligneDonnees[4] = uneRepresentation.getHeureFinRepresentation();
             ligneDonnees[5] = uneRepresentation.getLieu().getAdresseLieu();
             getVue().getModeleTableInformation().addRow(ligneDonnees);
@@ -57,7 +57,7 @@ public class CtrlUneRepresentation implements WindowListener, MouseListener {
         getVue().getModeleTablePlaces().setColumnIdentifiers(titresCol);
         String[] donnees = new String[2];
         donnees[0] = Integer.toString(uneRepre.getLieu().getCapaciteLieu());
-        donnees[1] = Integer.toString(uneRepre.getNbPlacesRestantes());
+        donnees[1] = Integer.toString(uneRepre.getNbPlaceRestante());
         getVue().getModeleTablePlaces().addRow(donnees);
     }
       

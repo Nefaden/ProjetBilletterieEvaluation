@@ -65,10 +65,10 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
             lesRepresentations = RepresentationDao.getAll();
             for (Representation uneRepresentation : lesRepresentations) {
                 ligneDonnees[0] = Integer.toString(uneRepresentation.getIdRepresentation());
-                ligneDonnees[1] = uneRepresentation.getGroupe().getNom();
+                ligneDonnees[1] = uneRepresentation.getGroupe().getNomGroupe();
                 ligneDonnees[2] = uneRepresentation.getLieu().getNomLieu();
                 ligneDonnees[3] = uneRepresentation.getDateRepresentation();
-                ligneDonnees[4] = uneRepresentation.getHeureDebRepresentation();
+                ligneDonnees[4] = uneRepresentation.getHeureDebutRepresentation();
                 ligneDonnees[5] = uneRepresentation.getHeureFinRepresentation();
                 ((VueRepresentation) vue).getModeleTableRepresentation().addRow(ligneDonnees);
             } 
