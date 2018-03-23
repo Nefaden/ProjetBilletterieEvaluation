@@ -14,7 +14,7 @@ public class Groupe {
     private String s_IdentiteResponsable;
     private int i_NbPersonne;
     private String s_NomPays;
-    private char c_Hebergement;
+    private String s_Hebergement;
     
     
      /**
@@ -25,9 +25,9 @@ public class Groupe {
      * @param intIdentiteResponsable
      * @param intNbPersonne
      * @param strNomPays
-     * @param charHebergement
+     * @param strHebergement
      */
-    public Groupe(String strId, String strNomGroupe, String strAdressePostale, String intIdentiteResponsable, int intNbPersonne, String strNomPays, char charHebergement) {
+    public Groupe(String strId, String strNomGroupe, String strAdressePostale, String intIdentiteResponsable, int intNbPersonne, String strNomPays, String strHebergement) {
     
         this.s_Id=strId;
         this.s_NomGroupe=strNomGroupe;
@@ -35,9 +35,10 @@ public class Groupe {
         this.s_IdentiteResponsable=intIdentiteResponsable;
         this.i_NbPersonne=intNbPersonne;
         this.s_NomPays=strNomPays;
-        this.c_Hebergement = charHebergement;
+        this.s_Hebergement = strHebergement;
 }
-        /**
+    
+    /**
      *
      * @return String attributs du Groupe
      */
@@ -144,18 +145,18 @@ public class Groupe {
 
     /**
      * 
-     * @return char si le groupe est héberger ou non
+     * @return String si le groupe est héberger ou non
      */
-    public char getHebergement() {
-        return c_Hebergement;
+    public String getHebergement() {
+        return s_Hebergement;
     }
     
     /**
      * 
-     * @param charHebergement : char (booléen) vérifie si oui ou non le groupe est héberger
+     * @param strHebergement : char (booléen) vérifie si oui ou non le groupe est héberger
      */
-    public void setHebergement(char charHebergement) {
-        this.c_Hebergement = charHebergement;
+    public void setHebergement(String strHebergement) {
+        this.s_Hebergement = strHebergement;
     }
     
 }
