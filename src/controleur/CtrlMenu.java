@@ -20,11 +20,11 @@ public class CtrlMenu extends ControleurGenerique implements ActionListener, Win
 
     public CtrlMenu(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
-        vue = new VueMenuPrincipal();
-        vue.addWindowListener(this);
-        getVue().getjMenuItemQuitter().addActionListener(this);
-        getVue().getjMenuItemRepresentationAfficher().addActionListener(this);
-        getVue().getjMenuItemVente().addActionListener(this);
+        this.vue = new VueMenuPrincipal();
+        this.vue.addWindowListener(this);
+        this.getVue().getjMenuItemQuitter().addActionListener(this);
+        this.getVue().getjMenuItemRepresentationAfficher().addActionListener(this);
+        this.getVue().getjMenuItemVente().addActionListener(this);
     }
 
     /**

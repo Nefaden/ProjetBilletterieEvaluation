@@ -4,7 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -12,17 +18,17 @@ import vue.VueConnexion;
 
 /**
  * Controller gérant les connexions et la vue VueConnexion
- * 
- * @author ydurand
- * v1.0
+ *
+ * @author ydurand v1.0
  */
 public class CtrlConnexion extends ControleurGenerique implements ActionListener, WindowListener {
 
     public CtrlConnexion(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
-        vue = new VueConnexion();
-        vue.addWindowListener(this);
-        getVue().getjButtonConnexion().addActionListener(this);
+        this.vue = new VueConnexion();
+        this.vue.addWindowListener(this);
+        this.getVue().getjButtonConnexion().addActionListener(this);
+        this.getVue().getjButtonQuitter().addActionListener(this);
     }
 
     // Récupération de la vue VueConnexion
@@ -30,54 +36,116 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
     public VueConnexion getVue() {
         return (VueConnexion) vue;
     }
-    
+
     /**
-     * clic sur le bouton connexion pour une tentative de connexion
-     * Si la connexion est validé le controller appelle la méthode du controller principal
-     * Affiche la vue adéquat à la méthode
+     * clic sur le bouton connexion pour une tentative de connexion Si la
+     * connexion est validé le controller appelle la méthode du controller
+     * principal Affiche la vue adéquat à la méthode
      */
     public void menuPrincipalAfficher() throws SQLException {
         this.getCtrlPrincipal().action(EnumAction.CONNEXION_MENU_PRINCIPAL);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        if (e.getSource().equals(this.getVue().getjButtonConnexion())) {
 
-    @Override
-    public void windowOpened(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+            Properties connexionProperties = new Properties();
+            InputStream input = null;
 
-    @Override
-    public void windowClosing(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+            try {
+                input = new FileInputStream("src/config/accessDB.properties");
 
-    @Override
-    public void windowClosed(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+                // load properties file
+                connexionProperties.load(input);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } finally {
+                if (input != null) {
+                    try {
+                        input.close();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
 
-    @Override
-    public void windowIconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+            try {
+                String identifiant = this.getVue().getjTextFieldNomUtilisateur().getText();
+                String motDePasse = this.getVue().getjPasswordFieldMotDePasse().getText();
 
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+                MessageDigest mdUser = MessageDigest.getInstance("MD5");
+                mdUser.update(identifiant.getBytes());
+                byte[] digest = mdUser.digest();
+                StringBuffer sb = new StringBuffer();
+                for (byte b : digest) {
+                    sb.append(String.format("%02x", b & 0xff));
+                }
 
-    @Override
-    public void windowActivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                MessageDigest mdPassword = MessageDigest.getInstance("MD5");
+                mdPassword.update(motDePasse.getBytes());
+                byte[] digest2 = mdPassword.digest();
+                StringBuffer sb2 = new StringBuffer();
+                for (byte b : digest2) {
+                    sb2.append(String.format("%02x", b & 0xff));
+                }
+                if (connexionProperties.getProperty("login").equals(sb.toString()) && connexionProperties.getProperty("password").equals(sb2.toString())) {
+                    this.getCtrlPrincipal().action(EnumAction.CONNEXION_MENU_PRINCIPAL);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Mauvais identifiants !");
+                }
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(CtrlConnexion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(CtrlConnexion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (e.getSource().equals(this.getVue().getjButtonQuitter())) {
+            try {
+                this.getCtrlPrincipal().action(EnumAction.MENU_QUITTER);
+            } catch (SQLException ex) {
+                Logger.getLogger(CtrlConnexion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
+    /**
+     * clic sur la commande Quitter du menu Fichier Le contrôleur délègue
+     * l'action au contrôleur frontal
+     */
+    public void menuFichierQuitter() throws SQLException {
+        // Confirmer avant de quitter
+        int rep = JOptionPane.showConfirmDialog(getVue(), "Quitter l'application\nEtes-vous sûr(e) ?", "root", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (rep == JOptionPane.YES_OPTION) {
+            // mettre fin à l'application
+            this.getCtrlPrincipal().action(EnumAction.MENU_QUITTER);
+        }
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {}
+  
+    @Override
+    public void windowClosing(WindowEvent e) {
+        try {
+            menuFichierQuitter();
+        } catch (SQLException ex) {
+            Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Override
+    public void windowClosed(WindowEvent e) {}
+
+    @Override
+    public void windowIconified(WindowEvent e) {}
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {}
+
+    @Override
+    public void windowActivated(WindowEvent e) {}
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {}
 }
+

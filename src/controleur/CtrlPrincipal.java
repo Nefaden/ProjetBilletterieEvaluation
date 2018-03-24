@@ -21,11 +21,11 @@ public class CtrlPrincipal {
      * action par défaut action au démarrage de l'application
      */
     public void action() throws SQLException {
-        if (ctrlMenu == null) {
-            ctrlMenu = new CtrlMenu(this);
+        if (ctrlConnexion == null) {
+            ctrlConnexion = new CtrlConnexion(this);
         }
-        ctrlMenu.getVue().setEnabled(true);
-        ctrlMenu.getVue().setVisible(true);
+        ctrlConnexion.getVue().setEnabled(true);
+        ctrlConnexion.getVue().setVisible(true);
     }
 
     public void action(EnumAction action) throws SQLException {
@@ -85,7 +85,9 @@ public class CtrlPrincipal {
             ctrlRepresentation.afficherRepresentation();
         }
         ctrlMenu.getVue().setEnabled(false);
+        ctrlMenu.getVue().setVisible(false);
         ctrlRepresentation.getVue().setVisible(true);
+        ctrlRepresentation.getVue().setEnabled(true);
     }
     
      /**
