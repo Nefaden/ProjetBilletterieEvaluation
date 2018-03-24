@@ -1,7 +1,9 @@
 package vue;
 
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,6 +29,21 @@ public class VueConnexion extends VueGenerique {
     public JButton getjButtonConnexion() {
         return jButtonConnexion;
     }
+    
+    // Getter du bouton pour quitter
+    public JButton getjButtonQuitter() {
+        return jButtonQuitter;
+    }
+    
+    // Getter du jTextField du Login
+    public JTextField getjTextFieldNomUtilisateur() {
+        return jTextFieldNomUtilisateur;
+    }
+    
+    // Getter du jPasswordField pour le mot de passe
+    public JPasswordField getjPasswordFieldMotDePasse() {
+        return jPasswordFieldMotDePasse;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +60,7 @@ public class VueConnexion extends VueGenerique {
         jLabelNomUtilisateur = new javax.swing.JLabel();
         jTextFieldNomUtilisateur = new javax.swing.JTextField();
         jLabelMotDePasse = new javax.swing.JLabel();
-        jTextFieldMotDePasse = new javax.swing.JTextField();
+        jPasswordFieldMotDePasse = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,16 +80,14 @@ public class VueConnexion extends VueGenerique {
 
         jLabelMotDePasse.setText("Mot de passe :");
 
-        jTextFieldMotDePasse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMotDePasseActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(jLabelTitre)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,14 +100,10 @@ public class VueConnexion extends VueGenerique {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabelNomUtilisateur)
                             .addComponent(jLabelMotDePasse)
-                            .addComponent(jTextFieldNomUtilisateur)
-                            .addComponent(jTextFieldMotDePasse, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+                            .addComponent(jTextFieldNomUtilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(jPasswordFieldMotDePasse))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addComponent(jLabelTitre)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,8 +117,8 @@ public class VueConnexion extends VueGenerique {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelMotDePasse)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldMotDePasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jPasswordFieldMotDePasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonConnexion)
                     .addComponent(jButtonQuitter))
@@ -120,10 +131,6 @@ public class VueConnexion extends VueGenerique {
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
        dispose();
     }//GEN-LAST:event_jButtonQuitterActionPerformed
-
-    private void jTextFieldMotDePasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMotDePasseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMotDePasseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,7 +180,7 @@ public class VueConnexion extends VueGenerique {
     private javax.swing.JLabel jLabelMotDePasse;
     private javax.swing.JLabel jLabelNomUtilisateur;
     private javax.swing.JLabel jLabelTitre;
-    private javax.swing.JTextField jTextFieldMotDePasse;
+    private javax.swing.JPasswordField jPasswordFieldMotDePasse;
     private javax.swing.JTextField jTextFieldNomUtilisateur;
     // End of variables declaration//GEN-END:variables
 
