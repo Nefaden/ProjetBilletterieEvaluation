@@ -29,15 +29,37 @@ public class GroupeDao {
         pstmt.setString(1, idGroupe );
         rs = pstmt.executeQuery();
         if (rs.next()) {
-            String id = rs.getString("ID");
+            unGroupe = GroupeDao.groupeFromResultSet(rs);
+        }
+        return unGroupe ;
+    }
+    
+    public static Groupe getOneByName(String nomGroupe) throws SQLException {
+        Groupe unGroupe = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt;
+        Jdbc jdbc = Jdbc.getInstance();
+        // préparer la requête
+        String requete = "SELECT * FROM groupe WHERE NOM= ?";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setString(1, nomGroupe);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            unGroupe = GroupeDao.groupeFromResultSet(rs);
+        }
+        return unGroupe;
+    }
+    
+    private static Groupe groupeFromResultSet(ResultSet rs) throws SQLException {
+        Groupe groupe = null;
+        String id = rs.getString("ID");
             String nom = rs.getString("NOM");
             String adressePostale = rs.getString("ADRESSEPOSTALE");
             String identiteResponsable = rs.getString("IDENTITERESPONSABLE");
             int nbPersonne = rs.getInt("NOMBREPERSONNES");
             String nomPays = rs.getString("NOMPAYS");
             String hebergement = rs.getString("HEBERGEMENT");
-            unGroupe  = new Groupe (idGroupe, nom, adressePostale, identiteResponsable, nbPersonne, nomPays, hebergement);
-        }
-        return unGroupe ;
+        groupe = new Groupe(id, nom, adressePostale, identiteResponsable, nbPersonne, nomPays, hebergement);
+        return groupe;
     }
 }

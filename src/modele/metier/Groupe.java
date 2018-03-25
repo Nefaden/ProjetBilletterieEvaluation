@@ -158,5 +158,4 @@ public class Groupe {
     public void setHebergement(String strHebergement) {
         this.s_Hebergement = strHebergement;
     }
-    
 }
