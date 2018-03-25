@@ -47,7 +47,7 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
      * principal Affiche la vue adéquat à la méthode
      */
     public void menuPrincipalAfficher() throws SQLException {
-        this.getCtrlPrincipal().action(EnumAction.CONNEXION_MENU_PRINCIPAL);
+        this.getCtrlPrincipal().action(EnumAction.CONNEXION_AFFICHER_MENU_PRINCIPAL);
     }
 
     /**
@@ -101,7 +101,7 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
                 /* Compare les éléments du fichier properties à ce qui est récupérer des jTextField
                 Si les éléments des jTextFields corresepondent, renvoie vers la méthode CONNEXION_MENU_PRINCPAL du controller principal */
                 if (connexionProperties.getProperty("login").equals(sb.toString()) && connexionProperties.getProperty("password").equals(sb2.toString())) {
-                    this.getCtrlPrincipal().action(EnumAction.CONNEXION_MENU_PRINCIPAL);
+                    this.getCtrlPrincipal().action(EnumAction.CONNEXION_AFFICHER_MENU_PRINCIPAL);
                 } else {
                     JOptionPane.showMessageDialog(null, "Mauvais identifiants !");
                 }
