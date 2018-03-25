@@ -14,7 +14,7 @@ public class CtrlPrincipal {
 
     private CtrlConnexion ctrlConnexion = null; // Controller des connexions
     private CtrlRepresentation ctrlRepresentation = null; // LE CONTROLEUR DES REPRESENTATIONS
-    private CtrlVentes ctrlVentes = null;
+    private CtrlVentePlace ctrlVentePlace = null; // LE CONTROLEUR D'UNE REPRESENTATION
     private CtrlMenu ctrlMenu = null;//test de push
 
     /**
@@ -30,7 +30,7 @@ public class CtrlPrincipal {
 
     public void action(EnumAction action) throws SQLException {
         switch (action) {
-            case CONNEXION_MENU_PRINCIPAL: // Activation du menu principal après connexion
+            case CONNEXION_AFFICHER_MENU_PRINCIPAL: // Activation du menu principal après connexion
                 menuPrincipalAfficher();
                 break;
             case MENU_REPRESENTATION_AFFICHER: // activation de vueRepresentation depuis vueMenu
@@ -39,14 +39,26 @@ public class CtrlPrincipal {
             case REPRESENTATION_QUITTER:    // retour à vueMenu depuis la vueRepresentation
                 representationQuitter();
                 break;
+            case VENTES_QUITTER:
+                venteQuitter();
             case MENU_QUITTER: // fin de l'application depuis le menu principal
                 menuFichierQuitter();
                 break;
         }
-
     }
     
-     /**
+    /**
+     * Appel d'un constructeur avec un échange de variable de type String
+     */
+    public void action(EnumAction action, String var) throws SQLException {
+        switch (action) {
+            case REPRESENTATION_DETAILS: // activation de vueUneRepresentation depuis vueRepresentation
+                menuRepresentationDetail(var);
+                break;
+        }            
+    }
+    
+    /**
      * Fin définitive de l'application La demande de confirmation est gérée par
      * le contrôleur spécialisé
      */
@@ -60,7 +72,7 @@ public class CtrlPrincipal {
         }
     }
     
-     /**
+    /**
      * Transition VueConnexion / VueMenuPrincipal
      */
     private void menuPrincipalAfficher() throws SQLException {
@@ -73,7 +85,7 @@ public class CtrlPrincipal {
         ctrlMenu.getVue().setVisible(true);
     }
     
-     /**
+    /**
      * Transition vueMenu / vueRepresentation
      */
     private void menuRepresentationAfficher() throws SQLException {
@@ -90,7 +102,22 @@ public class CtrlPrincipal {
         ctrlRepresentation.getVue().setEnabled(true);
     }
     
-     /**
+    /**
+     * 
+     * @throws SQLException 
+     * Methode pour afficher la vue de la représentation selectionnée
+     */
+    private void menuRepresentationDetail(String groupe) throws SQLException {
+        if (ctrlVentePlace == null) {
+            ctrlVentePlace = new CtrlVentePlace(this, groupe);
+        }
+        ctrlRepresentation.getVue().setEnabled(false);
+        ctrlRepresentation.getVue().setVisible(false);
+        ctrlVentePlace.getVue().setVisible(true);
+        ctrlVentePlace.getVue().setEnabled(true);
+    }
+    
+    /**
      * Transition vueRepresentation / vueMenu
      */
     private void representationQuitter() {
@@ -100,5 +127,17 @@ public class CtrlPrincipal {
         ctrlRepresentation.getVue().setEnabled(false);
         ctrlMenu.getVue().setEnabled(true);
         ctrlMenu.getVue().setVisible(true);
+    }
+    
+    /**
+     * Transition vueLesVentes / vueRepresentation
+     */
+    private void venteQuitter() throws SQLException {
+        if (ctrlRepresentation == null) 
+            ctrlRepresentation = new CtrlRepresentation(this);       
+        ctrlRepresentation.getVue().setVisible(true);
+        ctrlRepresentation.getVue().setEnabled(true);
+        ctrlVentePlace.getVue().setEnabled(false);
+        ctrlVentePlace.getVue().setVisible(false);
     }
 }
