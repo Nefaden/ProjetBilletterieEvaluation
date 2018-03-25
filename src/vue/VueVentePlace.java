@@ -5,13 +5,15 @@
  */
 package vue;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author btssio
  */
-public class VueUneRepresentation extends javax.swing.JFrame {
+public class VueVentePlace extends VueGenerique {
 
     private DefaultTableModel modeleTableInformation;
     private DefaultTableModel modeleTablePlaces;
@@ -19,7 +21,7 @@ public class VueUneRepresentation extends javax.swing.JFrame {
     /**
      * Creates new form VueUneRepresentation
      */
-    public VueUneRepresentation() {
+    public VueVentePlace() {
         initComponents();
         
         modeleTableInformation = new DefaultTableModel();
@@ -44,6 +46,30 @@ public class VueUneRepresentation extends javax.swing.JFrame {
     public DefaultTableModel getModeleTablePlaces() {
         return modeleTablePlaces;
     }
+    
+    /**
+     * 
+     *  @return JButton jButtonValider
+     */
+    public JButton getjButtonValider() {
+        return jButtonValider;
+    }
+    
+    /**
+     * 
+     *  @return JButton jButtonQuitter
+     */
+    public JButton getjButtonQuitter() {
+        return jButtonQuitter;
+    }    
+    
+    /**
+     * 
+     * @return JTextField jTextFieldCommande
+     */
+    public JTextField getjTextFieldCommande() {
+        return jTextFieldCommande;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,9 +87,9 @@ public class VueUneRepresentation extends javax.swing.JFrame {
         jTableInformation = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTablePlaces = new javax.swing.JTable();
-        jSpinnerEnleverPlace = new javax.swing.JSpinner();
         jButtonValider = new javax.swing.JButton();
         jButtonQuitter = new javax.swing.JButton();
+        jTextFieldCommande = new javax.swing.JTextField();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,19 +163,20 @@ public class VueUneRepresentation extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTitreVue)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelTitreVue)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(42, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinnerEnleverPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonValider, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonQuitter)
-                .addContainerGap())
+                        .addComponent(jTextFieldCommande)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonValider, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonQuitter)
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,11 +189,10 @@ public class VueUneRepresentation extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jSpinnerEnleverPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonValider)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jButtonQuitter)
-                .addContainerGap())
+                        .addComponent(jButtonValider)
+                        .addComponent(jButtonQuitter)
+                        .addComponent(jTextFieldCommande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,20 +223,21 @@ public class VueUneRepresentation extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VueUneRepresentation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueVentePlace.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VueUneRepresentation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueVentePlace.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VueUneRepresentation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueVentePlace.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VueUneRepresentation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueVentePlace.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VueUneRepresentation().setVisible(true);
+                new VueVentePlace().setVisible(true);
             }
         });
     }
@@ -222,9 +249,10 @@ public class VueUneRepresentation extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSpinner jSpinnerEnleverPlace;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTableInformation;
     private javax.swing.JTable jTablePlaces;
+    private javax.swing.JTextField jTextFieldCommande;
     // End of variables declaration//GEN-END:variables
+
 }
