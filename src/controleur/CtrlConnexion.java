@@ -23,6 +23,7 @@ import vue.VueConnexion;
  */
 public class CtrlConnexion extends ControleurGenerique implements ActionListener, WindowListener {
 
+    // Constructeur du controller Principal
     public CtrlConnexion(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
         this.vue = new VueConnexion();
@@ -31,7 +32,10 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
         this.getVue().getjButtonQuitter().addActionListener(this);
     }
 
-    // Récupération de la vue VueConnexion
+    /**
+     * 
+     * @return vue : Getter pour récupérer la vue "connexion"
+     */
     @Override
     public VueConnexion getVue() {
         return (VueConnexion) vue;
@@ -46,6 +50,11 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
         this.getCtrlPrincipal().action(EnumAction.CONNEXION_MENU_PRINCIPAL);
     }
 
+    /**
+     * 
+     * @param e : Evénements e auquel est associé toutes actions dans la vue
+     * Sur n'importe quel élément graphique avec lesquels les intéractions sont possible
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(this.getVue().getjButtonConnexion())) {
@@ -89,6 +98,8 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
                 for (byte b : digest2) {
                     sb2.append(String.format("%02x", b & 0xff));
                 }
+                /* Compare les éléments du fichier properties à ce qui est récupérer des jTextField
+                Si les éléments des jTextFields corresepondent, renvoie vers la méthode CONNEXION_MENU_PRINCPAL du controller principal */
                 if (connexionProperties.getProperty("login").equals(sb.toString()) && connexionProperties.getProperty("password").equals(sb2.toString())) {
                     this.getCtrlPrincipal().action(EnumAction.CONNEXION_MENU_PRINCIPAL);
                 } else {
@@ -109,7 +120,7 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
     }
     
     /**
-     * clic sur la commande Quitter du menu Fichier Le contrôleur délègue
+     * clic sur le bouton Quitter de la vue ou sur la croix de la fenêtre
      * l'action au contrôleur frontal
      */
     public void menuFichierQuitter() throws SQLException {
@@ -124,6 +135,10 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
     @Override
     public void windowOpened(WindowEvent e) {}
   
+    /**
+     * 
+     * @param e Evénement pour quitter l'application depuis la croix de la fenêtre
+     */
     @Override
     public void windowClosing(WindowEvent e) {
         try {

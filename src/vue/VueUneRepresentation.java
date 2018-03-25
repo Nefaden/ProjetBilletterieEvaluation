@@ -15,6 +15,7 @@ public class VueUneRepresentation extends javax.swing.JFrame {
 
     private DefaultTableModel modeleTableInformation;
     private DefaultTableModel modeleTablePlaces;
+    
     /**
      * Creates new form VueUneRepresentation
      */
@@ -25,15 +26,21 @@ public class VueUneRepresentation extends javax.swing.JFrame {
         jTableInformation.setModel(modeleTableInformation);
         
         modeleTablePlaces = new DefaultTableModel();
-        jTablePlaces.setModel(modeleTablePlaces);
-        
-        
+        jTablePlaces.setModel(modeleTablePlaces);       
     }
 
+    /**
+     * 
+     * @return DefaultTableModel modeleTableInformation
+     */
     public DefaultTableModel getModeleTableInformation() {
         return modeleTableInformation;
     }
 
+    /**
+     * 
+     * @return DefaultTableModel modeleTablePlaces
+     */
     public DefaultTableModel getModeleTablePlaces() {
         return modeleTablePlaces;
     }

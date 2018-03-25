@@ -18,6 +18,7 @@ import vue.VueMenuPrincipal;
 
 public class CtrlMenu extends ControleurGenerique implements ActionListener, WindowListener {
 
+    // Constructeur du controller du menu principal
     public CtrlMenu(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
         this.vue = new VueMenuPrincipal();
@@ -56,11 +57,19 @@ public class CtrlMenu extends ControleurGenerique implements ActionListener, Win
         this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_DETAILS);
     }
     
+    /**
+     * 
+     * @return (VueMenuPrincipal) vue : Getter de la vue du menu principal
+     */
     @Override
     public VueMenuPrincipal getVue() {
         return (VueMenuPrincipal) vue;
     }
 
+    /**
+     * 
+     * @param e : évenement lié aux objets contenu dans les menus déroulants
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(getVue().getjMenuItemQuitter())){

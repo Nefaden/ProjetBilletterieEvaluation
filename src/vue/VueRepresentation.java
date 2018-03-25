@@ -30,12 +30,18 @@ public class VueRepresentation extends VueGenerique {
         return modeleTableRepresentation;
     }
     
-    // Getter du bouton pour afficher les reservation d'une representation
+    /**
+     * 
+     * @return JButton jButtonReserver : Getter du bouton pour afficher les reservation d'une representation
+     */
     public JButton getjButtonReservation() {
         return jButtonReserver;
     }
     
-    // Getter du jTable de la liste des representations
+    /**
+     *  
+     * @return JTable jTableRepresentation : Getter du jTable de la liste des representations
+     */
     public JTable getjTableRepresentation() {
         return jTableRepresentation;
     }

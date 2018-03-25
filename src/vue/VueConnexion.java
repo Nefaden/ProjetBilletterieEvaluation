@@ -2,13 +2,11 @@ package vue;
 
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  * Vue par défaut à l'exécution de l'appli - Vue d'un formulaire de connexion
- * Tentative de connexion à la base distante
+ * Tentative de connexion à la base locale
  * 
  * @author ydurand
  * v1.0
@@ -25,22 +23,34 @@ public class VueConnexion extends VueGenerique {
         initComponents();
     }
     
-    // Getter du bouton de connexion
+    /**
+     * 
+     * @return jButton : Getter pour récupérer les actions sur le jButtonConnexion "Connexion"
+     */
     public JButton getjButtonConnexion() {
         return jButtonConnexion;
     }
     
-    // Getter du bouton pour quitter
+    /**
+     * 
+     * @return jButton : Getter pour récupérer les actions sur le jButtonQuitter "Quitter"
+     */
     public JButton getjButtonQuitter() {
         return jButtonQuitter;
     }
     
-    // Getter du jTextField du Login
+    /**
+     * 
+     * @return jTextField : Getter pour récupérer le texte saisie dans le jTextFieldNomUtilisateur 
+     */
     public JTextField getjTextFieldNomUtilisateur() {
         return jTextFieldNomUtilisateur;
     }
     
-    // Getter du jPasswordField pour le mot de passe
+    /**
+     * 
+     * @return jTextField : Getter pour récupérer le texte saisie dans le jTextFieldMotDePasse
+     */
     public JPasswordField getjPasswordFieldMotDePasse() {
         return jPasswordFieldMotDePasse;
     }

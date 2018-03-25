@@ -26,14 +26,26 @@ public class VueMenuPrincipal extends VueGenerique {
     }   
     
     //GETTER
+    /**
+     * 
+     * @return JMenuItem jMenuItemRepresentationAfficher : item du menu "representation"
+     */
     public JMenuItem getjMenuItemRepresentationAfficher() {
         return jMenuItemRepresentationAfficher;
     }
     
+    /**
+     * 
+     * @return JMenuItem jMenuItemVente : item du menu "vente"
+     */
     public JMenuItem getjMenuItemVente() {
         return jMenuItemVente;
     }
     
+    /**
+     * 
+     * @return JMenuItem jMenuItemQuitter : item du menu "fichier"
+     */
     public JMenuItem getjMenuItemQuitter() {
         return jMenuItemQuitter;
     }
