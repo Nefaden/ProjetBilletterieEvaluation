@@ -34,17 +34,25 @@ public class RepresentationDao {
         pstmt.setInt(1, idRepresentation);
         rs = pstmt.executeQuery();
         if (rs.next()) {
-            String id_Groupe = rs.getString("ID_groupe");
-            int id_Lieu = rs.getInt("ID_Lieu");
-            String date_representation = rs.getString("DATEREPR");
-            Groupe unGroupe = GroupeDao.getOneById(id_Groupe);
-            Lieu unLieu = LieuDao.getOneById(id_Lieu);
-            String heureDebut = rs.getString("HEURE_DEBUT");
-            String heureFin = rs.getString("HEURE_FIN");
-            int nbPlacesRestantes = rs.getInt("NOMBRE_PLACE_RESTANTE");
-            uneRepresentation =  new Representation(idRepresentation, date_representation, unLieu, unGroupe, heureDebut, heureFin, nbPlacesRestantes);
+            uneRepresentation = RepresentationDao.RepresentationFromResultSet(rs);
         }
         return uneRepresentation;
+    }
+    
+    public static Representation getOneByIdGroupe(String idGroupe) throws SQLException {
+        Representation representation = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt;
+        Jdbc jdbc = Jdbc.getInstance();
+        // préparer la requête
+        String requete = "SELECT * FROM representation WHERE ID_GROUPE= ?";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setString(1, idGroupe);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            representation = RepresentationDao.RepresentationFromResultSet(rs);
+        }
+        return representation;
     }
 
     /**
@@ -63,30 +71,37 @@ public class RepresentationDao {
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
-            int id = rs.getInt("ID");
-            String id_Groupe = rs.getString("ID_groupe");
-            int id_Lieu = rs.getInt("ID_Lieu");
-            String date_representation = rs.getString("DATEREPR");
-            Groupe unGroupe = GroupeDao.getOneById(id_Groupe);
-            Lieu unLieu = LieuDao.getOneById(id_Lieu);
-            String heureDebut = rs.getString("HEURE_DEBUT");
-            String heureFin = rs.getString("HEURE_FIN");
-            int nbPlacesRestantes = rs.getInt("NOMBRE_PLACE_RESTANTE");
-            uneRepresentation =  new Representation(id, date_representation, unLieu, unGroupe, heureDebut, heureFin, nbPlacesRestantes);
+            uneRepresentation = RepresentationDao.RepresentationFromResultSet(rs);
             lesRepresentations.add(uneRepresentation);
         }
         return lesRepresentations;
     }
     
-    /*public void updateNbPlacesRestantes(Representation uneRepresentation, int nbPlace) {
-        int id_representation = uneRepresentation.getIdRepresentation();
-        ResultSet rs;
+    private static Representation RepresentationFromResultSet(ResultSet rs) throws SQLException {
+        Representation uneRepresentation = null;
+        int id = rs.getInt("ID");
+        String id_Groupe = rs.getString("ID_GROUPE");
+        int id_Lieu = rs.getInt("ID_LIEU");
+        String date_representation = rs.getString("DATEREPR");
+        String heureDebut = rs.getString("HEURE_DEB");
+        String heureFin = rs.getString("HEURE_FIN");
+        int nbPlacesRestantes = rs.getInt("NOMBRE_PLACE_RESTANTE");
+        
+        Groupe objGroupe = GroupeDao.getOneById(id_Groupe);
+        Lieu objLieu = LieuDao.getOneById(id_Lieu);
+        uneRepresentation =  new Representation(id, date_representation, objLieu, objGroupe, heureDebut, heureFin, nbPlacesRestantes);
+        return uneRepresentation;
+    }
+    
+    public static void updateNbPlaceRestante(int idRep, int nbPlaces) throws SQLException
+    {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
-        String requete = "UPDATE REPRESENTATION SET NOMBRE_PLACE_RESTANTE = NOMBRE_PLACE_RESTANTE + ? WHERE ID = ?;";
+        // préparer la requête
+        String requete = "UPDATE representation SET NBPLACESDISPO = nombre_Place_Restante + ? WHERE ID_REP = ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
-        pstmt.setInt(1, nbPlace);
-        pstmt.setInt(2, id_representation);
+        pstmt.setInt(1, nbPlaces);
+        pstmt.setInt(2, idRep);
         pstmt.executeUpdate();
-    }*/
+    }
 }
