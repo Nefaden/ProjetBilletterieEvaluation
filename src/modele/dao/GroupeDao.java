@@ -19,7 +19,7 @@ public class GroupeDao {
      * @throws SQLException 
      */
     public static Groupe getOneById(String idGroupe ) throws SQLException {
-        Groupe unGroupe  = null;
+        Groupe objGroupe  = null;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
@@ -29,13 +29,13 @@ public class GroupeDao {
         pstmt.setString(1, idGroupe );
         rs = pstmt.executeQuery();
         if (rs.next()) {
-            unGroupe = GroupeDao.groupeFromResultSet(rs);
+            objGroupe = GroupeDao.groupeFromResultSet(rs);
         }
-        return unGroupe ;
+        return objGroupe ;
     }
     
     public static Groupe getOneByName(String nomGroupe) throws SQLException {
-        Groupe unGroupe = null;
+        Groupe objGroupe = null;
         ResultSet rs = null;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
@@ -45,13 +45,13 @@ public class GroupeDao {
         pstmt.setString(1, nomGroupe);
         rs = pstmt.executeQuery();
         if (rs.next()) {
-            unGroupe = GroupeDao.groupeFromResultSet(rs);
+            objGroupe = GroupeDao.groupeFromResultSet(rs);
         }
-        return unGroupe;
+        return objGroupe;
     }
     
     private static Groupe groupeFromResultSet(ResultSet rs) throws SQLException {
-        Groupe groupe = null;
+        Groupe objGroupe = null;
         String id = rs.getString("ID");
             String nom = rs.getString("NOM");
             String adressePostale = rs.getString("ADRESSEPOSTALE");
@@ -59,7 +59,7 @@ public class GroupeDao {
             int nbPersonne = rs.getInt("NOMBREPERSONNES");
             String nomPays = rs.getString("NOMPAYS");
             String hebergement = rs.getString("HEBERGEMENT");
-        groupe = new Groupe(id, nom, adressePostale, identiteResponsable, nbPersonne, nomPays, hebergement);
-        return groupe;
+        objGroupe = new Groupe(id, nom, adressePostale, identiteResponsable, nbPersonne, nomPays, hebergement);
+        return objGroupe;
     }
 }

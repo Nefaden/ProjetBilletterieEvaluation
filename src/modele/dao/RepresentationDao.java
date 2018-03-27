@@ -24,7 +24,7 @@ public class RepresentationDao {
      * @throws SQLException 
      */
     public static Representation getOneById(int idRepresentation) throws SQLException {
-        Representation uneRepresentation = null;
+        Representation objRepresentation = null;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
@@ -34,13 +34,13 @@ public class RepresentationDao {
         pstmt.setInt(1, idRepresentation);
         rs = pstmt.executeQuery();
         if (rs.next()) {
-            uneRepresentation = RepresentationDao.RepresentationFromResultSet(rs);
+            objRepresentation = RepresentationDao.RepresentationFromResultSet(rs);
         }
-        return uneRepresentation;
+        return objRepresentation;
     }
     
     public static Representation getOneByIdGroupe(String idGroupe) throws SQLException {
-        Representation representation = null;
+        Representation objRepresentation = null;
         ResultSet rs = null;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
@@ -50,9 +50,9 @@ public class RepresentationDao {
         pstmt.setString(1, idGroupe);
         rs = pstmt.executeQuery();
         if (rs.next()) {
-            representation = RepresentationDao.RepresentationFromResultSet(rs);
+            objRepresentation = RepresentationDao.RepresentationFromResultSet(rs);
         }
-        return representation;
+        return objRepresentation;
     }
 
     /**
@@ -60,9 +60,9 @@ public class RepresentationDao {
      * @return collection de representation
      * @throws SQLException 
      */
-    public static List<Representation> getAll() throws SQLException {
-        List<Representation> lesRepresentations = new ArrayList<Representation>();
-        Representation uneRepresentation;
+    public static ArrayList<Representation> getAll() throws SQLException {
+        ArrayList<Representation> arrObjRepresentation = new ArrayList<Representation>();
+        Representation objRepresentation;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
@@ -71,14 +71,14 @@ public class RepresentationDao {
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
-            uneRepresentation = RepresentationDao.RepresentationFromResultSet(rs);
-            lesRepresentations.add(uneRepresentation);
+            objRepresentation = RepresentationDao.RepresentationFromResultSet(rs);
+            arrObjRepresentation.add(objRepresentation);
         }
-        return lesRepresentations;
+        return arrObjRepresentation;
     }
     
     private static Representation RepresentationFromResultSet(ResultSet rs) throws SQLException {
-        Representation uneRepresentation = null;
+        Representation objRepresentation = null;
         int id = rs.getInt("ID");
         String id_Groupe = rs.getString("ID_GROUPE");
         int id_Lieu = rs.getInt("ID_LIEU");
@@ -89,8 +89,8 @@ public class RepresentationDao {
         
         Groupe objGroupe = GroupeDao.getOneById(id_Groupe);
         Lieu objLieu = LieuDao.getOneById(id_Lieu);
-        uneRepresentation =  new Representation(id, date_representation, objLieu, objGroupe, heureDebut, heureFin, nbPlacesRestantes);
-        return uneRepresentation;
+        objRepresentation =  new Representation(id, date_representation, objLieu, objGroupe, heureDebut, heureFin, nbPlacesRestantes);
+        return objRepresentation;
     }
     
     public static void updateNbPlaceRestante(int idRep, int nbPlaces) throws SQLException

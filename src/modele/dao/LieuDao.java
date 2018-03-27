@@ -24,7 +24,7 @@ public class LieuDao {
      * @throws SQLException 
      */
     public static Lieu getOneById(int idLieu) throws SQLException {
-        Lieu unLieu = null;
+        Lieu objLieu = null;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
@@ -38,8 +38,8 @@ public class LieuDao {
             String nom = rs.getString("NOM");
             String adr = rs.getString("ADR");
             int capacite = rs.getInt("CAPACITE");
-            unLieu = new Lieu(id, nom, adr, capacite);
+            objLieu = new Lieu(id, nom, adr, capacite);
         }
-        return unLieu;
+        return objLieu;
     }
 }
