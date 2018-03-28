@@ -16,6 +16,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+/* Création de l'utilisateur nécessaire à l'utilisation de la base de données */
+
+CREATE USER 'ydurand_festival_util'@'localhost' IDENTIFIED WITH mysql_native_password AS '***';GRANT USAGE ON *.* TO 'ydurand_festival_util'@'localhost' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+GRANT ALL PRIVILEGES ON `ydurand_festival`.* TO 'ydurand_festival_util'@'localhost' WITH GRANT OPTION;
+
 --
 -- Base de données :  `ydurand_festival`
 --
@@ -304,7 +309,13 @@ ALTER TABLE `Offre`
 ALTER TABLE `Representation`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_id_lieu` (`id_lieu`),
-  ADD KEY `id_groupe` (`id_groupe`);
+  ADD KEY `id_groupe` (`id_groupe`),
+  ADD nombre_Place_Restante int(11);
+
+  update Representation
+  set nombre_Place_Restante =
+    (select capacite FROM Lieu
+    WHERE Lieu.id = Representation.id_lieu);
 
 --
 -- Index pour la table `TypeChambre`
@@ -336,6 +347,39 @@ ALTER TABLE `Offre`
 ALTER TABLE `Representation`
   ADD CONSTRAINT `fk_id_groupe` FOREIGN KEY (`id_groupe`) REFERENCES `Groupe` (`id`),
   ADD CONSTRAINT `fk_id_lieu` FOREIGN KEY (`id_lieu`) REFERENCES `Lieu` (`id`);
+
+/* Création de la table des utilisateurs pour se connecter à la base distante */
+
+--
+-- Structure de la table `Utilisateur`
+--
+
+CREATE TABLE `Utilisateur` (
+  `idUtilisateur` int(11) NOT NULL,
+  `nom` varchar(40) NOT NULL,
+  `prenom` varchar(40) NOT NULL,
+  `nomUtilisateur` varchar(40) NOT NULL,
+  `motDePasse` varchar(40) NOT NULL
+);
+
+--
+-- Contenu de la table `Utilisateur`
+--
+
+INSERT INTO `Utilisateur` (`idUtilisateur`, `nom`, `prenom`, `nomUtilisateur`, `motDePasse`) VALUES
+('1', 'Durand', 'Yann', 'ydurand', '1234'),
+('2', 'Roux', 'Maxime', 'mroux', '1234'),
+('3', 'Doucet', 'Gregory', 'dgregory', '1234'),
+('4', 'Cormier', 'Gregory', 'cgregory', '1234'),
+('5', 'Bourgeois', 'Nicolas', 'nbourgeois', '1234'),
+('6', 'Beauvais', 'Jean-Pierre', 'jpbeauvais', '1234');
+
+--
+-- Contrainte de la table `Utilisateur`
+--
+
+ALTER TABLE `Utilisateur`
+ADD PRIMARY KEY (`idUtilisateur`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

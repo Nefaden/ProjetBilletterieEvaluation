@@ -29,8 +29,8 @@ public class CtrlMenu extends ControleurGenerique implements ActionListener, Win
     }
 
     /**
-     * clic sur la commande Quitter du menu Fichier Le contrôleur délègue
-     * l'action au contrôleur frontal
+     * clic sur la commande Quitter du menu Fichier ou la croix de la fenêtre
+     * Le contrôleur délègue l'action au contrôleur frontal
      */
     public void menuFichierQuitter() throws SQLException {
         // Confirmer avant de quitter

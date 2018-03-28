@@ -4,6 +4,7 @@ import static controleur.EnumAction.*;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modele.dao.Jdbc;
+import modele.metier.Representation;
 
 /**
  * Controleur principal
@@ -50,10 +51,10 @@ public class CtrlPrincipal {
     /**
      * Appel d'un constructeur avec un échange de variable de type String
      */
-    public void action(EnumAction action, String groupe) throws SQLException {
+    public void action(EnumAction action, int idRepresentationSelect) throws SQLException {
         switch (action) {
             case REPRESENTATION_DETAILS: // activation de vueUneRepresentation depuis vueRepresentation
-                menuRepresentationDetail(groupe);
+                menuRepresentationDetail(idRepresentationSelect);
                 break;
         }            
     }
@@ -103,9 +104,9 @@ public class CtrlPrincipal {
      * @throws SQLException 
      * Methode pour afficher la vue de la représentation selectionnée
      */
-    private void menuRepresentationDetail(String groupe) throws SQLException {
+    private void menuRepresentationDetail(int idRepresentationSelect) throws SQLException {
         if (ctrlVentePlace == null) {
-            ctrlVentePlace = new CtrlVentePlace(this, groupe);
+            ctrlVentePlace = new CtrlVentePlace(this, idRepresentationSelect);
         }
         ctrlRepresentation.getVue().setEnabled(false);
         ctrlRepresentation.getVue().setVisible(false);

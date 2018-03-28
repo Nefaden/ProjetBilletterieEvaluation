@@ -25,24 +25,28 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
     private final RepresentationDao RepresentationDao = new RepresentationDao();
     private Representation objRepresentation;
     
-    public CtrlVentePlace(CtrlPrincipal ctrlPrincipal, String groupe) throws SQLException {
+    public CtrlVentePlace(CtrlPrincipal ctrlPrincipal, int idRepresentationSelect) throws SQLException {
         super(ctrlPrincipal);
         vue = new VueVentePlace();
         this.getVue().getjButtonValider().addActionListener(this);
         this.getVue().getjButtonQuitter().addActionListener(this);
         this.vue.addWindowListener(this);
-        afficherUneRepresentation(groupe);
+        afficherUneRepresentation(idRepresentationSelect);
     }
     
-    //méthode pour afficher la représentation sélectionner
-    private void afficherUneRepresentation(String groupe) throws SQLException {
+    /**
+     * 
+     * méthode pour afficher la représentation sélectionner
+     * @param idRepresentationSelect : la représentation sélectionner
+     * @throws SQLException 
+     */
+    private void afficherUneRepresentation(int idRepresentationSelect) throws SQLException {
         String msg = ""; //message d'erreur
         try {
             getVue().getModeleTableInformation().setRowCount(0);
             String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin", "Adresse"};
             getVue().getModeleTableInformation().setColumnIdentifiers(titresColonnes);
-            Groupe nomGroupe = GroupeDao.getOneByName(groupe);
-            objRepresentation = RepresentationDao.getOneByIdGroupe(nomGroupe.getIdGroupe());
+            objRepresentation = RepresentationDao.getOneById(idRepresentationSelect);
             String[] ligneDonnees = new String[6];
             ligneDonnees[0] = objRepresentation.getGroupe().getNomGroupe();
             ligneDonnees[1] = objRepresentation.getLieu().getNomLieu();
@@ -61,8 +65,8 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
         String msg = ""; //message d'erreur
         try {
             getVue().getModeleTablePlaces().setRowCount(0);
-            String[] titresCol = {"Nombre de places total", "Places restantes"};
-            getVue().getModeleTablePlaces().setColumnIdentifiers(titresCol);
+            String[] titresColonnes = {"Nombre de places total", "Places restantes"};
+            getVue().getModeleTablePlaces().setColumnIdentifiers(titresColonnes);
             String[] donnees = new String[2];
             donnees[0] = Integer.toString(uneRepresentation.getLieu().getCapaciteLieu());
             donnees[1] = Integer.toString(uneRepresentation.getNbPlaceRestante());
@@ -77,7 +81,7 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
         int vente = Integer.parseInt((getVue().getjTextFieldCommande()).getText());
 
         RepresentationDao.updateNbPlaceRestante(objRepresentation.getIdRepresentation(), vente);
-        afficherUneRepresentation(objRepresentation.getGroupe().getNomGroupe());
+        afficherUneRepresentation(objRepresentation.getIdRepresentation());
     }
     
     public void venteQuitter() throws SQLException {
@@ -93,13 +97,26 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
         return (VueVentePlace) vue;
     }
     
+    /**
+     * clic sur la commande Quitter du menu Fichier ou la croix de la fenêtre
+     * Le contrôleur délègue l'action au contrôleur frontal
+     */
+    public void menuFichierQuitter() throws SQLException {
+        // Confirmer avant de quitter
+        int rep = JOptionPane.showConfirmDialog(getVue(), "Quitter l'application\nEtes-vous sûr(e) ?", "root", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (rep == JOptionPane.YES_OPTION) {
+            // mettre fin à l'application
+            this.getCtrlPrincipal().action(EnumAction.MENU_QUITTER);
+        }
+    }
+    
     @Override
     public void windowOpened(WindowEvent e) {}
 
     @Override
     public void windowClosing(WindowEvent e) {
     try {
-            venteQuitter();
+            menuFichierQuitter();
         } catch (SQLException ex) {
             Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
         }

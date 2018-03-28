@@ -38,16 +38,6 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
 
     /**
      *
-     * Methode pour quitter l'application
-     *
-     * @throws SQLException
-     */
-    public void menuFichierQuitter() throws SQLException {
-        this.getCtrlPrincipal().action(EnumAction.MENU_QUITTER);
-    }
-
-    /**
-     *
      * Methode pour quitter la vue des représentation
      *
      * @throws SQLException
@@ -86,6 +76,8 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
     }
 
     /**
+     * Permet la selection d'une ligne du tableau pour appeler le controller CtrlVentePlace 
+     * Pour pouvoir afficher une représentation
      * 
      * @throws SQLException 
      */
@@ -93,8 +85,8 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         int ligne = getVue().getjTableRepresentation().getSelectedRow();
         int colonne = getVue().getjTableRepresentation().getSelectedColumn();
         if (ligne != -1 && colonne != -1){
-            String groupe = (String) getVue().getModeleTableRepresentation().getValueAt(ligne,colonne);
-            this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_DETAILS, groupe);
+            int idRepresentationSelect = (int) getVue().getModeleTableRepresentation().getValueAt(ligne, colonne);
+            this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_DETAILS, idRepresentationSelect);
         }
     }
     
@@ -126,6 +118,11 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         }
     }
 
+    /**
+     * Vérifie la ligne et la colonne selectionner
+     * 
+     * @return Boolean
+     */
     public boolean verifierLignejTable() {
         boolean test;
         int ligne = (getVue().getjTableRepresentation().getSelectedRow());
@@ -146,6 +143,19 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
     public VueRepresentation getVue() {
         return (VueRepresentation) vue;
     }
+    
+    /**
+     * clic sur la commande Quitter du menu Fichier ou la croix de la fenêtre
+     * Le contrôleur délègue l'action au contrôleur frontal
+     */
+    public void menuFichierQuitter() throws SQLException {
+        // Confirmer avant de quitter
+        int rep = JOptionPane.showConfirmDialog(getVue(), "Quitter l'application\nEtes-vous sûr(e) ?", "root", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (rep == JOptionPane.YES_OPTION) {
+            // mettre fin à l'application
+            this.getCtrlPrincipal().action(EnumAction.MENU_QUITTER);
+        }
+    }
 
     @Override
     public void windowOpened(WindowEvent e) {
@@ -163,7 +173,11 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
 
     @Override
     public void windowClosed(WindowEvent e) {
-        
+        try {
+            representationQuitter();
+        } catch (SQLException ex) {
+            Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
