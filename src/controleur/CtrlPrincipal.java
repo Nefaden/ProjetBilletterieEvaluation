@@ -50,10 +50,10 @@ public class CtrlPrincipal {
     /**
      * Appel d'un constructeur avec un échange de variable de type String
      */
-    public void action(EnumAction action, String var) throws SQLException {
+    public void action(EnumAction action, String groupe) throws SQLException {
         switch (action) {
             case REPRESENTATION_DETAILS: // activation de vueUneRepresentation depuis vueRepresentation
-                menuRepresentationDetail(var);
+                menuRepresentationDetail(groupe);
                 break;
         }            
     }
@@ -91,10 +91,6 @@ public class CtrlPrincipal {
     private void menuRepresentationAfficher() throws SQLException {
         if (ctrlRepresentation == null) {
             ctrlRepresentation = new CtrlRepresentation(this);
-        } else {
-            // si la le contrôleur et sa vue existent déjà
-            // il faut rafraîchir le contenu à partir de la base de données
-            ctrlRepresentation.afficherRepresentation();
         }
         ctrlMenu.getVue().setEnabled(false);
         ctrlMenu.getVue().setVisible(false);

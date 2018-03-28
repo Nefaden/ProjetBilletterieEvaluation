@@ -34,7 +34,6 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         this.getVue().getjTableRepresentation().addMouseListener(this);
         this.getVue().getjButtonReservation().addActionListener(this);
         this.getVue().getjButtonQuitter().addActionListener(this);
-        vue.addWindowListener(this);
     }
 
     /**
@@ -81,17 +80,21 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
                 getVue().getModeleTableRepresentation().addRow(ligneDonnees);
             }
         } catch (SQLException ex) {
-            msg = "CtrlRepresentation - representationAfficher() - " + ex.getMessage();
+            msg = "CtrlRepresentation - afficherRepresentation() - " + ex.getMessage();
             JOptionPane.showMessageDialog(vue, msg, "Affichage des représentations", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    /**
+     * 
+     * @throws SQLException 
+     */
     public void afficherUneRepresentation() throws SQLException{
         int ligne = getVue().getjTableRepresentation().getSelectedRow();
         int colonne = getVue().getjTableRepresentation().getSelectedColumn();
         if (ligne != -1 && colonne != -1){
             String groupe = (String) getVue().getModeleTableRepresentation().getValueAt(ligne,colonne);
-            this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_DETAILS,groupe);
+            this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_DETAILS, groupe);
         }
     }
     
@@ -146,7 +149,7 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
 
     @Override
     public void windowOpened(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -160,51 +163,51 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
 
     @Override
     public void windowClosed(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void windowDeiconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void windowActivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 }

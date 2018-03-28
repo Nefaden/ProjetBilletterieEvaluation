@@ -83,7 +83,7 @@ public class RepresentationDao {
         String id_Groupe = rs.getString("ID_GROUPE");
         int id_Lieu = rs.getInt("ID_LIEU");
         String date_representation = rs.getString("DATEREPR");
-        String heureDebut = rs.getString("HEURE_DEB");
+        String heureDebut = rs.getString("HEURE_DEBUT");
         String heureFin = rs.getString("HEURE_FIN");
         int nbPlacesRestantes = rs.getInt("NOMBRE_PLACE_RESTANTE");
         

@@ -9,6 +9,8 @@ package modele.metier;
 public class Utilisateur {
     
     private int i_Id;
+    private String s_Nom;
+    private String s_Prenom;
     private String s_NomUtilisateur;
     private String s_MotDePasse;
     
@@ -18,8 +20,10 @@ public class Utilisateur {
      * @param strNomUtilsateur : Nom d'utilisateur de la base de données
      * @param strMotDePasse : Mot de passe lié à un utilisateur
      */
-    public Utilisateur(int intId, String strNomUtilisateur, String strMotDePasse) {
+    public Utilisateur(int intId, String strNom, String strPrenom, String strNomUtilisateur, String strMotDePasse) {
         this.i_Id = intId;
+        this.s_Nom = strNom;
+        this.s_Prenom = strPrenom;
         this.s_NomUtilisateur = strNomUtilisateur;
         this.s_MotDePasse = strMotDePasse;
     }
@@ -39,7 +43,7 @@ public class Utilisateur {
      *
      * @return int id du client dans la DB
      */
-    public int getIdClient() {
+    public int getIdUtilisateur() {
         return i_Id;
     }
     
@@ -47,8 +51,40 @@ public class Utilisateur {
      * 
      * @param intId : identifiant du client dans la DB
      */
-    public void setIdClient(int intId) {
+    public void setIdUtilisateur(int intId) {
         this.i_Id = intId;
+    }
+    
+    /**
+     * 
+     * @return String nom de l'utilisateur
+     */
+    public String getNom() {
+        return s_Nom;
+    }
+    
+    /**
+     * 
+     * @param strNom : Le nom d'un utilisateur
+     */
+    public void setNom(String strNom) {
+        this.s_Nom = strNom;
+    }
+    
+    /**
+     * 
+     * @return String prenom de l'utilisateur
+     */
+    public String getPrenomUtilisateur() {
+        return s_Nom;
+    }
+    
+    /**
+     * 
+     * @param strPrenom : Le prenom d'un utilisateur
+     */
+    public void setPrenomUtilisateur(String strPrenom) {
+        this.s_Nom = strPrenom;
     }
     
     /**

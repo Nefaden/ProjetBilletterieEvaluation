@@ -41,8 +41,8 @@ public class main {
 			String jdbc = prop.getProperty("sgbd.jdbc");
 			String pass = prop.getProperty("sgbd.pass");
                         String databasename = prop.getProperty("sgbd.databasename");
-                        String login = prop.getProperty("login");
-                        String password = prop.getProperty("password");
+                        String login = prop.getProperty("sgbd.login");
+                        String password = prop.getProperty("sgbd.password");
                         
                         Jdbc.creer(driver,jdbc,pass,databasename,login,password);
 			
