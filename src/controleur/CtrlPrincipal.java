@@ -4,7 +4,6 @@ import static controleur.EnumAction.*;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modele.dao.Jdbc;
-import modele.metier.Representation;
 
 /**
  * Controleur principal
@@ -15,7 +14,7 @@ public class CtrlPrincipal {
 
     private CtrlConnexion ctrlConnexion = null; // Controller des connexions
     private CtrlRepresentation ctrlRepresentation = null; // LE CONTROLEUR DES REPRESENTATIONS
-    private CtrlVentePlace ctrlVentePlace = null; // LE CONTROLEUR D'UNE REPRESENTATION
+    private CtrlReservation ctrlReservation = null; // LE CONTROLEUR D'UNE REPRESENTATION
     private CtrlMenu ctrlMenu = null;//test de push
 
     /**
@@ -105,13 +104,13 @@ public class CtrlPrincipal {
      * Methode pour afficher la vue de la représentation selectionnée
      */
     private void menuRepresentationDetail(int idRepresentationSelect) throws SQLException {
-        if (ctrlVentePlace == null) {
-            ctrlVentePlace = new CtrlVentePlace(this, idRepresentationSelect);
+        if (ctrlReservation == null) {
+            ctrlReservation = new CtrlReservation(this, idRepresentationSelect);
         }
         ctrlRepresentation.getVue().setEnabled(false);
         ctrlRepresentation.getVue().setVisible(false);
-        ctrlVentePlace.getVue().setVisible(true);
-        ctrlVentePlace.getVue().setEnabled(true);
+        ctrlReservation.getVue().setVisible(true);
+        ctrlReservation.getVue().setEnabled(true);
     }
     
     /**
@@ -134,7 +133,7 @@ public class CtrlPrincipal {
             ctrlRepresentation = new CtrlRepresentation(this);       
         ctrlRepresentation.getVue().setVisible(true);
         ctrlRepresentation.getVue().setEnabled(true);
-        ctrlVentePlace.getVue().setEnabled(false);
-        ctrlVentePlace.getVue().setVisible(false);
+        ctrlReservation.getVue().setEnabled(false);
+        ctrlReservation.getVue().setVisible(false);
     }
 }
