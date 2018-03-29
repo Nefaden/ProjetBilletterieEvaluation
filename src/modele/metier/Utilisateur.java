@@ -34,7 +34,7 @@ public class Utilisateur {
      */
     @Override
     public String toString() {
-        return ("Utilisateur{nom d'utilisateur: " + this.getNomUtilisateur() + "\tmot de passe: " + this.getMotDePasse() + "}");
+        return ("Utilisateur{nom de l'utilisateur: " + this.getNom() + "\tPrenom de l'utilisateur: " + this.getPrenomUtilisateur() + "\tNom d'utilisateur: " + this.getNomUtilisateur() + "\tmot de passe: " + this.getMotDePasse() + "}");
     }
     
     //Getter / Setter de la classe Reservation
