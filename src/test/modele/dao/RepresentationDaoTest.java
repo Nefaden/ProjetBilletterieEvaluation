@@ -40,13 +40,13 @@ public class RepresentationDaoTest {
 
     }
         
-            /**
+    /**
      * Vérifie qu'une connexion peut être ouverte sur le SGBD
      * @throws ClassNotFoundException
      * @throws SQLException
      */
     public static void test0_Connexion() throws ClassNotFoundException, SQLException {
-        Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql://", "localhost/", "festival", "root", "joliverie");
+        Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql://", "localhost/", "ydurand_festival", "ydurand_festival_util", "secret");
 //        Jdbc.creer("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:", "@localhost:1521:XE", "", "btssio", "btssio");
         Jdbc.getInstance().connecter();
         Connection cnx = Jdbc.getInstance().getConnexion();
