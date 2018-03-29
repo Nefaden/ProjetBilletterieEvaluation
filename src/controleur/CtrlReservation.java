@@ -31,7 +31,6 @@ public class CtrlReservation extends ControleurGenerique implements ActionListen
     public CtrlReservation(CtrlPrincipal ctrlPrincipal, int idRepresentationSelect) throws SQLException {
         super(ctrlPrincipal);
         vue = new VueReservation();
-        //vue = new VueReservation();
         this.getVue().getjButtonReserver().addActionListener(this);
         this.getVue().getjButtonAnnuler().addActionListener(this);
         this.vue.addWindowListener(this);
@@ -61,15 +60,14 @@ public class CtrlReservation extends ControleurGenerique implements ActionListen
         }
     }
     
-    /*public void venteSoustraire() throws SQLException{
-        int vente = Integer.parseInt((getVue().getjTextFieldCommande()).getText());
-
+    public void venteSoustraire() throws SQLException{
+        int vente = Integer.parseInt((getVue().getjTextFieldPlacesReserver()).getText());
         RepresentationDao.updateNbPlaceRestante(objRepresentation.getIdRepresentation(), vente);
         afficherUneRepresentation(objRepresentation.getIdRepresentation());
-    }*/
+    }
     
     public void venteQuitter() throws SQLException {
-        this.getCtrlPrincipal().action(EnumAction.VENTES_QUITTER);        
+        this.getCtrlPrincipal().action(EnumAction.VENTES_QUITTER);
     }
     
     /**
@@ -144,26 +142,28 @@ public class CtrlReservation extends ControleurGenerique implements ActionListen
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlReservation.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
-            /*if(e.getSource().equals((getVue().getjButtonReserver()))) {
-                if (getVue().getjTextFieldPlacesReserver().getText() != "") {
-                    JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à ","Inane error",JOptionPane.ERROR_MESSAGE);
+        }else {
+            if(e.getSource().equals(getVue().getjButtonReserver())) {
+                /*if (objRepresentation.getNbPlaceRestante() - Integer.parseInt(getVue().getjTextFieldPlacesReserver().getText()) < 0) {
+                    JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ objRepresentation.getNbPlaceRestante(),"Inane error",JOptionPane.ERROR_MESSAGE);
                 }
-                if(objRepresentation.getNbPlaceRestante() -  < Integer.parseInt((getVue().getjTextFieldCommande().getText()))) {
-                    JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ (objRepresentation.getLieu().getCapaciteLieu() - objRepresentation.getNbPlaceRestante()),"Inane error",JOptionPane.ERROR_MESSAGE);
-                }else{
+                else {
                     if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         try {
-                            venteSoustraire();
+                            this.venteSoustraire();
                         } catch (SQLException ex) {
                             Logger.getLogger(CtrlVentePlace.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else {
-                        // no option
                     }
-                }
-            }*/
-            
+                } 
+                
+                try {
+                    venteQuitter();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CtrlReservation.class.getName()).log(Level.SEVERE, null, ex);
+                }*/
+            }
         }
     }
 }
