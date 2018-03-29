@@ -83,9 +83,8 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
      */
     public void afficherUneRepresentation() throws SQLException{
         int ligne = getVue().getjTableRepresentation().getSelectedRow();
-        int colonne = getVue().getjTableRepresentation().getSelectedColumn();
-        if (ligne != -1 && colonne != -1){
-            int idRepresentationSelect = (int) getVue().getModeleTableRepresentation().getValueAt(ligne, colonne);
+        if (ligne != -1) { 
+            int idRepresentationSelect = arrObjRepresentation.get(ligne).getIdRepresentation();
             this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_DETAILS, idRepresentationSelect);
         }
     }
@@ -111,7 +110,7 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
                     try {
                         afficherUneRepresentation();
                     } catch (SQLException ex) {
-                        Logger.getLogger(CtrlRepresentation.class.getName()).log(Level.SEVERE, null, ex);
+                        //Logger.getLogger(CtrlRepresentation.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -125,8 +124,8 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
      */
     public boolean verifierLignejTable() {
         boolean test;
-        int ligne = (getVue().getjTableRepresentation().getSelectedRow());
-        int colonne = (getVue().getjTableRepresentation().getSelectedColumn());
+        int ligne = getVue().getjTableRepresentation().getSelectedRow();
+        int colonne = getVue().getjTableRepresentation().getSelectedColumn();
         if (ligne != -1 && colonne != -1) {
             test = true;
         } else {
