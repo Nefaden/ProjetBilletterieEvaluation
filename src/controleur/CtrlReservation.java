@@ -144,7 +144,7 @@ public class CtrlReservation extends ControleurGenerique implements ActionListen
             }
         }else {
             if(e.getSource().equals(getVue().getjButtonReserver())) {
-                /*if (objRepresentation.getNbPlaceRestante() - Integer.parseInt(getVue().getjTextFieldPlacesReserver().getText()) < 0) {
+                if (objRepresentation.getNbPlaceRestante() - Integer.parseInt(getVue().getjTextFieldPlacesReserver().getText()) < 0) {
                     JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ objRepresentation.getNbPlaceRestante(),"Inane error",JOptionPane.ERROR_MESSAGE);
                 }
                 else {
@@ -156,12 +156,6 @@ public class CtrlReservation extends ControleurGenerique implements ActionListen
                         }
                     } else {
                     }
-                } */
-                
-                try {
-                    venteQuitter();
-                } catch (SQLException ex) {
-                    Logger.getLogger(CtrlReservation.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
