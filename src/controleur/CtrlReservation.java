@@ -156,13 +156,13 @@ public class CtrlReservation extends ControleurGenerique implements ActionListen
                         }
                     } else {
                     }
-                } 
+                } */
                 
                 try {
                     venteQuitter();
                 } catch (SQLException ex) {
                     Logger.getLogger(CtrlReservation.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
+                }
             }
         }
     }
