@@ -98,7 +98,7 @@ public class RepresentationDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "UPDATE Representation SET nombre_Place_Restante = nombre_Place_Restante - ? WHERE ID = ?;";
+        String requete = "UPDATE Representation SET nombre_Place_Restante = nombre_Place_Restante - ? WHERE ID = ?;"; 
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setInt(1, nbPlaces);
         pstmt.setInt(2, idRep);
