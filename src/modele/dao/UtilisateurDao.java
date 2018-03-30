@@ -26,7 +26,7 @@ public class UtilisateurDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT idUtilisateur, nom, prenom, nomUtilisateur, motDePasse FROM Utilisateur WHERE ID LIKE ?";
+        String requete = "SELECT idUtilisateur, nom, prenom, nomUtilisateur, motDePasse FROM Utilisateur WHERE IDUTILISATEUR LIKE ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setInt(1, idUtilisateur );
         rs = pstmt.executeQuery();
@@ -72,7 +72,7 @@ public class UtilisateurDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT idUtilisateur, nom, prenom, nomUtilisateur, motDePasse FROM Utilisateur WHERE NOM= ?";
+        String requete = "SELECT idUtilisateur, nom, prenom, nomUtilisateur, motDePasse FROM Utilisateur WHERE NOMUTILISATEUR = ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setString(1, nomUtilisateur);
         rs = pstmt.executeQuery();

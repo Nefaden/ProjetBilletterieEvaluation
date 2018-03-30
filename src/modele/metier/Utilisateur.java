@@ -34,7 +34,7 @@ public class Utilisateur {
      */
     @Override
     public String toString() {
-        return ("Utilisateur{nom de l'utilisateur: " + this.getNom() + "\tPrenom de l'utilisateur: " + this.getPrenomUtilisateur() + "\tNom d'utilisateur: " + this.getNomUtilisateur() + "\tmot de passe: " + this.getMotDePasse() + "}");
+        return ("Utilisateur { nom de l'utilisateur: " + this.getNom() + "\tPrenom de l'utilisateur: " + this.getPrenom() + "\tNom d'utilisateur: " + this.getNomUtilisateur() + "\tmot de passe: " + this.getMotDePasse() + "}");
     }
     
     //Getter / Setter de la classe Reservation
@@ -75,16 +75,16 @@ public class Utilisateur {
      * 
      * @return String prenom de l'utilisateur
      */
-    public String getPrenomUtilisateur() {
-        return s_Nom;
+    public String getPrenom() {
+        return s_Prenom;
     }
     
     /**
      * 
      * @param strPrenom : Le prenom d'un utilisateur
      */
-    public void setPrenomUtilisateur(String strPrenom) {
-        this.s_Nom = strPrenom;
+    public void setPrenom(String strPrenom) {
+        this.s_Prenom = strPrenom;
     }
     
     /**

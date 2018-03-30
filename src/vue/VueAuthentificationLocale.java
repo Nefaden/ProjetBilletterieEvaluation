@@ -11,7 +11,7 @@ import javax.swing.JTextField;
  * @author ydurand
  * v1.0
  */
-public class VueConnexion extends VueGenerique {
+public class VueAuthentificationLocale extends VueGenerique {
     
     /**
      * Creates new form VueConnexion
@@ -19,7 +19,7 @@ public class VueConnexion extends VueGenerique {
      * Est la vue par défaut pour se connecter 
      * A la database distante
      */
-    public VueConnexion() {        
+    public VueAuthentificationLocale() {        
         initComponents();
     }
     
@@ -159,14 +159,22 @@ public class VueConnexion extends VueGenerique {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VueConnexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueAuthentificationLocale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VueConnexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueAuthentificationLocale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VueConnexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueAuthentificationLocale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VueConnexion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VueAuthentificationLocale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -179,7 +187,7 @@ public class VueConnexion extends VueGenerique {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VueConnexion().setVisible(true);
+                new VueAuthentificationLocale().setVisible(true);
             }
         });
     }

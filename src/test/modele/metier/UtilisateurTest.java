@@ -19,7 +19,7 @@ public class UtilisateurTest {
         System.out.println("\nTest n°2 : setter");
         objUtilisateur.setIdUtilisateur(69);
         objUtilisateur.setNom("Michel");
-        objUtilisateur.setPrenomUtilisateur("Jacquie");
+        objUtilisateur.setPrenom("Jacquie");
         objUtilisateur.setNomUtilisateur("jmichel");
         objUtilisateur.setMotDePasse("12345");
         System.out.println(objUtilisateur);

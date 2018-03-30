@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controleur;
 
 import java.awt.event.ActionEvent;
@@ -10,26 +15,24 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import modele.dao.GroupeDao;
 import modele.dao.RepresentationDao;
-import modele.metier.Groupe;
 import modele.metier.Representation;
 import vue.VueVentePlace;
 
 /**
  *
- * @author gdoucet
+ * @author btssio
  */
 public class CtrlVentePlace extends ControleurGenerique implements ActionListener, WindowListener, MouseListener {
-
+    
     private final RepresentationDao RepresentationDao = new RepresentationDao();
     private Representation objRepresentation;
-    
+
     public CtrlVentePlace(CtrlPrincipal ctrlPrincipal, int idRepresentationSelect) throws SQLException {
         super(ctrlPrincipal);
         vue = new VueVentePlace();
-        this.getVue().getjButtonValider().addActionListener(this);
-        this.getVue().getjButtonQuitter().addActionListener(this);
+        this.getVue().getjButtonReserver().addActionListener(this);
+        this.getVue().getjButtonAnnuler().addActionListener(this);
         this.vue.addWindowListener(this);
         afficherUneRepresentation(idRepresentationSelect);
     }
@@ -43,49 +46,28 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
     private void afficherUneRepresentation(int idRepresentationSelect) throws SQLException {
         String msg = ""; //message d'erreur
         try {
-            getVue().getModeleTableInformation().setRowCount(0);
-            String[] titresColonnes = {"Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin", "Adresse"};
-            getVue().getModeleTableInformation().setColumnIdentifiers(titresColonnes);
             objRepresentation = RepresentationDao.getOneById(idRepresentationSelect);
-            String[] ligneDonnees = new String[6];
-            ligneDonnees[0] = objRepresentation.getGroupe().getNomGroupe();
-            ligneDonnees[1] = objRepresentation.getLieu().getNomLieu();
-            ligneDonnees[2] = objRepresentation.getDateRepresentation();
-            ligneDonnees[3] = objRepresentation.getHeureDebutRepresentation();
-            ligneDonnees[4] = objRepresentation.getHeureFinRepresentation();
-            ligneDonnees[5] = objRepresentation.getLieu().getAdresseLieu();
-            getVue().getModeleTableInformation().addRow(ligneDonnees);
+            getVue().getjLabelGroupe().setText(objRepresentation.getGroupe().getNomGroupe());
+            getVue().getjLabelLieu().setText(objRepresentation.getLieu().getNomLieu());
+            getVue().getjLabelDate().setText(objRepresentation.getDateRepresentation());
+            getVue().getjLabelHeureDebut().setText(objRepresentation.getHeureDebutRepresentation());
+            getVue().getjLabelHeureFin().setText(objRepresentation.getHeureFinRepresentation());
+            getVue().getjLabelPlacesTotal().setText(Integer.toString(objRepresentation.getLieu().getCapaciteLieu()));
+            getVue().getjLabelPlacesRestantes().setText(Integer.toString(objRepresentation.getNbPlaceRestante()));
         } catch (Exception ex) {
             msg = "Erreur dans la methode afficherUneRepresentation" + ex.getMessage();
             JOptionPane.showMessageDialog(vue, msg, "afficherUneRepresentation", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    public void afficherNombrePlaces(Representation uneRepresentation) {
-        String msg = ""; //message d'erreur
-        try {
-            getVue().getModeleTablePlaces().setRowCount(0);
-            String[] titresColonnes = {"Nombre de places total", "Places restantes"};
-            getVue().getModeleTablePlaces().setColumnIdentifiers(titresColonnes);
-            String[] donnees = new String[2];
-            donnees[0] = Integer.toString(uneRepresentation.getLieu().getCapaciteLieu());
-            donnees[1] = Integer.toString(uneRepresentation.getNbPlaceRestante());
-            getVue().getModeleTablePlaces().addRow(donnees);
-        } catch (Exception ex) {
-            msg = "Erreur dans la methode afficherNombrePlaces" + ex.getMessage();
-            JOptionPane.showMessageDialog(vue, "", msg, JOptionPane.ERROR_MESSAGE);
-        }
-    }
     
     public void venteSoustraire() throws SQLException{
-        int vente = Integer.parseInt((getVue().getjTextFieldCommande()).getText());
-
+        int vente = Integer.parseInt((getVue().getjTextFieldPlacesReserver()).getText());
         RepresentationDao.updateNbPlaceRestante(objRepresentation.getIdRepresentation(), vente);
         afficherUneRepresentation(objRepresentation.getIdRepresentation());
     }
     
     public void venteQuitter() throws SQLException {
-        this.getCtrlPrincipal().action(EnumAction.VENTES_QUITTER);        
+        this.getCtrlPrincipal().action(EnumAction.VENTES_QUITTER);
     }
     
     /**
@@ -118,7 +100,7 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
     try {
             menuFichierQuitter();
         } catch (SQLException ex) {
-            Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -154,29 +136,30 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(getVue().getjButtonQuitter())) {
+        if(e.getSource().equals(getVue().getjButtonAnnuler())) {
             try {
                 venteQuitter();
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlVentePlace.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
-            if(e.getSource().equals((getVue().getjButtonValider()))) {
-                if(objRepresentation.getLieu().getCapaciteLieu() - objRepresentation.getNbPlaceRestante() < Integer.parseInt((getVue().getjTextFieldCommande().getText()))) {
-                    JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ (objRepresentation.getLieu().getCapaciteLieu() - objRepresentation.getNbPlaceRestante()),"Inane error",JOptionPane.ERROR_MESSAGE);
-                }else{
+        }else {
+            if(e.getSource().equals(getVue().getjButtonReserver())) {
+                if (objRepresentation.getNbPlaceRestante() - Integer.parseInt(getVue().getjTextFieldPlacesReserver().getText()) < 0) {
+                    JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ objRepresentation.getNbPlaceRestante(),"Inane error",JOptionPane.ERROR_MESSAGE);
+                }
+                else {
                     if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         try {
-                            venteSoustraire();
+                            this.venteSoustraire();
                         } catch (SQLException ex) {
                             Logger.getLogger(CtrlVentePlace.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else {
-                        // no option
                     }
                 }
             }
-            
         }
-    }    
+    }
 }
+
+

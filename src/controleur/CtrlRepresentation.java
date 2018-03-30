@@ -166,7 +166,7 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         try {
             menuFichierQuitter();
         } catch (SQLException ex) {
-            Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -175,7 +175,7 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         try {
             representationQuitter();
         } catch (SQLException ex) {
-            Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

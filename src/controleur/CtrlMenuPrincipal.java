@@ -16,10 +16,10 @@ import vue.VueMenuPrincipal;
  * @version 1 
  */
 
-public class CtrlMenu extends ControleurGenerique implements ActionListener, WindowListener {
+public class CtrlMenuPrincipal extends ControleurGenerique implements ActionListener, WindowListener {
 
     // Constructeur du controller du menu principal
-    public CtrlMenu(CtrlPrincipal ctrlPrincipal) {
+    public CtrlMenuPrincipal(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
         this.vue = new VueMenuPrincipal();
         this.vue.addWindowListener(this);
@@ -76,14 +76,14 @@ public class CtrlMenu extends ControleurGenerique implements ActionListener, Win
             try {
                 menuFichierQuitter();
             } catch (SQLException ex) {
-                Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else{
              if (e.getSource().equals(getVue().getjMenuItemRepresentationAfficher()));
             try {
                 representationAfficher();
             } catch (SQLException ex) {
-                Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
                  }
              }
@@ -96,7 +96,7 @@ public class CtrlMenu extends ControleurGenerique implements ActionListener, Win
         try {
             menuFichierQuitter();
         } catch (SQLException ex) {
-            Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

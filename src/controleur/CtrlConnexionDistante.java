@@ -14,19 +14,19 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import vue.VueConnexion;
+import vue.VueAuthentificationLocale;
 
 /**
- * Controller gérant les connexions et la vue VueConnexion
+ * Controller gérant les connexions et la vue VueAuthentificationLocale
  *
  * @author ydurand v1.0
  */
-public class CtrlConnexion extends ControleurGenerique implements ActionListener, WindowListener {
+public class CtrlConnexionDistante extends ControleurGenerique implements ActionListener, WindowListener {
 
     // Constructeur du controller Principal
-    public CtrlConnexion(CtrlPrincipal ctrlPrincipal) {
+    public CtrlConnexionDistante(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
-        this.vue = new VueConnexion();
+        this.vue = new VueAuthentificationLocale();
         this.vue.addWindowListener(this);
         this.getVue().getjButtonConnexion().addActionListener(this);
         this.getVue().getjButtonQuitter().addActionListener(this);
@@ -37,8 +37,8 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
      * @return vue : Getter pour récupérer la vue "connexion"
      */
     @Override
-    public VueConnexion getVue() {
-        return (VueConnexion) vue;
+    public VueAuthentificationLocale getVue() {
+        return (VueAuthentificationLocale) vue;
     }
 
     /**
@@ -106,15 +106,15 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
                     JOptionPane.showMessageDialog(null, "Mauvais identifiants !");
                 }
             } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(CtrlConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
-                Logger.getLogger(CtrlConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (e.getSource().equals(this.getVue().getjButtonQuitter())) {
             try {
                 this.getCtrlPrincipal().action(EnumAction.MENU_QUITTER);
             } catch (SQLException ex) {
-                Logger.getLogger(CtrlConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -144,7 +144,7 @@ public class CtrlConnexion extends ControleurGenerique implements ActionListener
         try {
             menuFichierQuitter();
         } catch (SQLException ex) {
-            Logger.getLogger(CtrlMenu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

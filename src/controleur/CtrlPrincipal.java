@@ -12,17 +12,17 @@ import modele.dao.Jdbc;
  */
 public class CtrlPrincipal {
 
-    private CtrlConnexion ctrlConnexion = null; // Controller des connexions
+    private CtrlAuthentificationLocale ctrlConnexion = null; // Controller des connexions
     private CtrlRepresentation ctrlRepresentation = null; // LE CONTROLEUR DES REPRESENTATIONS
-    private CtrlReservation ctrlReservation = null; // LE CONTROLEUR D'UNE REPRESENTATION
-    private CtrlMenu ctrlMenu = null;//test de push
+    private CtrlVentePlace ctrlReservation = null; // LE CONTROLEUR D'UNE REPRESENTATION
+    private CtrlMenuPrincipal ctrlMenu = null;//test de push
 
     /**
      * action par défaut action au démarrage de l'application
      */
     public void action() throws SQLException {
         if (ctrlConnexion == null) {
-            ctrlConnexion = new CtrlConnexion(this);
+            ctrlConnexion = new CtrlAuthentificationLocale(this);
         }
         ctrlConnexion.getVue().setEnabled(true);
         ctrlConnexion.getVue().setVisible(true);
@@ -73,11 +73,11 @@ public class CtrlPrincipal {
     }
     
     /**
-     * Transition VueConnexion / VueMenuPrincipal
+     * Transition VueAuthentificationLocale / VueMenuPrincipal
      */
     private void menuPrincipalAfficher() throws SQLException {
         if (ctrlMenu == null) {
-            ctrlMenu = new CtrlMenu(this);
+            ctrlMenu = new CtrlMenuPrincipal(this);
         }
         ctrlConnexion.getVue().setEnabled(false);
         ctrlConnexion.getVue().setVisible(false);
@@ -105,7 +105,7 @@ public class CtrlPrincipal {
      */
     private void menuRepresentationDetail(int idRepresentationSelect) throws SQLException {
         if (ctrlReservation == null) {
-            ctrlReservation = new CtrlReservation(this, idRepresentationSelect);
+            ctrlReservation = new CtrlVentePlace(this, idRepresentationSelect);
         }
         ctrlRepresentation.getVue().setEnabled(false);
         ctrlRepresentation.getVue().setVisible(false);
@@ -118,7 +118,7 @@ public class CtrlPrincipal {
      */
     private void representationQuitter() {
         if (ctrlMenu == null) 
-            ctrlMenu = new CtrlMenu(this);       
+            ctrlMenu = new CtrlMenuPrincipal(this);       
         ctrlRepresentation.getVue().setVisible(false);
         ctrlRepresentation.getVue().setEnabled(false);
         ctrlMenu.getVue().setEnabled(true);

@@ -6,8 +6,8 @@
 package vue;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,60 +15,51 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VueVentePlace extends VueGenerique {
 
-    private DefaultTableModel modeleTableInformation;
-    private DefaultTableModel modeleTablePlaces;
-    
     /**
-     * Creates new form VueUneRepresentation
+     * Creates new form VueReservation
      */
     public VueVentePlace() {
         initComponents();
-        
-        modeleTableInformation = new DefaultTableModel();
-        jTableInformation.setModel(modeleTableInformation);
-        
-        modeleTablePlaces = new DefaultTableModel();
-        jTablePlaces.setModel(modeleTablePlaces);       
-    }
-
-    /**
-     * 
-     * @return DefaultTableModel modeleTableInformation
-     */
-    public DefaultTableModel getModeleTableInformation() {
-        return modeleTableInformation;
-    }
-
-    /**
-     * 
-     * @return DefaultTableModel modeleTablePlaces
-     */
-    public DefaultTableModel getModeleTablePlaces() {
-        return modeleTablePlaces;
     }
     
-    /**
-     * 
-     *  @return JButton jButtonValider
-     */
-    public JButton getjButtonValider() {
-        return jButtonValider;
+    public JLabel getjLabelGroupe() {
+        return jLabelGroupe;
     }
     
-    /**
-     * 
-     *  @return JButton jButtonQuitter
-     */
-    public JButton getjButtonQuitter() {
-        return jButtonQuitter;
-    }    
+    public JLabel getjLabelLieu() {
+        return jLabelLieu;
+    }
     
-    /**
-     * 
-     * @return JTextField jTextFieldCommande
-     */
-    public JTextField getjTextFieldCommande() {
-        return jTextFieldCommande;
+    public JLabel getjLabelDate() {
+        return jLabelDate;
+    }
+    
+    public JLabel getjLabelHeureDebut() {
+        return jLabelHeureDebut;
+    }
+    
+    public JLabel getjLabelHeureFin() {
+        return jLabelHeureFin;
+    }
+    
+    public JLabel getjLabelPlacesTotal() {
+        return jLabelPlacesTotal;
+    }
+    
+    public JLabel getjLabelPlacesRestantes() {
+        return jLabelPlacesRestantes;
+    }
+    
+    public JTextField getjTextFieldPlacesReserver() {
+        return jTextFieldPlacesReserver;
+    }
+    
+    public JButton getjButtonReserver() {
+        return jButtonReserver;
+    }
+    
+    public JButton getjButtonAnnuler() {
+        return jButtonAnnuler;
     }
 
     /**
@@ -80,131 +71,184 @@ public class VueVentePlace extends VueGenerique {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jLabelTitreVue = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTableInformation = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTablePlaces = new javax.swing.JTable();
-        jButtonValider = new javax.swing.JButton();
-        jButtonQuitter = new javax.swing.JButton();
-        jTextFieldCommande = new javax.swing.JTextField();
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        jLabelTitreGroupe = new javax.swing.JLabel();
+        jLabelGroupe = new javax.swing.JLabel();
+        jLabelTitreLieu = new javax.swing.JLabel();
+        jLabelLieu = new javax.swing.JLabel();
+        jLabelTitreDate = new javax.swing.JLabel();
+        jLabelDate = new javax.swing.JLabel();
+        jLabelTitreDebut = new javax.swing.JLabel();
+        jLabelHeureDebut = new javax.swing.JLabel();
+        jLabelTitreFin = new javax.swing.JLabel();
+        jLabelHeureFin = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButtonReserver = new javax.swing.JButton();
+        jButtonAnnuler = new javax.swing.JButton();
+        jLabelPlacesTotal = new javax.swing.JLabel();
+        jLabelPlacesRestantes = new javax.swing.JLabel();
+        jTextFieldPlacesReserver = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelTitreVue.setText("Une Representation");
+        jLabelTitreGroupe.setText("Groupe");
+        jLabelTitreGroupe.setToolTipText("");
 
-        jTableInformation.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, true
-            };
+        jLabelGroupe.setText("jLabel1");
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTableInformation);
+        jLabelTitreLieu.setText("Lieu");
 
-        jTablePlaces.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2"
-            }
-        ));
-        jScrollPane3.setViewportView(jTablePlaces);
+        jLabelLieu.setText("jLabel1");
 
-        jButtonValider.setText("Valider");
-        jButtonValider.addActionListener(new java.awt.event.ActionListener() {
+        jLabelTitreDate.setText("Date");
+
+        jLabelDate.setText("jLabel1");
+
+        jLabelTitreDebut.setText("Heure Debut");
+
+        jLabelHeureDebut.setText("jLabel1");
+
+        jLabelTitreFin.setText("Heure de fin");
+
+        jLabelHeureFin.setText("jLabel1");
+
+        jLabel1.setText("Places");
+
+        jLabel2.setText("Total");
+
+        jLabel3.setText("Restantes");
+
+        jButtonReserver.setText("Réserver");
+
+        jButtonAnnuler.setText("Annuler");
+        jButtonAnnuler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonValiderActionPerformed(evt);
+                jButtonAnnulerActionPerformed(evt);
             }
         });
 
-        jButtonQuitter.setText("Quitter");
-        jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
+        jLabelPlacesTotal.setText("jLabel4");
+
+        jLabelPlacesRestantes.setText("jLabel4");
+
+        jTextFieldPlacesReserver.setText("0");
+        jTextFieldPlacesReserver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonQuitterActionPerformed(evt);
+                jTextFieldPlacesReserverActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("Réservation");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelTitreGroupe)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabelGroupe)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelLieu)
+                            .addComponent(jLabelTitreLieu))
+                        .addGap(77, 77, 77))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabelPlacesTotal))
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabelPlacesRestantes))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTitreVue)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(42, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCommande)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonValider, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonQuitter)
-                        .addGap(15, 15, 15))))
+                            .addComponent(jLabelTitreDate)
+                            .addComponent(jLabelDate))
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelTitreDebut)
+                            .addComponent(jLabelHeureDebut))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelHeureFin)
+                            .addComponent(jLabelTitreFin)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButtonAnnuler)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonReserver))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextFieldPlacesReserver, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addGap(36, 36, 36)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelTitreVue)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTitreGroupe)
+                    .addComponent(jLabelTitreLieu))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonValider)
-                        .addComponent(jButtonQuitter)
-                        .addComponent(jTextFieldCommande, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelGroupe)
+                    .addComponent(jLabelLieu))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTitreDate)
+                    .addComponent(jLabelTitreDebut)
+                    .addComponent(jLabelTitreFin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDate)
+                    .addComponent(jLabelHeureDebut)
+                    .addComponent(jLabelHeureFin))
+                .addGap(58, 58, 58)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPlacesTotal)
+                    .addComponent(jLabelPlacesRestantes)
+                    .addComponent(jTextFieldPlacesReserver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonReserver)
+                    .addComponent(jButtonAnnuler))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderActionPerformed
+    private void jButtonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnulerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonValiderActionPerformed
+    }//GEN-LAST:event_jButtonAnnulerActionPerformed
 
-    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
-        dispose();
-    }//GEN-LAST:event_jButtonQuitterActionPerformed
+    private void jTextFieldPlacesReserverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPlacesReserverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPlacesReserverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,16 +287,24 @@ public class VueVentePlace extends VueGenerique {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonQuitter;
-    private javax.swing.JButton jButtonValider;
-    private javax.swing.JLabel jLabelTitreVue;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTableInformation;
-    private javax.swing.JTable jTablePlaces;
-    private javax.swing.JTextField jTextFieldCommande;
+    private javax.swing.JButton jButtonAnnuler;
+    private javax.swing.JButton jButtonReserver;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelDate;
+    private javax.swing.JLabel jLabelGroupe;
+    private javax.swing.JLabel jLabelHeureDebut;
+    private javax.swing.JLabel jLabelHeureFin;
+    private javax.swing.JLabel jLabelLieu;
+    private javax.swing.JLabel jLabelPlacesRestantes;
+    private javax.swing.JLabel jLabelPlacesTotal;
+    private javax.swing.JLabel jLabelTitreDate;
+    private javax.swing.JLabel jLabelTitreDebut;
+    private javax.swing.JLabel jLabelTitreFin;
+    private javax.swing.JLabel jLabelTitreGroupe;
+    private javax.swing.JLabel jLabelTitreLieu;
+    private javax.swing.JTextField jTextFieldPlacesReserver;
     // End of variables declaration//GEN-END:variables
-
 }
