@@ -12,35 +12,43 @@ import modele.dao.Jdbc;
  */
 public class CtrlPrincipal {
 
-    private CtrlAuthentificationLocale ctrlConnexion = null; // Controller des connexions
+    private CtrlAuthentificationLocale ctrlAuthentificationLocale = null; // Controller des connexions
     private CtrlRepresentation ctrlRepresentation = null; // LE CONTROLEUR DES REPRESENTATIONS
-    private CtrlVentePlace ctrlReservation = null; // LE CONTROLEUR D'UNE REPRESENTATION
-    private CtrlMenuPrincipal ctrlMenu = null;//test de push
-
+    private CtrlVentePlace ctrlVentePlace = null; // LE CONTROLEUR D'UNE REPRESENTATION
+    private CtrlMenuPrincipal ctrlMenuPrincipal = null; // Le controller du menu principal
+    private CtrlConnexionDistante ctrlConnexionDistante = null; // le controller des connexions via la BDD
+    
     /**
      * action par défaut action au démarrage de l'application
      */
     public void action() throws SQLException {
-        if (ctrlConnexion == null) {
-            ctrlConnexion = new CtrlAuthentificationLocale(this);
+        if (ctrlAuthentificationLocale == null) {
+            ctrlAuthentificationLocale = new CtrlAuthentificationLocale(this);
         }
-        ctrlConnexion.getVue().setEnabled(true);
-        ctrlConnexion.getVue().setVisible(true);
+        ctrlAuthentificationLocale.getVue().setEnabled(true);
+        ctrlAuthentificationLocale.getVue().setVisible(true);
     }
 
     public void action(EnumAction action) throws SQLException {
         switch (action) {
-            case CONNEXION_AFFICHER_MENU_PRINCIPAL: // Activation du menu principal après connexion
+            case AUTHENTIFICATION_AFFICHER_MENU_PRINCIPAL: // Activation du menu principal après connexion
                 menuPrincipalAfficher();
                 break;
+            case CONNEXION_AFFICHER_MENU_PRINCIPAL: // Activation du menu principal après connexion
+                menuPrincipalRetour();
+                break;
+            case MENU_CONNEXION_DISTANTE: // Active la vue pour se connecter à la base distante
+                connexionDistanteAfficher();
             case MENU_REPRESENTATION_AFFICHER: // activation de vueRepresentation depuis vueMenu
-                menuRepresentationAfficher();
+                representationAfficher();
                 break;
             case REPRESENTATION_QUITTER:    // retour à vueMenu depuis la vueRepresentation
                 representationQuitter();
                 break;
             case VENTES_QUITTER:
                 venteQuitter();
+            case CONNEXION_DISTANTE_QUITTER: // Active la vue pour se connecter à la base distante
+                connexionDistanteQuitter();
             case MENU_QUITTER: // fin de l'application depuis le menu principal
                 menuFichierQuitter();
                 break;
@@ -48,21 +56,25 @@ public class CtrlPrincipal {
     }
     
     /**
+     * 
      * Appel d'un constructeur avec un échange de variable de type String
+     * @throws SQLException 
      */
     public void action(EnumAction action, int idRepresentationSelect) throws SQLException {
         switch (action) {
-            case REPRESENTATION_DETAILS: // activation de vueUneRepresentation depuis vueRepresentation
-                menuRepresentationDetail(idRepresentationSelect);
+            case REPRESENTATION_VENTE: // activation de vueUneRepresentation depuis vueRepresentation
+                venteAfficher(idRepresentationSelect);
                 break;
         }            
     }
     
     /**
+     * 
      * Fin définitive de l'application La demande de confirmation est gérée par
      * le contrôleur spécialisé
+     * @throws SQLException
      */
-    private void menuFichierQuitter() {
+    private void menuFichierQuitter() throws SQLException {
         try {
             Jdbc.getInstance().deconnecter();
         } catch (Exception ex) {
@@ -73,27 +85,59 @@ public class CtrlPrincipal {
     }
     
     /**
+     * 
      * Transition VueAuthentificationLocale / VueMenuPrincipal
+     * @throws SQLException
      */
     private void menuPrincipalAfficher() throws SQLException {
-        if (ctrlMenu == null) {
-            ctrlMenu = new CtrlMenuPrincipal(this);
+        if (ctrlMenuPrincipal == null) {
+            ctrlMenuPrincipal = new CtrlMenuPrincipal(this);
         }
-        ctrlConnexion.getVue().setEnabled(false);
-        ctrlConnexion.getVue().setVisible(false);
-        ctrlMenu.getVue().setEnabled(true);
-        ctrlMenu.getVue().setVisible(true);
+        ctrlAuthentificationLocale.getVue().setEnabled(false);
+        ctrlAuthentificationLocale.getVue().setVisible(false);
+        ctrlMenuPrincipal.getVue().setEnabled(true);
+        ctrlMenuPrincipal.getVue().setVisible(true);
+    }
+    
+        /**
+     * 
+     * Transition VueConnexionDistante / VueMenuPrincipal
+     * @throws SQLException
+     */
+    private void menuPrincipalRetour() throws SQLException {
+        if (ctrlMenuPrincipal == null) {
+            ctrlMenuPrincipal = new CtrlMenuPrincipal(this);
+        }
+        ctrlConnexionDistante.getVue().setEnabled(false);
+        ctrlConnexionDistante.getVue().setVisible(false);
+        ctrlMenuPrincipal.getVue().setEnabled(true);
     }
     
     /**
-     * Transition vueMenu / vueRepresentation
+     * 
+     * Transition vueMenuPrincipal / VueConnexionDistante
+     * @throws SQLException 
      */
-    private void menuRepresentationAfficher() throws SQLException {
+    private void connexionDistanteAfficher() throws SQLException {
+        if (ctrlConnexionDistante == null) {
+            ctrlConnexionDistante = new CtrlConnexionDistante(this);
+        }
+        ctrlConnexionDistante.getVue().setEnabled(true);
+        ctrlConnexionDistante.getVue().setVisible(true);
+        ctrlMenuPrincipal.getVue().setEnabled(false);
+    }
+    
+    /**
+     * 
+     * Transition vueMenu / vueRepresentation
+     * @throws SQLException
+     */
+    private void representationAfficher() throws SQLException {
         if (ctrlRepresentation == null) {
             ctrlRepresentation = new CtrlRepresentation(this);
         }
-        ctrlMenu.getVue().setEnabled(false);
-        ctrlMenu.getVue().setVisible(false);
+        ctrlMenuPrincipal.getVue().setEnabled(false);
+        ctrlMenuPrincipal.getVue().setVisible(false);
         ctrlRepresentation.getVue().setVisible(true);
         ctrlRepresentation.getVue().setEnabled(true);
     }
@@ -103,37 +147,54 @@ public class CtrlPrincipal {
      * @throws SQLException 
      * Methode pour afficher la vue de la représentation selectionnée
      */
-    private void menuRepresentationDetail(int idRepresentationSelect) throws SQLException {
-        if (ctrlReservation == null) {
-            ctrlReservation = new CtrlVentePlace(this, idRepresentationSelect);
+    private void venteAfficher(int idRepresentationSelect) throws SQLException {
+        if (ctrlVentePlace == null) {
+            ctrlVentePlace = new CtrlVentePlace(this, idRepresentationSelect);
         }
         ctrlRepresentation.getVue().setEnabled(false);
         ctrlRepresentation.getVue().setVisible(false);
-        ctrlReservation.getVue().setVisible(true);
-        ctrlReservation.getVue().setEnabled(true);
+        ctrlVentePlace.getVue().setVisible(true);
+        ctrlVentePlace.getVue().setEnabled(true);
     }
     
     /**
+     * 
      * Transition vueRepresentation / vueMenu
+     * @throws SQLException
      */
     private void representationQuitter() {
-        if (ctrlMenu == null) 
-            ctrlMenu = new CtrlMenuPrincipal(this);       
+        if (ctrlMenuPrincipal == null) 
+            ctrlMenuPrincipal = new CtrlMenuPrincipal(this);       
         ctrlRepresentation.getVue().setVisible(false);
         ctrlRepresentation.getVue().setEnabled(false);
-        ctrlMenu.getVue().setEnabled(true);
-        ctrlMenu.getVue().setVisible(true);
+        ctrlMenuPrincipal.getVue().setEnabled(true);
+        ctrlMenuPrincipal.getVue().setVisible(true);
     }
     
     /**
+     * 
      * Transition vueLesVentes / vueRepresentation
+     * @throws SQLException
      */
     private void venteQuitter() throws SQLException {
         if (ctrlRepresentation == null) 
             ctrlRepresentation = new CtrlRepresentation(this);       
         ctrlRepresentation.getVue().setVisible(true);
         ctrlRepresentation.getVue().setEnabled(true);
-        ctrlReservation.getVue().setEnabled(false);
-        ctrlReservation.getVue().setVisible(false);
+        ctrlVentePlace.getVue().setEnabled(false);
+        ctrlVentePlace.getVue().setVisible(false);
+    }
+    
+    /**
+     * 
+     * @throws SQLException 
+     */
+    private void connexionDistanteQuitter() throws SQLException {
+        if (ctrlMenuPrincipal == null) 
+            ctrlMenuPrincipal = new CtrlMenuPrincipal(this);       
+        ctrlMenuPrincipal.getVue().setVisible(true);
+        ctrlMenuPrincipal.getVue().setEnabled(true);
+        ctrlConnexionDistante.getVue().setEnabled(false);
+        ctrlConnexionDistante.getVue().setVisible(false);
     }
 }
