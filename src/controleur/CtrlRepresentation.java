@@ -85,7 +85,7 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         int ligne = getVue().getjTableRepresentation().getSelectedRow();
         if (ligne != -1) { 
             int idRepresentationSelect = arrObjRepresentation.get(ligne).getIdRepresentation();
-            this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_DETAILS, idRepresentationSelect);
+            this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE, idRepresentationSelect);
         }
     }
     

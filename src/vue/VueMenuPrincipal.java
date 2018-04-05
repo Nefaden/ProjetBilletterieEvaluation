@@ -50,6 +50,14 @@ public class VueMenuPrincipal extends VueGenerique {
         return jMenuItemQuitter;
     }
     
+    /**
+     * 
+     * @return JMenuItem jMenuItemConnexion : item du menu "fichier" pour se connecter à la base distante
+     */
+    public JMenuItem getjMenuItemConnexion() {
+        return jMenuItemConnexion;
+    }
+    
     //Initialisation des comlposants graphiques
     private void myInitComponents() {
         jLabelTitreMenu = new javax.swing.JLabel();
@@ -60,6 +68,7 @@ public class VueMenuPrincipal extends VueGenerique {
         jMenuItemRepresentationAfficher = new javax.swing.JMenuItem();
         jMenuItemVente = new javax.swing.JMenuItem();
         jMenuItemQuitter = new javax.swing.JMenuItem();
+        jMenuItemConnexion = new javax.swing.JMenuItem();
         jButtonVentePlace = new javax.swing.JButton();
         jButtonAfficherRepresentation = new javax.swing.JButton();
         
@@ -76,9 +85,12 @@ public class VueMenuPrincipal extends VueGenerique {
         
         jMenuFichier.setText("Fichier");
         
+        jMenuItemConnexion.setText("Se connecter");
+        jMenuFichier.add(jMenuItemConnexion);
+        
         jMenuItemQuitter.setText("Quitter");
         jMenuFichier.add(jMenuItemQuitter);
-        
+                
         jMenuBarGestion.add(jMenuFichier);
         
         jMenuRepresentation.setText("Representation");
@@ -114,26 +126,6 @@ public class VueMenuPrincipal extends VueGenerique {
                 .addComponent(jLabelTitreMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(129, Short.MAX_VALUE))
         );
-        
-//        javax.swing.GroupLayout buttonLayout = new javax.swing.GroupLayout(getContentPane());
-//        getContentPane().setLayout(buttonLayout);
-//        buttonLayout.setHorizontalGroup(
-//            buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addGroup(buttonLayout.createSequentialGroup()
-//                .addGap(25, 25, 25)
-//                .addComponent(jButtonAfficherRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-//                .addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-//                .addContainerGap(28, Short.MAX_VALUE))
-//        );
-//        buttonLayout.setVerticalGroup(
-//            buttonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-//            .addGroup(buttonLayout.createSequentialGroup()
-//                .addGap(91, 91, 91)
-//                .addComponent(jButtonAfficherRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-//                .addComponent(jButtonVentePlace, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-//                .addContainerGap(129, Short.MAX_VALUE))
-//        );
-
         pack();
     }
     
@@ -146,6 +138,7 @@ public class VueMenuPrincipal extends VueGenerique {
     private javax.swing.JMenuItem jMenuItemRepresentationAfficher;
     private javax.swing.JMenuItem jMenuItemVente;
     private javax.swing.JMenuItem jMenuItemQuitter;
+    private javax.swing.JMenuItem jMenuItemConnexion;
     private javax.swing.JButton jButtonVentePlace;
     private javax.swing.JButton jButtonAfficherRepresentation;
     

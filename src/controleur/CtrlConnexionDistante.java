@@ -4,17 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import vue.VueAuthentificationLocale;
+import vue.VueConnexionDistante;
+import modele.metier.Utilisateur;
+import modele.dao.UtilisateurDao;
 
 /**
  * Controller gérant les connexions et la vue VueAuthentificationLocale
@@ -26,19 +24,19 @@ public class CtrlConnexionDistante extends ControleurGenerique implements Action
     // Constructeur du controller Principal
     public CtrlConnexionDistante(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
-        this.vue = new VueAuthentificationLocale();
+        this.vue = new VueConnexionDistante();
         this.vue.addWindowListener(this);
         this.getVue().getjButtonConnexion().addActionListener(this);
         this.getVue().getjButtonQuitter().addActionListener(this);
     }
 
     /**
-     * 
+     *
      * @return vue : Getter pour récupérer la vue "connexion"
      */
     @Override
-    public VueAuthentificationLocale getVue() {
-        return (VueAuthentificationLocale) vue;
+    public VueConnexionDistante getVue() {
+        return (VueConnexionDistante) vue;
     }
 
     /**
@@ -46,82 +44,69 @@ public class CtrlConnexionDistante extends ControleurGenerique implements Action
      * connexion est validé le controller appelle la méthode du controller
      * principal Affiche la vue adéquat à la méthode
      */
-    public void menuPrincipalAfficher() throws SQLException {
+    public void menuPrincipalRetour() throws SQLException {
         this.getCtrlPrincipal().action(EnumAction.CONNEXION_AFFICHER_MENU_PRINCIPAL);
     }
 
     /**
-     * 
-     * @param e : Evénements e auquel est associé toutes actions dans la vue
-     * Sur n'importe quel élément graphique avec lesquels les intéractions sont possible
+     *
+     * @param e : Evénements e auquel est associé toutes actions dans la vue Sur
+     * n'importe quel élément graphique avec lesquels les intéractions sont
+     * possible
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(this.getVue().getjButtonConnexion())) {
 
-            Properties connexionProperties = new Properties();
-            InputStream input = null;
-
             try {
-                input = new FileInputStream("src/config/accessDB.properties");
-
-                // load properties file
-                connexionProperties.load(input);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            } finally {
-                if (input != null) {
-                    try {
-                        input.close();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-
-            try {
-                String identifiant = this.getVue().getjTextFieldNomUtilisateur().getText();
                 String motDePasse = this.getVue().getjPasswordFieldMotDePasse().getText();
 
-                MessageDigest mdUser = MessageDigest.getInstance("MD5");
-                mdUser.update(identifiant.getBytes());
-                byte[] digest = mdUser.digest();
+                MessageDigest mdPassword;
+
+                mdPassword = MessageDigest.getInstance("MD5");
+
+                mdPassword.update(motDePasse.getBytes());
+                byte[] digest = mdPassword.digest();
                 StringBuffer sb = new StringBuffer();
                 for (byte b : digest) {
                     sb.append(String.format("%02x", b & 0xff));
                 }
 
-                MessageDigest mdPassword = MessageDigest.getInstance("MD5");
-                mdPassword.update(motDePasse.getBytes());
-                byte[] digest2 = mdPassword.digest();
-                StringBuffer sb2 = new StringBuffer();
-                for (byte b : digest2) {
-                    sb2.append(String.format("%02x", b & 0xff));
-                }
-                /* Compare les éléments du fichier properties à ce qui est récupérer des jTextField
-                Si les éléments des jTextFields corresepondent, renvoie vers la méthode CONNEXION_MENU_PRINCPAL du controller principal */
-                if (connexionProperties.getProperty("login").equals(sb.toString()) && connexionProperties.getProperty("password").equals(sb2.toString())) {
-                    this.getCtrlPrincipal().action(EnumAction.CONNEXION_AFFICHER_MENU_PRINCIPAL);
+                if (getVue().getjTextFieldNomUtilisateur().getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Renseignez le nom d'utilisateur", "Inane error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Mauvais identifiants !");
+                    Utilisateur objUtilisateur = UtilisateurDao.getOneByNameUser(getVue().getjTextFieldNomUtilisateur().getText());
+                    if (getVue().getjPasswordFieldMotDePasse().getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Renseignez le Mot de Passe", "Inane error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if (objUtilisateur.getNomUtilisateur().equals(getVue().getjTextFieldNomUtilisateur().getText())
+                                && objUtilisateur.getMotDePasse().equals(sb.toString())) {
+                            JOptionPane.showMessageDialog(null, "Connexion effectuée");
+                            this.getCtrlPrincipal().action(EnumAction.CONNEXION_AFFICHER_MENU_PRINCIPAL);
+                        }
+                    }
                 }
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (e.getSource().equals(this.getVue().getjButtonQuitter())) {
-            try {
-                this.getCtrlPrincipal().action(EnumAction.MENU_QUITTER);
-            } catch (SQLException ex) {
-                Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            if (e.getSource().equals(this.getVue().getjButtonQuitter())) {
+                try {
+                    this.getCtrlPrincipal().action(EnumAction.CONNEXION_AFFICHER_MENU_PRINCIPAL);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
-    
+
     /**
      * clic sur le bouton Quitter de la vue ou sur la croix de la fenêtre
      * l'action au contrôleur frontal
+     *
+     * @throws java.sql.SQLException
      */
     public void menuFichierQuitter() throws SQLException {
         // Confirmer avant de quitter
@@ -133,11 +118,13 @@ public class CtrlConnexionDistante extends ControleurGenerique implements Action
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {}
-  
+    public void windowOpened(WindowEvent e) {
+    }
+
     /**
-     * 
-     * @param e Evénement pour quitter l'application depuis la croix de la fenêtre
+     *
+     * @param e Evénement pour quitter l'application depuis la croix de la
+     * fenêtre
      */
     @Override
     public void windowClosing(WindowEvent e) {
@@ -147,20 +134,24 @@ public class CtrlConnexionDistante extends ControleurGenerique implements Action
             Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    @Override
-    public void windowClosed(WindowEvent e) {}
 
     @Override
-    public void windowIconified(WindowEvent e) {}
+    public void windowClosed(WindowEvent e) {
+    }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {
+    }
 
     @Override
-    public void windowActivated(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {
+    }
 
     @Override
-    public void windowDeactivated(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+    }
 }
-

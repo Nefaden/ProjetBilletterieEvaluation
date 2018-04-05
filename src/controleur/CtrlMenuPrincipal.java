@@ -12,10 +12,10 @@ import vue.VueMenuPrincipal;
 
 /**
  * Contrôleur de la fenêtre VueMenu
+ *
  * @author ydurand
- * @version 1 
+ * @version 1
  */
-
 public class CtrlMenuPrincipal extends ControleurGenerique implements ActionListener, WindowListener {
 
     // Constructeur du controller du menu principal
@@ -23,14 +23,15 @@ public class CtrlMenuPrincipal extends ControleurGenerique implements ActionList
         super(ctrlPrincipal);
         this.vue = new VueMenuPrincipal();
         this.vue.addWindowListener(this);
+        this.getVue().getjMenuItemConnexion().addActionListener(this);
         this.getVue().getjMenuItemQuitter().addActionListener(this);
         this.getVue().getjMenuItemRepresentationAfficher().addActionListener(this);
         this.getVue().getjMenuItemVente().addActionListener(this);
     }
 
     /**
-     * clic sur la commande Quitter du menu Fichier ou la croix de la fenêtre
-     * Le contrôleur délègue l'action au contrôleur frontal
+     * clic sur la commande Quitter du menu Fichier ou la croix de la fenêtre Le
+     * contrôleur délègue l'action au contrôleur frontal
      */
     public void menuFichierQuitter() throws SQLException {
         // Confirmer avant de quitter
@@ -42,23 +43,33 @@ public class CtrlMenuPrincipal extends ControleurGenerique implements ActionList
     }
 
     /**
-     * clic sur la commande Afficher les représentation du menu Representation Le contrôleur délègue
-     * l'action au contrôleur frontal
+     * clic sur la commande Afficher les représentation du menu Representation
+     * Le contrôleur délègue l'action au contrôleur frontal
      */
     public void representationAfficher() throws SQLException {
         this.getCtrlPrincipal().action(EnumAction.MENU_REPRESENTATION_AFFICHER);
     }
 
     /**
-     * clic sur la commande Ajouter du menu presence Le contrôleur délègue
-     * l'action au contrôleur frontal
+     * clic sur la commande Ajouter du menu vente Le contrôleur délègue l'action
+     * au contrôleur frontal
      */
-    public void representationDetails() throws SQLException {
-        this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_DETAILS);
+    public void representationVente() throws SQLException {
+        this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE);
     }
-    
+
     /**
-     * 
+     *
+     * Clic sur la commande du menu fichier pour afficher l'écran de connexion
+     *
+     * @throws SQLException
+     */
+    public void afficherConnexion() throws SQLException {
+        this.getCtrlPrincipal().action(EnumAction.MENU_CONNEXION_DISTANTE);
+    }
+
+    /**
+     *
      * @return (VueMenuPrincipal) vue : Getter de la vue du menu principal
      */
     @Override
@@ -67,39 +78,51 @@ public class CtrlMenuPrincipal extends ControleurGenerique implements ActionList
     }
 
     /**
-     * 
+     *
      * @param e : évenement lié aux objets contenu dans les menus déroulants
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(getVue().getjMenuItemQuitter())){
+        if (e.getSource().equals(getVue().getjMenuItemQuitter())) {
             try {
                 menuFichierQuitter();
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
-             if (e.getSource().equals(getVue().getjMenuItemRepresentationAfficher()));
+        }
+
+        if (e.getSource().equals(getVue().getjMenuItemRepresentationAfficher()));
+        {
             try {
                 representationAfficher();
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-                 }
-             }
+        }
+
+        if (e.getSource().equals(getVue().getjMenuItemConnexion())) {
+            try {
+                afficherConnexion();
+            } catch (SQLException ex) {
+                Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     @Override
     public void windowOpened(WindowEvent e) {}
-  
+
     @Override
     public void windowClosing(WindowEvent e) {
         try {
             menuFichierQuitter();
+
         } catch (SQLException ex) {
-            Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CtrlMenuPrincipal.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public void windowClosed(WindowEvent e) {}
 
@@ -114,5 +137,5 @@ public class CtrlMenuPrincipal extends ControleurGenerique implements ActionList
 
     @Override
     public void windowDeactivated(WindowEvent e) {}
-    
+
 }

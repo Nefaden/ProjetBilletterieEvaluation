@@ -116,6 +116,6 @@ public class Utilisateur {
      * @param strMotDePasse : Le mot de passe utilisé par l'utilisateur
      */
     public void setMotDePasse(String strMotDePasse) {
-        this.s_NomUtilisateur = strMotDePasse;
+        this.s_MotDePasse = strMotDePasse;
     }
 }
