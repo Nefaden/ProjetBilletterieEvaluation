@@ -18,8 +18,8 @@ SET time_zone = "+00:00";
 
 /* Création de l'utilisateur nécessaire à l'utilisation de la base de données */
 
-CREATE USER 'ydurand_festival_util'@'localhost' IDENTIFIED BY 'secret'; GRANT USAGE ON *.* TO 'ydurand_festival_util'@'localhost' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
-GRANT ALL PRIVILEGES ON `ydurand_festival`.* TO 'ydurand_festival_util'@'localhost' WITH GRANT OPTION;
+CREATE USER 'ydurand_util'@'localhost' IDENTIFIED BY 'secret'; GRANT USAGE ON *.* TO 'ydurand_util'@'localhost' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+GRANT ALL PRIVILEGES ON `ydurand_festival`.* TO 'ydurand_util'@'localhost' WITH GRANT OPTION;
 
 --
 -- Base de données :  `ydurand_festival`
@@ -380,8 +380,9 @@ INSERT INTO `Utilisateur` (`idUtilisateur`, `nom`, `prenom`, `nomUtilisateur`, `
 
 ALTER TABLE `Utilisateur`
 ADD PRIMARY KEY (`idUtilisateur`);
-ADD CONSTRAINT UNIQUE (`nomUtilisateur`);
 
+ALTER TABLE Utilisateur
+ADD UNIQUE (nomUtilisateur);
 --
 -- Encryptage des mot de passes de la table Utilisateur
 --
