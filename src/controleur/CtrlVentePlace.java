@@ -11,7 +11,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -144,17 +146,38 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
             }
         }else {
             if(e.getSource().equals(getVue().getjButtonReserver())) {
-                if (objRepresentation.getNbPlaceRestante() - Integer.parseInt(getVue().getjTextFieldPlacesReserver().getText()) < 0) {
-                    JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ objRepresentation.getNbPlaceRestante(),"Inane error",JOptionPane.ERROR_MESSAGE);
-                }
-                else {
-                    if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                        try {
-                            this.venteSoustraire();
-                        } catch (SQLException ex) {
-                            Logger.getLogger(CtrlVentePlace.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                
+                Date currentTime = new Date();
+                String dateDebut = objRepresentation.getDateRepresentation();
+                String heureDebut = objRepresentation.getHeureDebutRepresentation();
+                
+                //String msg2 = "Date auj : " + dateCourante;
+                //JOptionPane.showMessageDialog(null,msg2,"Inane error",JOptionPane.ERROR_MESSAGE);
+                
+                int annee = Integer.parseInt(dateDebut.substring(6,10));
+                int mois = Integer.parseInt(dateDebut.substring(3,5));
+                int jour = Integer.parseInt(dateDebut.substring(0,2));
+                int heure = Integer.parseInt(heureDebut.substring(0,2));
+                int minutes = Integer.parseInt(heureDebut.substring(3,5));
+            
+                Date dateRepresentation = new Date(annee-1900, mois, jour,heure,minutes);
+                
+                
+                if (dateRepresentation.before(currentTime)) {
+                    String msg = "Le concert est passé";
+                    JOptionPane.showMessageDialog(null,msg,"Concert Terminé",JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if (objRepresentation.getNbPlaceRestante() - Integer.parseInt(getVue().getjTextFieldPlacesReserver().getText()) < 0) {
+                        JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ objRepresentation.getNbPlaceRestante(),"Inane error",JOptionPane.ERROR_MESSAGE);
                     } else {
+                        if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            try {
+                                this.venteSoustraire();
+                            } catch (SQLException ex) {
+                                Logger.getLogger(CtrlVentePlace.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else {
+                        }
                     }
                 }
             }
