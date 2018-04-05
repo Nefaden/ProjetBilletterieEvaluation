@@ -36,3 +36,11 @@ INSERT INTO `Utilisateur` (`idUtilisateur`, `nom`, `prenom`, `nomUtilisateur`, `
 
 ALTER TABLE `Utilisateur`
 ADD PRIMARY KEY (`idUtilisateur`);
+ADD CONSTRAINT UNIQUE (`nomUtilisateur`);
+
+--
+-- Encryptage des mot de passes de la table Utilisateur
+--
+
+UPDATE `Utilisateur`
+SET `motDePasse` = MD5('1234');
