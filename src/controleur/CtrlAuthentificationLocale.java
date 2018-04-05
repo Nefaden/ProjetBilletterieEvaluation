@@ -14,6 +14,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modele.dao.Jdbc;
 import vue.VueAuthentificationLocale;
 
 /**
@@ -33,7 +34,7 @@ public class CtrlAuthentificationLocale extends ControleurGenerique implements A
     }
 
     /**
-     * 
+     *
      * @return vue : Getter pour récupérer la vue "connexion"
      */
     @Override
@@ -51,9 +52,10 @@ public class CtrlAuthentificationLocale extends ControleurGenerique implements A
     }
 
     /**
-     * 
-     * @param e : Evénements e auquel est associé toutes actions dans la vue
-     * Sur n'importe quel élément graphique avec lesquels les intéractions sont possible
+     *
+     * @param e : Evénements e auquel est associé toutes actions dans la vue Sur
+     * n'importe quel élément graphique avec lesquels les intéractions sont
+     * possible
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -98,10 +100,17 @@ public class CtrlAuthentificationLocale extends ControleurGenerique implements A
                 for (byte b : digest2) {
                     sb2.append(String.format("%02x", b & 0xff));
                 }
-                
+
                 /* Compare les éléments du fichier properties à ce qui est récupérer des jTextField
                 Si les éléments des jTextFields corresepondent, renvoie vers la méthode CONNEXION_MENU_PRINCPAL du controller principal */
                 if (connexionProperties.getProperty("login").equals(sb.toString()) && connexionProperties.getProperty("password").equals(sb2.toString())) {
+                    try {
+                        Jdbc.getInstance().connecter();
+                    } catch (ClassNotFoundException ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Main - connexion à la BDD - pilote JDBC non trouvé", JOptionPane.ERROR_MESSAGE);
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Main - connexion à la BDD", JOptionPane.ERROR_MESSAGE);
+                    }
                     this.getCtrlPrincipal().action(EnumAction.AUTHENTIFICATION_AFFICHER_MENU_PRINCIPAL);
                 } else {
                     JOptionPane.showMessageDialog(null, "Vérifier vos identifiants !");
@@ -119,7 +128,7 @@ public class CtrlAuthentificationLocale extends ControleurGenerique implements A
             }
         }
     }
-    
+
     /**
      * clic sur le bouton Quitter de la vue ou sur la croix de la fenêtre
      * l'action au contrôleur frontal
@@ -134,11 +143,13 @@ public class CtrlAuthentificationLocale extends ControleurGenerique implements A
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {}
-  
+    public void windowOpened(WindowEvent e) {
+    }
+
     /**
-     * 
-     * @param e Evénement pour quitter l'application depuis la croix de la fenêtre
+     *
+     * @param e Evénement pour quitter l'application depuis la croix de la
+     * fenêtre
      */
     @Override
     public void windowClosing(WindowEvent e) {
@@ -148,20 +159,24 @@ public class CtrlAuthentificationLocale extends ControleurGenerique implements A
             Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    @Override
-    public void windowClosed(WindowEvent e) {}
 
     @Override
-    public void windowIconified(WindowEvent e) {}
+    public void windowClosed(WindowEvent e) {
+    }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {
+    }
 
     @Override
-    public void windowActivated(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {
+    }
 
     @Override
-    public void windowDeactivated(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+    }
 }
-
