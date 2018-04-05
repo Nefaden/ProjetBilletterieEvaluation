@@ -24,6 +24,9 @@ public class UtilisateurDaoTest {
             System.out.println("Test1 effectué : sélection unique\n");
             test2_SelectMultiple();
             System.out.println("Test2 effectué : sélection multiple\n");
+            String nomUtilisateur = "ydurand";
+            test3_SelectUser(nomUtilisateur);
+            System.out.println("Test3 effectué : sélection unique par le login\n");
         } catch (ClassNotFoundException e) {
             System.err.println("Erreur de pilote JDBC : " + e);
         } catch (SQLException e) {
@@ -53,7 +56,7 @@ public class UtilisateurDaoTest {
     }
 
     /**
-     * Affiche une adresse d'après son identifiant
+     * Affiche un utilisateur d'après son identifiant
      * @throws SQLException
      */
     public static void test1_SelectUnique(int idUtilisateur) throws SQLException {
@@ -62,11 +65,21 @@ public class UtilisateurDaoTest {
     }
 
     /**
-     * Affiche toutes les villes
+     * Affiche tous les utilisateurs
      * @throws SQLException
      */
     public static void test2_SelectMultiple() throws SQLException {
         List<Utilisateur> arrObjUtilisateurs = UtilisateurDao.getAll();
         System.out.println("Les Utilisateurs lues : " + arrObjUtilisateurs.toString());
+    }
+    
+    /**
+     * Affiche un utilisateur d'après son login
+     * @param nomUtilisateur
+     * @throws SQLException
+     */
+    public static void test3_SelectUser(String nomUtilisateur) throws SQLException {
+        Utilisateur objUtilisateur = UtilisateurDao.getOneByNameUser(nomUtilisateur);
+        System.out.println("Utilisateur de login : " + nomUtilisateur + " : " + objUtilisateur.toString());
     }
 }

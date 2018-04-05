@@ -66,7 +66,7 @@ public class UtilisateurDao {
      * @return Utilisateur objUtilisateur : l'utilisateur sélectionner par son nom
      * @throws SQLException 
      */
-    public static Utilisateur getOneByName(String nomUtilisateur) throws SQLException {
+    public static Utilisateur getOneByNameUser(String nomUtilisateur) throws SQLException {
         Utilisateur objUtilisateur = null;
         ResultSet rs = null;
         PreparedStatement pstmt;
