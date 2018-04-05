@@ -47,7 +47,7 @@ public class CtrlAuthentificationLocale extends ControleurGenerique implements A
      * principal Affiche la vue adéquat à la méthode
      */
     public void menuPrincipalAfficher() throws SQLException {
-        this.getCtrlPrincipal().action(EnumAction.CONNEXION_AFFICHER_MENU_PRINCIPAL);
+        this.getCtrlPrincipal().action(EnumAction.AUTHENTIFICATION_AFFICHER_MENU_PRINCIPAL);
     }
 
     /**
@@ -98,12 +98,13 @@ public class CtrlAuthentificationLocale extends ControleurGenerique implements A
                 for (byte b : digest2) {
                     sb2.append(String.format("%02x", b & 0xff));
                 }
+                
                 /* Compare les éléments du fichier properties à ce qui est récupérer des jTextField
                 Si les éléments des jTextFields corresepondent, renvoie vers la méthode CONNEXION_MENU_PRINCPAL du controller principal */
                 if (connexionProperties.getProperty("login").equals(sb.toString()) && connexionProperties.getProperty("password").equals(sb2.toString())) {
-                    this.getCtrlPrincipal().action(EnumAction.CONNEXION_AFFICHER_MENU_PRINCIPAL);
+                    this.getCtrlPrincipal().action(EnumAction.AUTHENTIFICATION_AFFICHER_MENU_PRINCIPAL);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Mauvais identifiants !");
+                    JOptionPane.showMessageDialog(null, "Vérifier vos identifiants !");
                 }
             } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(CtrlAuthentificationLocale.class.getName()).log(Level.SEVERE, null, ex);
