@@ -37,6 +37,7 @@ public class main {
             prop.load(input);
 
             // get the property value and print it out
+            // Changer le dbdist en sgbd pour utiliser le main en local DB
             String driver = prop.getProperty("sgbd.driver");
             String jdbc = prop.getProperty("sgbd.jdbc");
             String pass = prop.getProperty("sgbd.pass");
