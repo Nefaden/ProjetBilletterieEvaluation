@@ -59,6 +59,7 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         getVue().getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         try {
             String[] ligneDonnees = new String[6];
+            // Utilisation JPQL
             arrObjRepresentation = RepresentationDao.getAll();
             for (Representation uneRepresentation : arrObjRepresentation) {
                 ligneDonnees[0] = Integer.toString(uneRepresentation.getIdRepresentation());
