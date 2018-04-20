@@ -65,7 +65,7 @@ public class CtrlAuthentificationLocale extends ControleurGenerique implements A
             InputStream input = null;
 
             try {
-                input = new FileInputStream("src/config/accessDB.properties");
+                input = new FileInputStream("config/accessDB.properties");
 
                 // load properties file
                 connexionProperties.load(input);

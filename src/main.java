@@ -31,7 +31,7 @@ public class main {
 
         try {
 
-            input = new FileInputStream("src/config/accessDB.properties");
+            input = new FileInputStream("config/accessDB.properties");
 
             // load a properties file
             prop.load(input);

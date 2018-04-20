@@ -68,7 +68,7 @@ public class CtrlConnexionDistante extends ControleurGenerique implements Action
 
             try {
 
-                input = new FileInputStream("src/config/accessDB.properties");
+                input = new FileInputStream("config/accessDB.properties");
 
                 // load a properties file
                 prop.load(input);
