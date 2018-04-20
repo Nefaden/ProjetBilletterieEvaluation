@@ -1,5 +1,7 @@
 package modele.metier;
 
+import java.io.Serializable;
+import javax.persistence.*;
 import modele.metier.Lieu;
 import modele.metier.Groupe;
 
@@ -9,15 +11,33 @@ import modele.metier.Groupe;
  * @author ydurand
  * v1.0
  */
-public class Representation {
+@Entity(name = "Representation")
+@Table(name = "Representation")
+public class Representation implements Serializable {
 
+    @Id
+    @Column(name = "id", length = 11)
     private int i_Id;
+    @Column(name = "daterepr", length = 255)
     private String s_Date;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name="id_lieu")
     private Lieu o_Lieu;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name="id_groupe")
     private Groupe o_Groupe;
+    @Column(name = "heure_debut", length = 255)
     private String s_HeureDebut;
+    @Column(name = "heure_fin", length = 255)
     private String s_HeureFin;
+    @Column(name = "nombre_Place_Restante", length = 11)
     private int i_NbPlaceRestante;
+    
+    /**
+     * 
+     * Void constructor for Mapping JPA
+     */
+    public Representation() {}
 
     /**
      * Constructeur avec les 6 attributs
