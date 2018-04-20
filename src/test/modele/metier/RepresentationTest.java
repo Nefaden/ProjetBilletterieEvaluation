@@ -16,7 +16,7 @@ public class RepresentationTest {
         Lieu objLieu;
         Groupe objGroupe;
         objLieu = new Lieu(2, "Le Cabaret", "MAIRIE ANNEXE DE PARAME, Place Georges COUDRAY", 250);
-        objGroupe = new Groupe("g024", "Boxty", "NULL", "NULL", 5, "France-Bretagne", "O");
+        objGroupe = new Groupe("g024", "Boxty", "NULL", "NULL", 5, "France-Bretagne", 'O');
         
         System.out.println("\nTest n°1 : instanciation et accesseurs/getter");
         objRepresentation = new Representation(1, "11/07/2017", objLieu, objGroupe, "19:00", "20:00", 50);

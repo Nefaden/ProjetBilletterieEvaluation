@@ -58,7 +58,7 @@ public class GroupeDao {
             String identiteResponsable = rs.getString("IDENTITERESPONSABLE");
             int nbPersonne = rs.getInt("NOMBREPERSONNES");
             String nomPays = rs.getString("NOMPAYS");
-            String hebergement = rs.getString("HEBERGEMENT");
+            char hebergement = rs.getString("HEBERGEMENT");
         objGroupe = new Groupe(id, nom, adressePostale, identiteResponsable, nbPersonne, nomPays, hebergement);
         return objGroupe;
     }
