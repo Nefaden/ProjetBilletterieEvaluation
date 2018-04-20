@@ -1,17 +1,32 @@
 package modele.metier;
 
+import java.io.Serializable;
+import javax.persistence.*;
 /**
  * Classe Lieu, lieu où sont faites les représentation
  * 
  * @author gdoucet
  * v1.0
  */
-public class Lieu {
+@Entity(name = "Lieu")
+@Table(name = "Lieu")
+public class Lieu implements Serializable {
     
+    @Id
+    @Column(name = "id", length = 11)
     private int i_Id;
+    @Column(name = "nom", length = 255)
     private String s_NomLieu;
+    @Column(name = "adr", length = 255)
     private String s_AdresseLieu;
+    @Column(name = "capacite", length = 11)
     private int i_CapaciteLieu;
+    
+    /**
+     * 
+     * Void constructor for Mapping JPA
+     */
+    public Lieu() {}
 
      /**
      * Constructeur avec les 4 attributs
