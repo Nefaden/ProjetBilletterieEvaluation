@@ -1,18 +1,35 @@
 package modele.metier;
 
+import java.io.Serializable;
+import javax.persistence.*;
+
 /**
  * Classe représentant les utilisateurs pour permettre la connexion à l'application
  * 
  * @author ydurand
  * v1.0
  */
-public class Utilisateur {
+@Entity(name = "Utilisateur")
+@Table(name = "Utilisateur")
+public class Utilisateur implements Serializable {
     
+    @Id
+    @Column(name = "idUtilisateur", length = 11)
     private int i_Id;
+    @Column(name = "nom", length = 40)
     private String s_Nom;
+    @Column(name = "prenom", length = 40)
     private String s_Prenom;
+    @Column(name = "nomUtilisateur", length = 40)
     private String s_NomUtilisateur;
+    @Column(name = "motDePasse", unique=true, length = 40)
     private String s_MotDePasse;
+    
+    /**
+     * 
+     * Void Constructor for Mapping JPA
+     */
+    public Utilisateur() {}
     
     /**
      * Constructeur avec les 4 attributs
