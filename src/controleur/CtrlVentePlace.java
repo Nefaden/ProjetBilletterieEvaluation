@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controleur;
 
 import java.awt.event.ActionEvent;
@@ -13,25 +8,31 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Date;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
-import modele.dao.RepresentationDao;
 import modele.metier.Representation;
 import vue.VueVentePlace;
 
 /**
- *
- * @author btssio
+ * Controller permettant la gestion de la vente des places
+ * 
+ * @author ydurand
+ * @v1.0
  */
 public class CtrlVentePlace extends ControleurGenerique implements ActionListener, WindowListener, MouseListener {
     
-    private final RepresentationDao RepresentationDao = new RepresentationDao();
+    //private final RepresentationDao RepresentationDao = new RepresentationDao();
     private Representation objRepresentation;
+    private EntityManager em;
 
     public CtrlVentePlace(CtrlPrincipal ctrlPrincipal, int idRepresentationSelect) throws SQLException {
         super(ctrlPrincipal);
+        this.em = Persistence.createEntityManagerFactory("BilletJava2017PU").createEntityManager();
         vue = new VueVentePlace();
         this.getVue().getjButtonReserver().addActionListener(this);
         this.getVue().getjButtonAnnuler().addActionListener(this);
@@ -48,7 +49,9 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
     private void afficherUneRepresentation(int idRepresentationSelect) throws SQLException {
         String msg = ""; //message d'erreur
         try {
-            objRepresentation = RepresentationDao.getOneById(idRepresentationSelect);
+            // Utilisation JPQL
+            Query query = em.createQuery("select r from Representation r WHERE r.i_Id = " + idRepresentationSelect);
+            objRepresentation = (Representation) query.getSingleResult();
             getVue().getjLabelGroupe().setText(objRepresentation.getGroupe().getNomGroupe());
             getVue().getjLabelLieu().setText(objRepresentation.getLieu().getNomLieu());
             getVue().getjLabelDate().setText(objRepresentation.getDateRepresentation());
@@ -62,18 +65,33 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
         }
     }
     
+    /**
+     * Méthode qui modifie le nombre de place restante pour une representation après une vente
+     * @throws SQLException 
+     */
     public void venteSoustraire() throws SQLException{
-        int vente = Integer.parseInt((getVue().getjTextFieldPlacesReserver()).getText());
-        RepresentationDao.updateNbPlaceRestante(objRepresentation.getIdRepresentation(), vente);
-        afficherUneRepresentation(objRepresentation.getIdRepresentation());
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        Representation objFindRepresentation = em.find(Representation.class, objRepresentation.getIdRepresentation());
+        int nbPlaceAVendre = objFindRepresentation.getNbPlaceRestante();
+        int nbPlaceVendu = Integer.parseInt((getVue().getjTextFieldPlacesReserver()).getText());
+        int nbPlaceRestante = nbPlaceAVendre - nbPlaceVendu;
+        objFindRepresentation.setNbPlaceRestante(nbPlaceRestante);
+        em.flush();
+        tx.commit();
+        em.close();
     }
     
+    /**
+     * Méthode pour quitter la vue des ventes
+     * @throws SQLException 
+     */
     public void venteQuitter() throws SQLException {
         this.getCtrlPrincipal().action(EnumAction.VENTES_QUITTER);
     }
     
     /**
-     *
+     * Getter pour récupérer le paramètre vue de la vue
      * @return VueRepresentation vue : Getter de la vue ds représentations
      */
     @Override
@@ -136,23 +154,26 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
     @Override
     public void mouseExited(MouseEvent e) {}
 
+    /**
+     * 
+     * @param e : event lié à la vue
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Si le bouton annuler est sélectionner
         if(e.getSource().equals(getVue().getjButtonAnnuler())) {
             try {
                 venteQuitter();
             } catch (SQLException ex) {
                 Logger.getLogger(CtrlVentePlace.class.getName()).log(Level.SEVERE, null, ex);
             }
+            //Si le bouton reserver est sélectionner
         }else {
             if(e.getSource().equals(getVue().getjButtonReserver())) {
                 
                 Date currentTime = new Date();
                 String dateDebut = objRepresentation.getDateRepresentation();
                 String heureDebut = objRepresentation.getHeureDebutRepresentation();
-                
-                //String msg2 = "Date auj : " + dateCourante;
-                //JOptionPane.showMessageDialog(null,msg2,"Inane error",JOptionPane.ERROR_MESSAGE);
                 
                 int annee = Integer.parseInt(dateDebut.substring(6,10));
                 int mois = Integer.parseInt(dateDebut.substring(3,5));
@@ -162,17 +183,21 @@ public class CtrlVentePlace extends ControleurGenerique implements ActionListene
             
                 Date dateRepresentation = new Date(annee-1900, mois, jour,heure,minutes);
                 
-                
+                //Si la date locale est supérieur à la date de fin de la représentation
+                // renvoie une erreur
                 if (dateRepresentation.before(currentTime)) {
                     String msg = "Le concert est passé";
                     JOptionPane.showMessageDialog(null,msg,"Concert Terminé",JOptionPane.ERROR_MESSAGE);
                 } else {
+                    // Si le nombre de place après la vente est < 0 renvoie une erreur
                     if (objRepresentation.getNbPlaceRestante() - Integer.parseInt(getVue().getjTextFieldPlacesReserver().getText()) < 0) {
                         JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ objRepresentation.getNbPlaceRestante(),"Inane error",JOptionPane.ERROR_MESSAGE);
                     } else {
+                        // Demande la confirmation de l'utilisateur avant d'update la table
                         if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                             try {
                                 this.venteSoustraire();
+                                System.out.println("Transaction de l'objet");
                             } catch (SQLException ex) {
                                 Logger.getLogger(CtrlVentePlace.class.getName()).log(Level.SEVERE, null, ex);
                             }

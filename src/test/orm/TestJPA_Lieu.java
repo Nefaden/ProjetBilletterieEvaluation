@@ -9,8 +9,10 @@ import javax.persistence.Query;
 import modele.metier.Lieu;
 
 /**
- *
+ * Classe de test du mapping de la classe Lieu
+ * 
  * @author ydurand
+ * @v1.0
  */
 public class TestJPA_Lieu {
 

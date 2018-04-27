@@ -6,6 +6,7 @@ package controleur;
  * - en majuscules
  * - le nom du contrôleur suivi d'un tiret bas et du nom de l'action pour ce contrôleur
  * @author ydurand
+ * @v1.0
  */
 public enum EnumAction {
     AUTHENTIFICATION_AFFICHER_MENU_PRINCIPAL,

@@ -5,8 +5,8 @@ import javax.persistence.*;
 /**
  * Classe Lieu, lieu où sont faites les représentation
  * 
- * @author gdoucet
- * v1.0
+ * @author ydurand
+ * @v1.0
  */
 @Entity(name = "Lieu")
 @Table(name = "Lieu")
@@ -52,7 +52,7 @@ public class Lieu implements Serializable {
         return ("Lieu{nom: " + this.getNomLieu() + "\tadresse: " + this.getAdresseLieu() + "\tcapacite: " + this.getCapaciteLieu())+"}";
     }
     
-     /**
+    /**
      *
      * @return int id du lieu dans la DB
      */

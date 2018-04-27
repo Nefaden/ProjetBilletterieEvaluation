@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Properties;
 import javax.swing.JOptionPane;
-import modele.dao.Jdbc;
+import Connexion.Jdbc.Jdbc;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,9 +15,10 @@ import modele.dao.Jdbc;
  */
 /**
  * Classe Main - S'exécute au lancement de l'appli - Contient les connexions à
- * la DB -
+ * la DB locale -
  *
- * @author ydurand v1.0
+ * @author ydurand 
+ * @v1.0
  */
 public class main {
 
@@ -37,7 +38,6 @@ public class main {
             prop.load(input);
 
             // get the property value and print it out
-            // Changer le dbdist en sgbd pour utiliser le main en local DB
             String driver = prop.getProperty("sgbd.driver");
             String jdbc = prop.getProperty("sgbd.jdbc");
             String pass = prop.getProperty("sgbd.pass");

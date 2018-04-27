@@ -1,5 +1,7 @@
 package controleur;
 
+import Connexion.Jdbc.Jdbc;
+import Connexion.Jdbc.JdbcDist;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -14,7 +16,7 @@ import vue.VueMenuPrincipal;
  * Contrôleur de la fenêtre VueMenu
  *
  * @author ydurand
- * @version 1
+ * @v1.0
  */
 public class CtrlMenuPrincipal extends ControleurGenerique implements ActionListener, WindowListener {
 
@@ -107,10 +109,26 @@ public class CtrlMenuPrincipal extends ControleurGenerique implements ActionList
                 Logger.getLogger(CtrlMenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        //action sur le menu item se deconnecter
+        if (e.getSource().equals(this.getVue().getjMenuItemDeconnexion())) {
+            if (CtrlConnexionDistante.estConnecter != false) {
+                this.getVue().getjMenuItemConnexion().setVisible(true);
+                this.getVue().getjMenuItemConnexion().setEnabled(true);
+                try {
+                    Jdbc.getInstance().deconnecter();
+                    CtrlConnexionDistante.estConnecter = false;
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "CtrlPrincipal - fermeture connexion BD distante", JOptionPane.ERROR_MESSAGE);
+                } 
+                JOptionPane.showMessageDialog(null, "Deconnecté");
+            }
+
+        }
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {}
+    public void windowOpened(WindowEvent e) {
+    }
 
     @Override
     public void windowClosing(WindowEvent e) {
@@ -124,18 +142,23 @@ public class CtrlMenuPrincipal extends ControleurGenerique implements ActionList
     }
 
     @Override
-    public void windowClosed(WindowEvent e) {}
+    public void windowClosed(WindowEvent e) {
+    }
 
     @Override
-    public void windowIconified(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {
+    }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {
+    }
 
     @Override
-    public void windowActivated(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {
+    }
 
     @Override
-    public void windowDeactivated(WindowEvent e) {}
+    public void windowDeactivated(WindowEvent e) {
+    }
 
 }

@@ -9,8 +9,10 @@ import javax.persistence.Query;
 import modele.metier.Groupe;
 
 /**
- *
+ *  Classe de test du mapping de la classe Groupe
+ * 
  * @author ydurand
+ * @v1.0
  */
 public class TestJPA_Groupe {
 

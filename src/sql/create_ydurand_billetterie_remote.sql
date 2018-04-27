@@ -18,11 +18,11 @@ SET time_zone = "+00:00";
 
 /* Création de l'utilisateur nécessaire à l'utilisation de la base de données */
 
-CREATE USER 'ydurand_util'@'%' IDENTIFIED BY 'secret'; GRANT USAGE ON *.* TO 'ydurand_util'@'localhost' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
-GRANT ALL PRIVILEGES ON `ydurand_festival`.* TO 'ydurand_util'@'%' WITH GRANT OPTION;
+CREATE USER 'ydurand_util'@'%' IDENTIFIED BY 'secret'; GRANT USAGE ON *.* TO 'ydurand_util'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+GRANT ALL PRIVILEGES ON `ydurand_billetterie`.* TO 'ydurand_util'@'%' WITH GRANT OPTION;
 
 --
--- Base de données :  `ydurand_festival`
+-- Base de données :  `ydurand_billetterie`
 --
 CREATE DATABASE IF NOT EXISTS `ydurand_billetterie` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `ydurand_billetterie`;

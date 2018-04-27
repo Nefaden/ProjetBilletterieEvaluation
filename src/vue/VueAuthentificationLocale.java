@@ -9,7 +9,7 @@ import javax.swing.JTextField;
  * Tentative de connexion à la base locale
  * 
  * @author ydurand
- * v1.0
+ * @v1.0
  */
 public class VueAuthentificationLocale extends VueGenerique {
     
@@ -73,6 +73,7 @@ public class VueAuthentificationLocale extends VueGenerique {
         jPasswordFieldMotDePasse = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
 
         jLabelTitre.setFont(new java.awt.Font("Waree", 1, 18)); // NOI18N
         jLabelTitre.setText("Authentification");

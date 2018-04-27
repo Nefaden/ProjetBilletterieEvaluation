@@ -7,7 +7,7 @@ import javax.persistence.*;
  * Classe représentant les utilisateurs pour permettre la connexion à l'application
  * 
  * @author ydurand
- * v1.0
+ * @v1.0
  */
 @Entity(name = "Utilisateur")
 @Table(name = "Utilisateur")

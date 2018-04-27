@@ -11,7 +11,8 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author btssio
+ * @author ydurand
+ * @v1.0
  */
 public class VueVentePlace extends VueGenerique {
 
@@ -22,42 +23,82 @@ public class VueVentePlace extends VueGenerique {
         initComponents();
     }
     
+    /**
+     * 
+     * @return JLabel jLabelGroupe
+     */
     public JLabel getjLabelGroupe() {
         return jLabelGroupe;
     }
     
+    /**
+     * 
+     * @return JLabel jLabelLieu
+     */
     public JLabel getjLabelLieu() {
         return jLabelLieu;
     }
     
+    /**
+     *  
+     * @return JLabel jLabelDate
+     */
     public JLabel getjLabelDate() {
         return jLabelDate;
     }
     
+    /**
+     * 
+     * @return JLabel jLabelHeureDebut
+     */
     public JLabel getjLabelHeureDebut() {
         return jLabelHeureDebut;
     }
     
+    /**
+     * 
+     * @return JLabel jLabelHeureFin
+     */
     public JLabel getjLabelHeureFin() {
         return jLabelHeureFin;
     }
     
+    /**
+     * 
+     * @return JLabel jLabelPlacesTotal
+     */
     public JLabel getjLabelPlacesTotal() {
         return jLabelPlacesTotal;
     }
     
+    /**
+     * 
+     * @return JLabel jLabelPlacesRestantes
+     */
     public JLabel getjLabelPlacesRestantes() {
         return jLabelPlacesRestantes;
     }
     
+    /**
+     * 
+     * @return JTextField jTextFieldPlacesReserver
+     */
     public JTextField getjTextFieldPlacesReserver() {
         return jTextFieldPlacesReserver;
     }
     
+    /**
+     * 
+     * @return JButton jButtonReserver
+     */
     public JButton getjButtonReserver() {
         return jButtonReserver;
     }
     
+    /**
+     * 
+     * @return JButton jButtonAnnuler
+     */
     public JButton getjButtonAnnuler() {
         return jButtonAnnuler;
     }

@@ -14,13 +14,14 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import modele.dao.Jdbc;
+import Connexion.Jdbc.Jdbc;
 import vue.VueAuthentificationLocale;
 
 /**
  * Controller gérant les connexions et la vue VueAuthentificationLocale
  *
- * @author ydurand v1.0
+ * @author ydurand 
+ * @v1.0
  */
 public class CtrlAuthentificationLocale extends ControleurGenerique implements ActionListener, WindowListener {
 
@@ -107,9 +108,9 @@ public class CtrlAuthentificationLocale extends ControleurGenerique implements A
                     try {
                         Jdbc.getInstance().connecter();
                     } catch (ClassNotFoundException ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Main - connexion à la BDD - pilote JDBC non trouvé", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Main - connexion à la BDD distante - pilote JDBC non trouvé", JOptionPane.ERROR_MESSAGE);
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Main - connexion à la BDD", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Main - connexion à la BDD distante", JOptionPane.ERROR_MESSAGE);
                     }
                     this.getCtrlPrincipal().action(EnumAction.AUTHENTIFICATION_AFFICHER_MENU_PRINCIPAL);
                 } else {

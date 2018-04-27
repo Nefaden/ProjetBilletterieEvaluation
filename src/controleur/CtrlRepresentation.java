@@ -5,26 +5,29 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import modele.dao.RepresentationDao;
 import modele.metier.Representation;
 import vue.VueRepresentation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  * Contrôleur permettant l'affichage et la sélection des représentation dans la
  * vueRepresentation
  *
- * @author ydurand v1.0
+ * @author ydurand 
+ * @v1.0
  */
 public class CtrlRepresentation extends ControleurGenerique implements ActionListener, WindowListener, MouseListener {
 
-    private final RepresentationDao RepresentationDao = new RepresentationDao();
-    private ArrayList<Representation> arrObjRepresentation;
+    //private final RepresentationDao RepresentationDao = new RepresentationDao();
+    private Vector<Representation> arrObjRepresentation;
 
     // Constructeur du controller des représentations
     public CtrlRepresentation(CtrlPrincipal ctrlPrincipal) throws SQLException {
@@ -53,26 +56,23 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
      * @throws SQLException
      */
     public void afficherRepresentation() throws SQLException {
-        String msg = ""; // message à afficher en cas d'erreur/
+        EntityManager em;
+        em = Persistence.createEntityManagerFactory("BilletJava2017PU").createEntityManager();
         getVue().getModeleTableRepresentation().setRowCount(0);
         String[] titresColonnes = {"ID", "Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
         getVue().getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
-        try {
-            String[] ligneDonnees = new String[6];
-            // Utilisation JPQL
-            arrObjRepresentation = RepresentationDao.getAll();
-            for (Representation uneRepresentation : arrObjRepresentation) {
-                ligneDonnees[0] = Integer.toString(uneRepresentation.getIdRepresentation());
-                ligneDonnees[1] = uneRepresentation.getGroupe().getNomGroupe();
-                ligneDonnees[2] = uneRepresentation.getLieu().getNomLieu();
-                ligneDonnees[3] = uneRepresentation.getDateRepresentation();
-                ligneDonnees[4] = uneRepresentation.getHeureDebutRepresentation();
-                ligneDonnees[5] = uneRepresentation.getHeureFinRepresentation();
-                getVue().getModeleTableRepresentation().addRow(ligneDonnees);
-            }
-        } catch (SQLException ex) {
-            msg = "CtrlRepresentation - afficherRepresentation() - " + ex.getMessage();
-            JOptionPane.showMessageDialog(vue, msg, "Affichage des représentations", JOptionPane.ERROR_MESSAGE);
+        String[] ligneDonnees = new String[6];
+        // Utilisation JPQL
+        Query query= em.createQuery("select r from Representation r");
+        arrObjRepresentation = (Vector<Representation>) query.getResultList();
+        for (Representation objRepresentation : arrObjRepresentation) {
+            ligneDonnees[0] = Integer.toString(objRepresentation.getIdRepresentation());
+            ligneDonnees[1] = objRepresentation.getGroupe().getNomGroupe();
+            ligneDonnees[2] = objRepresentation.getLieu().getNomLieu();
+            ligneDonnees[3] = objRepresentation.getDateRepresentation();
+            ligneDonnees[4] = objRepresentation.getHeureDebutRepresentation();
+            ligneDonnees[5] = objRepresentation.getHeureFinRepresentation();
+            getVue().getModeleTableRepresentation().addRow(ligneDonnees);
         }
     }
 
@@ -105,7 +105,7 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
             System.out.print("BOUTTON QUITTER");
         } else {
             if (e.getSource().equals(getVue().getjButtonReservation())) {
-                if (!verifierLignejTable()) {
+                if (!verifierLigneJTable()) {
                     JOptionPane.showMessageDialog(null, "Représentation non sélectionnée.", "Inane error", JOptionPane.ERROR_MESSAGE);
                 } else {
                     try {
@@ -123,16 +123,16 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
      * 
      * @return Boolean
      */
-    public boolean verifierLignejTable() {
-        boolean test;
+    public boolean verifierLigneJTable() {
+        boolean idLigneJTable;
         int ligne = getVue().getjTableRepresentation().getSelectedRow();
         int colonne = getVue().getjTableRepresentation().getSelectedColumn();
         if (ligne != -1 && colonne != -1) {
-            test = true;
+            idLigneJTable = true;
         } else {
-            test = false;
+            idLigneJTable = false;
         }
-        return test;
+        return idLigneJTable;
     }
 
     /**

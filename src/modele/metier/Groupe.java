@@ -5,8 +5,8 @@ import java.io.Serializable;
 /**
  * Classe Groupe, le groupe jouant durant la representation
  * 
- * @author mroux
- * v1.0
+ * @author ydurand
+ * @v1.0
  */
 @Entity(name="Groupe")
 @Table(name = "Groupe")

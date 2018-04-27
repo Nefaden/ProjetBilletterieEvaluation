@@ -5,7 +5,8 @@ import modele.metier.Utilisateur;
 /**
  * Classe permettant de tester la classe Utilisateur (getter/setter)
  *
- * @author ydurand v1.0
+ * @author ydurand 
+ * @v1.0
  */
 public class UtilisateurTest {
 

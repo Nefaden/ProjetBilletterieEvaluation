@@ -11,7 +11,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author btssio
+ * @author ydurand
+ * @v1.0
  */
 public class VueRepresentation extends VueGenerique {
     
@@ -63,13 +64,27 @@ public class VueRepresentation extends VueGenerique {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
         jLabelTitre = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableRepresentation = new javax.swing.JTable();
         jButtonQuitter = new javax.swing.JButton();
         jButtonReserver = new javax.swing.JButton();
 
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(0, 0));
+        setName("JFrameRepresentation"); // NOI18N
 
         jLabelTitre.setText("Representation");
 
@@ -182,6 +197,7 @@ public class VueRepresentation extends VueGenerique {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonQuitter;
     private javax.swing.JButton jButtonReserver;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabelTitre;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableRepresentation;

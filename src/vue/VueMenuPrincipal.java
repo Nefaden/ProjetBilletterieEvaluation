@@ -11,7 +11,7 @@ import javax.swing.*;
  *
  * Fenêtre principale de l'application
  * @author ydurand
- * @version v0.1 - 22 février 2018
+ * @v1.0
  * 
  */
 public class VueMenuPrincipal extends VueGenerique {
@@ -58,6 +58,14 @@ public class VueMenuPrincipal extends VueGenerique {
         return jMenuItemConnexion;
     }
     
+    /**
+     * 
+     * @return JMenuItem jMenuItemConnexion : item du menu "fichier"
+     */
+    public JMenuItem getjMenuItemDeconnexion() {
+        return jMenuItemConnexion;
+    }
+    
     //Initialisation des comlposants graphiques
     private void myInitComponents() {
         jLabelTitreMenu = new javax.swing.JLabel();
@@ -69,6 +77,7 @@ public class VueMenuPrincipal extends VueGenerique {
         jMenuItemVente = new javax.swing.JMenuItem();
         jMenuItemQuitter = new javax.swing.JMenuItem();
         jMenuItemConnexion = new javax.swing.JMenuItem();
+        jMenuItemDeconnexion = new javax.swing.JMenuItem();
         jButtonVentePlace = new javax.swing.JButton();
         jButtonAfficherRepresentation = new javax.swing.JButton();
         
@@ -87,6 +96,11 @@ public class VueMenuPrincipal extends VueGenerique {
         
         jMenuItemConnexion.setText("Se connecter");
         jMenuFichier.add(jMenuItemConnexion);
+        
+        jMenuItemDeconnexion.setText("Se deconnecter");
+        jMenuItemDeconnexion.setVisible(false);
+        jMenuItemDeconnexion.setEnabled(false);
+        jMenuFichier.add(jMenuItemDeconnexion);
         
         jMenuItemQuitter.setText("Quitter");
         jMenuFichier.add(jMenuItemQuitter);
@@ -139,6 +153,7 @@ public class VueMenuPrincipal extends VueGenerique {
     private javax.swing.JMenuItem jMenuItemVente;
     private javax.swing.JMenuItem jMenuItemQuitter;
     private javax.swing.JMenuItem jMenuItemConnexion;
+    private javax.swing.JMenuItem jMenuItemDeconnexion;
     private javax.swing.JButton jButtonVentePlace;
     private javax.swing.JButton jButtonAfficherRepresentation;
     

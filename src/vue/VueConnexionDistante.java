@@ -9,7 +9,7 @@ import javax.swing.JTextField;
  * Tentative de connexion à la base locale
  * 
  * @author ydurand
- * v1.0
+ * @v1.0
  */
 public class VueConnexionDistante extends VueGenerique {
     

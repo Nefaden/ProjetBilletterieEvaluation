@@ -4,12 +4,12 @@ import vue.VueGenerique;
 
 /**
  * ControleurGenerique
- modèle de contrôleur de base
- chaque contrôleur possède :
- - une vue
- - une liaison vers le contrôleur principal
+ * modèle de contrôleur de base
+ * chaque contrôleur possède :
+ * - une vue
+ * - une liaison vers le contrôleur principal
  * @author ydurand
- - v1.0
+ * @v1.0
  */
 public abstract class ControleurGenerique {
     

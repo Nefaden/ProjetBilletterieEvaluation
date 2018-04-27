@@ -7,7 +7,7 @@ import modele.metier.Representation;
 /**
  * Classe permettant de tester la classe représentation (getter/setter)
  * @author ydurand
- * v1.0
+ * @v1.0
  */
 public class RepresentationTest {
 

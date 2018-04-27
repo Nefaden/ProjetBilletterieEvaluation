@@ -6,11 +6,13 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
-import modele.metier.Lieu;
+import modele.metier.Utilisateur;
 
 /**
- *
+ * Classe de test du mapping de la classe Utilisateur
+ * 
  * @author ydurand
+ * @v1.0
  */
 public class TestJPA_Utilisateur {
 
@@ -19,62 +21,62 @@ public class TestJPA_Utilisateur {
      */
     public static void main(String[] args) {
         EntityManager em;
-        List<Lieu> desLieux;
-        int idLieu;
-        Lieu unLieu, unLieu2, unLieu3, unLieuLu, unLieu2Lu, unLieuSupprimer;
+        List<Utilisateur> arrObjUtilisateur;
+        int idUtilisateur;
+        Utilisateur objUtilisateur, objUtilisateur2, objUtilisateur3, objUtilisateurLu, objutilisateurLu2, objUtilisateurSupprimer;
 
-        System.out.println("\nDEBUT DES TESTS DE PERSISTANCE POUR LA CLASSE Lieu");
+        System.out.println("\nDEBUT DES TESTS DE PERSISTANCE POUR LA CLASSE Utilisateur");
         em = Persistence.createEntityManagerFactory("BilletJava2017PU").createEntityManager();
         EntityTransaction tx = em.getTransaction(); 
         tx.begin();
 
-        idLieu = 1;
-        System.out.println("\nTest 1 - sélection du lieu d'identifiant : " + idLieu);
-        unLieu = em.find(Lieu.class, idLieu);
-        if (unLieu != null) {
-            System.out.println("\tLieu d'identifiant : " + idLieu + " : " + unLieu.toString());
+        idUtilisateur = 1;
+        System.out.println("\nTest 1 - sélection de l'utilisateur d'identifiant : " + idUtilisateur);
+        objUtilisateur = em.find(Utilisateur.class, idUtilisateur);
+        if (objUtilisateur != null) {
+            System.out.println("\tUtilisateur d'identifiant : " + idUtilisateur + " : " + objUtilisateur.toString());
         } else {
-            System.out.println("\tECHEC : Lieu d'identifiant : " + idLieu + " non trouvée ");
+            System.out.println("\tECHEC : Utilisateur d'identifiant : " + idUtilisateur + " non trouvée ");
         }
         System.out.println("Test 1 effectué");
         
         
-        System.out.println("\nTest 2 - sélection de l'ensemble des lieux");
-        Query query= em.createQuery("select l from Lieu l");
-        desLieux = query.getResultList();
-        for (Lieu objLieu : desLieux) {
-            System.out.println("\t->" + objLieu);
+        System.out.println("\nTest 2 - sélection de l'ensemble des utilisateurs");
+        Query query= em.createQuery("select u from Utilisateur u");
+        arrObjUtilisateur = query.getResultList();
+        for (Utilisateur dataObjUtilisateur : arrObjUtilisateur) {
+            System.out.println("\t->" + dataObjUtilisateur);
         }
         System.out.println("Test 2 effectué");
         
         System.out.println("\nTest 3 - persistance de nouveaux lieux");
-        unLieu2 = new Lieu(100, "SALLE DE TEST 1", "Rue de Bonneville", 450);
-        unLieu3 = new Lieu(200, "CABINET DE TEST 2", "MAIRIE ANNEXE DE PARAME, Place Georges COUDRAY", 250);
-        em.persist(unLieu2);
-        em.persist(unLieu3);
-        System.out.println("\tpersistance demandée ; vérification par recherche sur l'identifiant du lieu : " + unLieu2.getIdLieu());
-        unLieuLu =  em.find(Lieu.class, unLieu2.getIdLieu());
-        unLieu2Lu =  em.find(Lieu.class, unLieu3.getIdLieu());
-        System.out.println("\tLieu d'identifiant : " + unLieu2.getIdLieu() + " : " + unLieuLu.toString());
-        System.out.println("\tLieu d'identifiant : " + unLieu3.getIdLieu() + " : " + unLieu2Lu.toString());
+        objUtilisateur2 = new Utilisateur(100, "PHILIPPE", "Jean", "jphilippe", "1234");
+        objUtilisateur3 = new Utilisateur(100, "POUTOU", "Michèle", "mpoutou", "1234");
+        em.persist(objUtilisateur2);
+        em.persist(objUtilisateur3);
+        System.out.println("\tpersistance demandée ; vérification par recherche sur l'identifiant du lieu : " + objUtilisateur2.getIdUtilisateur());
+        objUtilisateurLu =  em.find(Utilisateur.class, objUtilisateur2.getIdUtilisateur());
+        objutilisateurLu2 =  em.find(Utilisateur.class, objUtilisateur3.getIdUtilisateur());
+        System.out.println("\tLieu d'identifiant : " + objUtilisateur2.getIdUtilisateur() + " : " + objUtilisateurLu.toString());
+        System.out.println("\tLieu d'identifiant : " + objUtilisateur3.getIdUtilisateur() + " : " + objutilisateurLu2.toString());
         System.out.println("Test 3 effectué");
         
         System.out.println("\nTest 4 - modification d'un lieu");
-        unLieu2.setIdLieu(10);
-        System.out.println("\tmodification demandée ; vérification par recherche sur l'identifiant du lieu : " + unLieu2.getIdLieu());
-        unLieuLu =  em.find(Lieu.class, unLieu2.getIdLieu());
-        System.out.println("\tLieu d'identifiant : " + unLieu2.getIdLieu() + " : " + unLieuLu.toString());
+        objUtilisateur2.setIdUtilisateur(10);
+        System.out.println("\tmodification demandée ; vérification par recherche sur l'identifiant du lieu : " + objUtilisateur2.getIdUtilisateur());
+        objUtilisateurLu =  em.find(Utilisateur.class, objUtilisateur2.getIdUtilisateur());
+        System.out.println("\tLieu d'identifiant : " + objUtilisateur2.getIdUtilisateur() + " : " + objUtilisateurLu.toString());
         System.out.println("Test 4 effectué");
         
-        unLieuSupprimer = unLieu2;
-        System.out.println("\nTest 5-1 - suppression d'un lieu persistant : " + unLieuSupprimer.toString());
-        em.remove(unLieuSupprimer);
-        System.out.println("\tsuppression effectuée ; vérification par recherche sur l'identifiant du lieu : " + unLieuSupprimer.getIdLieu());
-        unLieuLu =  em.find(Lieu.class, unLieu2.getIdLieu());
-        if (unLieuLu == null) {
+        objUtilisateurSupprimer = objUtilisateur2;
+        System.out.println("\nTest 5-1 - suppression d'un lieu persistant : " + objUtilisateurSupprimer.toString());
+        em.remove(objUtilisateurSupprimer);
+        System.out.println("\tsuppression effectuée ; vérification par recherche sur l'identifiant du lieu : " + objUtilisateurSupprimer.getIdUtilisateur());
+        objUtilisateurLu =  em.find(Utilisateur.class, objUtilisateur2.getIdUtilisateur());
+        if (objUtilisateurLu == null) {
             System.out.println("\tsuppression réussie");
         } else {
-            System.out.println("\téchec de la suppression : " + unLieu2.getIdLieu() + " : " + unLieuLu.toString());
+            System.out.println("\téchec de la suppression : " + objUtilisateur2.getIdUtilisateur() + " : " + objUtilisateurLu.toString());
         }
         System.out.println("Test 5-1 effectué");
          

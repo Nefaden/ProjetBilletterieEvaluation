@@ -9,7 +9,7 @@ import modele.metier.Groupe;
  * Classe représentant les representations des groupes participant au festival dans les lieux réservés
  * 
  * @author ydurand
- * v1.0
+ * @v1.0
  */
 @Entity(name = "Representation")
 @Table(name = "Representation")
@@ -58,6 +58,32 @@ public class Representation implements Serializable {
         this.s_HeureFin = strHeureFinRepresentation;
         this.i_NbPlaceRestante = intNbPlaceRestante;
     }
+    
+//    /**
+//     * 
+//     * Fonction void qui update la colonne du nombre de place de la table Representation
+//     * Après avoir vendu / reserver des places depuis le CtrlVentePlace
+//     * @param idRepresentation
+//     * @param nombrePlaces
+//     * @throws SQLException 
+//     */
+//    public static void updateNbPlaceRestante(int idRepresentation, int nombrePlaces) throws SQLException
+//    {
+//        EntityManager em;
+//        em = Persistence.createEntityManagerFactory("BilletJava2017PU").createEntityManager();
+//        EntityTransaction tx = em.getTransaction(); 
+//        // Utilisation JPQL        
+//        tx.begin();
+//        String jpqlUpdate = "UPDATE Representation r SET r.nombre_Place_Restante = :nombrePlaces WHERE r.i_Id = :idRepresentation";
+//        Query requete = em.createQuery(jpqlUpdate);
+//                requete.setParameter("nombrePlaces", nombrePlaces);
+//                requete.setParameter("idRepresentation", idRepresentation);
+//                requete.executeUpdate();
+//        try {
+//            // Validation de la transaction
+//            tx.commit();
+//        } catch (PersistenceException ex) {}
+//    }
     
     /**
      *

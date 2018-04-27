@@ -14,17 +14,23 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import modele.dao.Jdbc;
+import Connexion.Jdbc.Jdbc;
+import Connexion.Jdbc.JdbcDist;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import vue.VueConnexionDistante;
 import modele.metier.Utilisateur;
-import modele.dao.UtilisateurDao;
 
 /**
  * Controller gérant les connexions et la vue VueAuthentificationLocale
  *
- * @author ydurand v1.0
+ * @author ydurand
+ * @v1.0
  */
 public class CtrlConnexionDistante extends ControleurGenerique implements ActionListener, WindowListener {
+    
+    public static boolean estConnecter;
 
     // Constructeur du controller Principal
     public CtrlConnexionDistante(CtrlPrincipal ctrlPrincipal) {
@@ -33,6 +39,7 @@ public class CtrlConnexionDistante extends ControleurGenerique implements Action
         this.vue.addWindowListener(this);
         this.getVue().getjButtonConnexion().addActionListener(this);
         this.getVue().getjButtonQuitter().addActionListener(this);
+        this.estConnecter = estConnecter;
     }
 
     /**
@@ -74,17 +81,16 @@ public class CtrlConnexionDistante extends ControleurGenerique implements Action
                 prop.load(input);
 
                 // get the property value and print it out
-                String driver = prop.getProperty("dbdist.driver");
-                String jdbc = prop.getProperty("dbdist.jdbc");
-                String pass = prop.getProperty("dbdist.pass");
-                String databasename = prop.getProperty("dbdist.databasename");
-                String login = prop.getProperty("dbdist.login");
-                String password = prop.getProperty("dbdist.password");
-
-                Jdbc.creer(driver, jdbc, pass, databasename, login, password);
+                //JdbcDist.getInstance().deconnecter();
+                Jdbc.getInstance().setServeurBd(prop.getProperty("dbdist.pass"));
+                Jdbc.getInstance().connecter();
 
             } catch (final IOException ex) {
                 ex.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CtrlConnexionDistante.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 if (input != null) {
                     try {
@@ -112,7 +118,11 @@ public class CtrlConnexionDistante extends ControleurGenerique implements Action
                 if (getVue().getjTextFieldNomUtilisateur().getText().equals("")) {
                     JOptionPane.showMessageDialog(null, "Renseignez le nom d'utilisateur", "Inane error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    Utilisateur objUtilisateur = UtilisateurDao.getOneByNameUser(getVue().getjTextFieldNomUtilisateur().getText());
+                    EntityManager em;
+                    em = Persistence.createEntityManagerFactory("BilletJava2017PU").createEntityManager();
+                    String nomUtilisateur = getVue().getjTextFieldNomUtilisateur().getText();
+                    Query query = em.createQuery("select u from Utilisateur u WHERE u.s_NomUtilisateur = :NomUtilisateur").setParameter("NomUtilisateur", nomUtilisateur);
+                    Utilisateur objUtilisateur = (Utilisateur) query.getSingleResult();
                     if (getVue().getjPasswordFieldMotDePasse().getText().equals("")) {
                         JOptionPane.showMessageDialog(null, "Renseignez le Mot de Passe", "Inane error", JOptionPane.ERROR_MESSAGE);
                     } else {
@@ -120,6 +130,7 @@ public class CtrlConnexionDistante extends ControleurGenerique implements Action
                                 && objUtilisateur.getMotDePasse().equals(sb.toString())) {
                             try {
                                 Jdbc.getInstance().connecter();
+                                this.estConnecter = true;
                             } catch (ClassNotFoundException ex) {
                                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Main - connexion à la BDD - pilote JDBC non trouvé", JOptionPane.ERROR_MESSAGE);
                             } catch (SQLException ex) {
