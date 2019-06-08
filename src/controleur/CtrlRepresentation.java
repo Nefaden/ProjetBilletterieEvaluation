@@ -37,6 +37,13 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         this.getVue().getjTableRepresentation().addMouseListener(this);
         this.getVue().getjButtonReservation().addActionListener(this);
         this.getVue().getjButtonQuitter().addActionListener(this);
+        this.getVue().getjButtonOrderByDate().addActionListener(this);
+        this.getVue().getjButtonOrderLieu().addActionListener(this);
+        this.getVue().getjButtonOrderByGroup().addActionListener(this);
+        this.getVue().getjButtonOrderByDate().setEnabled(false);
+        this.getVue().getjButtonOrderLieu().setEnabled(true);
+        this.getVue().getjButtonOrderByGroup().setEnabled(true);
+        
     }
 
     /**
@@ -63,7 +70,7 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
         getVue().getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         String[] ligneDonnees = new String[6];
         // Utilisation JPQL
-        Query query= em.createQuery("select r from Representation r");
+        Query query = em.createQuery("select r from Representation r order by r.s_Date DESC, r.o_Lieu.s_NomLieu, r.o_Groupe.s_NomGroupe");
         arrObjRepresentation = (Vector<Representation>) query.getResultList();
         for (Representation objRepresentation : arrObjRepresentation) {
             ligneDonnees[0] = Integer.toString(objRepresentation.getIdRepresentation());
@@ -116,6 +123,73 @@ public class CtrlRepresentation extends ControleurGenerique implements ActionLis
                 }
             }
         }
+    }
+    
+    // Ordonner le tableau par date
+    public void afficherRepresentationOrderByDate() {
+        EntityManager em;
+        em = Persistence.createEntityManagerFactory("BilletJava2017PU").createEntityManager();
+        getVue().getModeleTableRepresentation().setRowCount(0);
+        String[] titresColonnes = {"ID", "Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
+        getVue().getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
+        String[] ligneDonnees = new String[6];
+        // requête JPQL
+        Query query = em.createQuery("select r from Representation r order by r.s_Date DESC, r.o_Lieu.s_NomLieu, r.o_Groupe.s_NomGroupe");
+        arrObjRepresentation = (Vector<Representation>) query.getResultList();
+        for (Representation objRepresentation : arrObjRepresentation) {
+            ligneDonnees[0] = Integer.toString(objRepresentation.getIdRepresentation());
+            ligneDonnees[1] = objRepresentation.getGroupe().getNomGroupe();
+            ligneDonnees[2] = objRepresentation.getLieu().getNomLieu();
+            ligneDonnees[3] = objRepresentation.getDateRepresentation();
+            ligneDonnees[4] = objRepresentation.getHeureDebutRepresentation();
+            ligneDonnees[5] = objRepresentation.getHeureFinRepresentation();
+            getVue().getModeleTableRepresentation().addRow(ligneDonnees);
+        }        
+    }
+    
+    // Ordonner le tableau par lieu
+    public void afficherRepresentationOrderByLieu() {
+        EntityManager em;
+        em = Persistence.createEntityManagerFactory("BilletJava2017PU").createEntityManager();
+        getVue().getModeleTableRepresentation().setRowCount(0);
+        String[] titresColonnes = {"ID", "Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
+        getVue().getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
+        String[] ligneDonnees = new String[6];
+        // requête JPQL
+        Query query = em.createQuery("select r from Representation r order by r.o_Lieu.s_NomLieu, r.s_Date DESC, r.o_Groupe.s_NomGroupe");
+        arrObjRepresentation = (Vector<Representation>) query.getResultList();
+        for (Representation objRepresentation : arrObjRepresentation) {
+            ligneDonnees[0] = Integer.toString(objRepresentation.getIdRepresentation());
+            ligneDonnees[1] = objRepresentation.getGroupe().getNomGroupe();
+            ligneDonnees[2] = objRepresentation.getLieu().getNomLieu();
+            ligneDonnees[3] = objRepresentation.getDateRepresentation();
+            ligneDonnees[4] = objRepresentation.getHeureDebutRepresentation();
+            ligneDonnees[5] = objRepresentation.getHeureFinRepresentation();
+            getVue().getModeleTableRepresentation().addRow(ligneDonnees);
+        }
+    }
+    
+    // Ordonner le tableau par groupe
+    public void afficherRepresentationOrderByGroup() {
+        EntityManager em;
+        em = Persistence.createEntityManagerFactory("BilletJava2017PU").createEntityManager();
+        getVue().getModeleTableRepresentation().setRowCount(0);
+        String[] titresColonnes = {"ID", "Groupe", "Lieu", "Date", "Heure Debut", "Heure Fin"};
+        getVue().getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
+        String[] ligneDonnees = new String[6];
+        // requête JPQL
+        Query query = em.createQuery("select r from Representation r order by r.o_Groupe.s_NomGroupe, r.s_Date DESC, r.o_Lieu.s_NomLieu");
+        arrObjRepresentation = (Vector<Representation>) query.getResultList();
+        for (Representation objRepresentation : arrObjRepresentation) {
+            ligneDonnees[0] = Integer.toString(objRepresentation.getIdRepresentation());
+            ligneDonnees[1] = objRepresentation.getGroupe().getNomGroupe();
+            ligneDonnees[2] = objRepresentation.getLieu().getNomLieu();
+            ligneDonnees[3] = objRepresentation.getDateRepresentation();
+            ligneDonnees[4] = objRepresentation.getHeureDebutRepresentation();
+            ligneDonnees[5] = objRepresentation.getHeureFinRepresentation();
+            getVue().getModeleTableRepresentation().addRow(ligneDonnees);
+        }
+        
     }
 
     /**
